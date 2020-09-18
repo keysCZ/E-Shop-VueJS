@@ -2,10 +2,10 @@
 <div>
   <b-card
     title="Card Title"
-    img-src="../../assets/images/fondLBM.png"
-    img-alt="One's image alt"
-    img-top
     tag="article"
+    :img-src="imagePath"
+    :img-alt="imageAlt"
+    img-top
     style="max-width: 20rem;"
     class="mb-2"
   >
@@ -22,7 +22,8 @@
 
 <script>
 export default{
-    name : 'CardS'
+    name : 'CardS',
+    props: ["imagePath", "imageAlt"]
 }
 </script>
 

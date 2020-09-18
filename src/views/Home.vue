@@ -6,7 +6,7 @@
       <b-container>
         <b-row>
           <b-col>
-            <bscard :imgsrc="imgsrc[1]">
+            <bscard :imagePath="imgPathCard[0]" :imageAlt="altCard[0]">
               <template v-slot:text>
                 <p>One's product</p>
               </template>
@@ -16,7 +16,7 @@
             </bscard>
           </b-col>
           <b-col>
-            <bscard :imgsrc="imgsrc[1]">
+            <bscard :imagePath="imgPathCard[1]" :imageAlt="altCard[1]">
               <template v-slot:text>
                 <p>One's product</p>
               </template>
@@ -26,7 +26,7 @@
             </bscard>
           </b-col>
           <b-col>
-            <bscard v-bind:imgsrc="imgsrc[2]">
+            <bscard :imagePath="imgPathCard[2]" :imageAlt="altCard[2]">
               <template v-slot:text>
                 <p>One's product</p>
               </template>
@@ -60,10 +60,16 @@ export default {
   },
   data(){
     return {
-      imgsrc : [
+      imagePath : [
       'https://picsum.photos/600/300/?image=25', 
       'https://picsum.photos/600/300/?image=25', 
-      'https://picsum.photos/600/300/?image=25']
+      'https://picsum.photos/600/300/?image=25'
+      ],
+      imageAlt : [
+        "1",
+        "2",
+        "3"
+      ]
     }
   }
 }

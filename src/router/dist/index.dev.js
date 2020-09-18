@@ -49,7 +49,8 @@ var routes = [{
   }
 }];
 var router = new _vueRouter["default"]({
-  routes: routes
+  routes: routes,
+  mode: 'history'
 });
 var _default = router;
 exports["default"] = _default;
