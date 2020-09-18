@@ -1,18 +1,17 @@
 <template>
   <div class="covermodel">
     <b-jumbotron class="cover-focus">
-            <template v-slot:header>LBM</template>
+      <template v-slot:header>DoShinely</template>
 
-            <template v-slot:lead>
-            Latest Best Model
-            </template>
+      <template v-slot:lead>
+        Révélez votre beauté naturelle !
+      </template>
 
-            <hr class="my-4" />
+      <hr class="my-4" />
 
-            <p>
-            Offrez-vous une paire de NIKE | ADIDAS | FILA | PUMA | VANS
-            </p>
-
+      <p>
+        Optez pour nos huiles essentielles  100% bio, pures et concentrées. Faits brillament pour vous !
+      </p>
     </b-jumbotron>
   </div>
 </template>
@@ -28,7 +27,7 @@ export default {
 @import url(  https://fonts.googleapis.com/css?family=Nunito:200,200italic,300,300italic,regular,italic,600,600italic,700,700italic,800,800italic,900,900italic);
 .covermodel {
   font-family: "Nunito", sans-serif;
-  background-image: url("../../assets/images/countryside-1846093_1920.jpg");
+  background-image: url("../../assets/images/christin-hume-0MoF-Fe0w0A-unsplash.jpg");
   background-position: center;
   background-attachment: fixed;
   background-size: cover;

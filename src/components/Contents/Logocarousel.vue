@@ -3,12 +3,11 @@
     <carousel-3d>
       <button @click="goToSlide(3)">Go to Slide Index 3</button>
     
-      <div v-for="(slide, i) in slides" :key="i">
-        <slide v-for="(val, props) in slide" :key="props">
-          <img :src="val" :alt="props" />
+   
+        <slide v-for="(slide, i) in slides" :key="i">
+          <img :src="slide.img" :alt='slide.name' />
         </slide>
         
-      </div>
     </carousel-3d>
   </div>
 </template>
@@ -21,36 +20,36 @@ export default {
     return {
       slides: [
         {
-          img: `../src/assets/img-jordan/14/demo.PNG`,
-          name: "Slide name 1",
+          img: `../../assets/img-jordan/14/demo.PNG`,
+          name: "Slide name 1"
         },
         {
-          img: "../src/assets/img-jordan/14/demo.PNG",
-          name: "Slide name 2",
+          img: "../../assets/img-jordan/14/demo.PNG",
+          name: "Slide name 2"
         },
         {
-          img: "../src/assets/img-jordan/14/demo.PNG",
-          name: "Slide name 3",
+          img: "../../assets/img-jordan/14/demo.PNG",
+          name: "Slide name 3"
         },
         {
-          img: "../src/assets/img-jordan/14/demo.PNG",
-          name: "Slide name 4",
+          img: "../../assets/img-jordan/14/demo.PNG",
+          name: "Slide name 4"
         },
         {
-          _img: "../src/assets/img-jordan/14/demo.PNG",
+          _img: "../../assets/img-jordan/14/demo.PNG",
           get img() {
             return this._img;
           },
           set img(value) {
             this._img=value;
-          },
+          }
         }
       ]
     };
   },
   components: {
     "carousel-3d": Carousel3d,
-    "slide" : Slide,
+    "slide" : Slide
   },
   methods: {
     goToSlide(i) {
@@ -67,6 +66,9 @@ button {
 
 .carousel-3d-slide {
   padding: 20px;
+  display: block;
+  opacity: 1;
+  visibility: visible;
 }
 
 </style>

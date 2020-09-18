@@ -1,18 +1,25 @@
 <template>
   <div class="about">
-    <HeaderHome/>
+    <headerh></headerh>
     <h1>This is about page</h1>
+
+
+    
+    <footerh></footerh>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HeaderHome from '@/components/Header.vue'
+
+import HeaderHome from '@/components/sections/Header.vue'
+import Gfooter from '@/components/sections/Footer.vue'
 
 export default {
-  name: 'Home',
+  name: 'About',
   components: {
-    HeaderHome
+    'headerh' : HeaderHome,
+    'footerh' : Gfooter,
   }
 }
 </script>
