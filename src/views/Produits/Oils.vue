@@ -75,7 +75,7 @@ export default {
     return {
       imgPathCard : [
       'https://picsum.photos/600/300/?image=25', 
-      '@/assets/images/christin-hume-0MoF-Fe0w0A-unsplash.jpg', 
+      'src/assets/images/christin-hume-0MoF-Fe0w0A-unsplash.jpg', 
       'https://picsum.photos/600/300/?image=25',
       'https://picsum.photos/600/300/?image=25', 
       'https://picsum.photos/600/300/?image=25',
