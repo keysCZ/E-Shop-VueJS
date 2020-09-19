@@ -117,4 +117,15 @@ export default {
     }
 };
 </script>
-<style></style>
+<style lang="scss" scoped>
+#app{
+    text-align: unset;
+}
+
+img{
+    max-width: 300px;
+}
+.intro{
+    margin-top: 3rem;
+}
+</style>

@@ -1,16 +1,4 @@
 @charset "UTF-8";
-#app {
-  text-align: unset;
-}
-
-img {
-  max-width: 300px;
-}
-
-.intro {
-  margin-top: 3rem;
-}
-
 @-webkit-keyframes swing {
   0%, 30%, 50%, 70%, 100% {
     -webkit-transform: rotate(0deg);
