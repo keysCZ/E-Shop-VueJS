@@ -19,7 +19,7 @@
             <div class="user-pic">
               <img
                 class="img-responsive img-rounded"
-                src="img/user.jpg"
+                src="/img/user.svg"
                 alt="User picture"
               />
             </div>

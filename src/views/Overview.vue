@@ -1,9 +1,9 @@
 <template>
   <div class="overview">
-    <div class="container">
-        <div class="intro">
-            <div class="row">
-                <div class="col-md-6">
+    <div class="container h-100">
+        <div class="intro h-100">
+            <div class="row h-100 justify-content-center align-items-center">
+                <div class="col-md-6 ">
                     <h3>Vue d'ensemble</h3>
                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum, ipsam!</p>
                 </div>
@@ -24,7 +24,4 @@ export default {
 };
 </script>
 <style scoped>
-    img{
-        max-width: 300px;
-    }
 </style>
