@@ -60,12 +60,12 @@ export default {
   },
   data(){
     return {
-      imagePath : [
+      imgPathCard : [
+      '/img/thaismara-figueredo-MTMn2VDnLGM-unsplash.jpg',
       'https://picsum.photos/600/300/?image=25', 
-      'https://picsum.photos/600/300/?image=25', 
-      'https://picsum.photos/600/300/?image=25'
+      '/img/christin-hume-0MoF-Fe0w0A-unsplash.jpg'
       ],
-      imageAlt : [
+      altCard : [
         "1",
         "2",
         "3"

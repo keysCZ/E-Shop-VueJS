@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Navbar from '../Contents/Nav.vue'
+import Navbar from '../sections/Nav.vue'
 import CoverModel from '../Contents/Covermodel.vue'
 
 export default {

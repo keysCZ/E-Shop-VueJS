@@ -13,6 +13,14 @@ var _Home = _interopRequireDefault(require("../views/Home.vue"));
 
 var _Admin = _interopRequireDefault(require("../views/Admin.vue"));
 
+var _Overview = _interopRequireDefault(require("../views/Overview.vue"));
+
+var _Products = _interopRequireDefault(require("../views/Products.vue"));
+
+var _Orders = _interopRequireDefault(require("../views/Orders.vue"));
+
+var _Profile = _interopRequireDefault(require("../views/Profile.vue"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -29,8 +37,25 @@ var routes = [{
   component: _Home["default"]
 }, {
   path: '/admin',
-  name: 'Admin',
-  component: _Admin["default"]
+  name: 'admin',
+  component: _Admin["default"],
+  children: [{
+    path: 'overview',
+    name: 'overview',
+    component: _Overview["default"]
+  }, {
+    path: 'products',
+    name: 'products',
+    component: _Products["default"]
+  }, {
+    path: 'orders',
+    name: 'orders',
+    component: _Orders["default"]
+  }, {
+    path: 'profile',
+    name: 'profile',
+    component: _Profile["default"]
+  }]
 }, {
   path: '/about',
   name: 'About',
