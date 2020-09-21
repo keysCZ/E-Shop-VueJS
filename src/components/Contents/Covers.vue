@@ -1,7 +1,7 @@
 <template>
   <div class="cover">
     <b-jumbotron class="cover-focus">
-      <template v-slot:header>DoShinely</template>
+      <template v-slot:header>CAZAL <br> DoShinely</template>
 
       <template v-slot:lead>
         Révélez votre beauté naturelle !

@@ -1,12 +1,12 @@
 <template>
   <div class="nav">
-    <b-navbar toggleable="lg" type="light" variant="light">
-      <b-navbar-brand href="/">DoShinely</b-navbar-brand>
+    <b-navbar toggleable="lg" type="light" variant="white">
+      <b-navbar-brand href="/">CAZAL</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav>
+        <b-navbar-nav class="ml-auto">
           <b-nav-item><router-link to="/">Accueil</router-link> |</b-nav-item>
           <b-nav-item-dropdown text="Produits" right>
             <b-dropdown-item><router-link to="/oils">Huiles Essentielles</router-link></b-dropdown-item>
