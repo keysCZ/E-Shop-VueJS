@@ -27,7 +27,7 @@
 
         </b-navbar-nav>
       </b-collapse>
-      <Login></Login>
+      <signin></signin>
     </b-navbar>
   </div>
 </template>
@@ -38,7 +38,7 @@ import Login from '../Contents/Login.vue'
 export default {
   name: "Navbar",
   components : {
-    Login
+    'signin' : Login
   }
 };
 </script>

@@ -5,7 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.fb = void 0;
 
-var _firebase = _interopRequireDefault(require("firebase/"));
+var _app = _interopRequireDefault(require("@firebase/app"));
+
+require("firebase/firebase-auth");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -20,6 +22,6 @@ var firebaseConfig = {
   measurementId: "G-WDSH26FBLE"
 }; // Initialize Firebase
 
-var fb = _firebase["default"].initializeApp(firebaseConfig);
+var fb = _app["default"].initializeApp(firebaseConfig);
 
 exports.fb = fb;

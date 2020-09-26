@@ -4,7 +4,7 @@ var _vue = _interopRequireDefault(require("vue"));
 
 var _App = _interopRequireDefault(require("./App.vue"));
 
-var _jquery = _interopRequireDefault(require("jquery"));
+require("jquery");
 
 require("popper.js");
 
@@ -15,6 +15,8 @@ var _bootstrapVue = require("bootstrap-vue");
 require("bootstrap/dist/css/bootstrap.min.css");
 
 require("bootstrap-vue/dist/bootstrap-vue.css");
+
+var _firebase = require("./firebase");
 
 require("./assets/styles/app.scss");
 
@@ -29,8 +31,6 @@ var _vueCarousel3d = _interopRequireDefault(require("vue-carousel-3d"));
 var _router = _interopRequireDefault(require("./router"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-window.$ = window.jQuery = _jquery["default"];
 
 _vue["default"].use(_vueCarousel3d["default"]); // Install BootstrapVue
 

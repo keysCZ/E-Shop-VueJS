@@ -1,29 +1,29 @@
-import Vue from 'vue';
-import App from './App.vue';
-import jQuery from 'jquery';
-window.$ = window.jQuery = jQuery;
-import "popper.js";
-import 'bootstrap';
-import 'bootstrap-vue';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
+import Vue from 'vue'
+import App from './App.vue'
+import 'jquery'
+import "popper.js"
+import 'bootstrap'
+import 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 import {
   BootstrapVue,
   IconsPlugin
-} from 'bootstrap-vue';
+} from 'bootstrap-vue'
+import {fb} from './firebase'
 
 
-import './assets/styles/app.scss';
+import './assets/styles/app.scss'
 import {
   library
-} from '@fortawesome/fontawesome-svg-core';
+} from '@fortawesome/fontawesome-svg-core'
 import {
   faUserSecret
-} from '@fortawesome/free-solid-svg-icons';
+} from '@fortawesome/free-solid-svg-icons'
 import {
   FontAwesomeIcon
-} from '@fortawesome/vue-fontawesome';
-import Carousel3d from 'vue-carousel-3d';
+} from '@fortawesome/vue-fontawesome'
+import Carousel3d from 'vue-carousel-3d'
 
 Vue.use(Carousel3d)
 // Install BootstrapVue
