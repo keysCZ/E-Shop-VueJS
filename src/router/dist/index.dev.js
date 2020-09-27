@@ -21,6 +21,8 @@ var _Orders = _interopRequireDefault(require("../views/Orders.vue"));
 
 var _Profile = _interopRequireDefault(require("../views/Profile.vue"));
 
+var _firebase = require("../firebase");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -39,6 +41,9 @@ var routes = [{
   path: '/admin',
   name: 'admin',
   component: _Admin["default"],
+  meta: {
+    requiresAuth: true
+  },
   children: [{
     path: 'overview',
     name: 'overview',
@@ -93,6 +98,21 @@ var routes = [{
 var router = new _vueRouter["default"]({
   routes: routes,
   mode: 'history'
+});
+router.beforeEach(function (to, from, next) {
+  var requiresAuth = to.matched.some(function (x) {
+    return x.meta.requiresAuth;
+  });
+
+  var currentUser = _firebase.fb.auth().currentUser;
+
+  if (requiresAuth && !currentUser) {
+    next('/');
+  } else if (requiresAuth && currentUser) {
+    next();
+  } else {
+    next();
+  }
 });
 var _default = router;
 exports["default"] = _default;

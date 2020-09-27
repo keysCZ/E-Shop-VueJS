@@ -62,9 +62,15 @@ _fontawesomeSvgCore.library.add(_freeSolidSvgIcons.faUserSecret);
 _vue["default"].component('font-awesome-icon', _vueFontawesome.FontAwesomeIcon);
 
 _vue["default"].config.productionTip = false;
-new _vue["default"]({
-  router: _router["default"],
-  render: function render(h) {
-    return h(_App["default"]);
+var app = '';
+
+_firebase.fb.auth().onAuthStateChanged(function (user) {
+  if (!app) {
+    new _vue["default"]({
+      router: _router["default"],
+      render: function render(h) {
+        return h(_App["default"]);
+      }
+    }).$mount('#app');
   }
-}).$mount('#app');
+});

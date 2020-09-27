@@ -70,7 +70,13 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
 
-new Vue({
-  router,
-  render: h => h(App)
-}).$mount('#app')
+let app = '';
+
+fb.auth().onAuthStateChanged(function(user){
+if(!app){
+  new Vue({
+    router,
+    render: h => h(App)
+  }).$mount('#app')
+}
+});

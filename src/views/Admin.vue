@@ -86,7 +86,7 @@
                             </router-link>
                         </li>
                         <li>
-                            <a href="#" @click="logout()">
+                            <a href="#" @click="logout">
                                 <i class="fa fa-power-off"></i>
                                 <span>Logout</span>
                             </a>
@@ -108,11 +108,21 @@
 </template>
 
 <script>
+import {fb} from '../firebase'
 export default {
     name: "Admin",
     methods:{
         closeMenu(){
         $(".page-wrapper").toggleClass("toggled");
+        },
+        logout(){
+          fb.auth().signOut()
+          .then((user) =>{
+            this.$router.replace('/')
+          })
+          .catch((error) =>{
+            console.log(error)
+          });
         }
     }
 };

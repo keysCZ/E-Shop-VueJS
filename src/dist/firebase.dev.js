@@ -3,13 +3,15 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fb = void 0;
+exports.db = exports.fb = void 0;
 
 var _app = _interopRequireDefault(require("@firebase/app"));
 
 require("firebase/firebase-auth");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+require('firebase/firestore');
 
 var firebaseConfig = {
   apiKey: "AIzaSyCo9m951pd4lCYNpVhQsg_t8HUD2OpU3BE",
@@ -25,3 +27,7 @@ var firebaseConfig = {
 var fb = _app["default"].initializeApp(firebaseConfig);
 
 exports.fb = fb;
+
+var db = _app["default"].firestore();
+
+exports.db = db;
