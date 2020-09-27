@@ -109,6 +109,7 @@
 
 <script>
 import {fb} from '../firebase'
+import $ from "jquery";
 export default {
     name: "Admin",
     methods:{
