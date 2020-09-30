@@ -16,6 +16,8 @@ require("bootstrap/dist/css/bootstrap.min.css");
 
 require("bootstrap-vue/dist/bootstrap-vue.css");
 
+var _vueFirestore = _interopRequireDefault(require("vue-firestore"));
+
 var _firebase = require("./firebase");
 
 require("./assets/styles/app.scss");
@@ -31,6 +33,8 @@ var _vueCarousel3d = _interopRequireDefault(require("vue-carousel-3d"));
 var _router = _interopRequireDefault(require("./router"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+_vue["default"].use(_vueFirestore["default"]);
 
 _vue["default"].use(_vueCarousel3d["default"]); // Install BootstrapVue
 

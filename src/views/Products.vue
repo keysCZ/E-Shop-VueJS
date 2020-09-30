@@ -13,51 +13,12 @@
         </div>
       </div>
       <hr />
-      <h3>Let's create a new product :</h3>
-      <div class="newproduct">
-        <form id="form">
-          <div class="form-group">
-            <label for="nameProduct">Nom du produit</label>
-            <input
-              type="text"
-              class="form-control"
-              id="nameProduct"
-              placeholder="Enter a product name"
-              v-model="product.name"
-            />
-          </div>
-          <div class="form-group">
-            <label for="priceProduct">Prix</label>
-            <input
-              type="number"
-              class="form-control"
-              id="priceProduct"
-              placeholder="10"
-              v-model="product.price"
-            />
-          </div>
-          <div class="form-group">
-            <label for="descriptionProduct">Description</label>
-            <input
-              type="text"
-              class="form-control"
-              id="descriptionProduct"
-              placeholder="Huile d'avocat"
-              v-model="product.description"
-            />
-          </div>
-          <button
-            @click.prevent="saveData"
-            type="submit"
-            class="btn btn-primary form-control"
-          >
-            Save product
-          </button>
-        </form>
-      </div>
+
+      <h3 class="d-inline-block">Tous les produits :</h3>
+      <button class="btn btn-primary float-right" @click="addNew">
+        Ajouter un produit
+      </button>
       <hr />
-      <h3>Tous les produits :</h3>
-      <br />
       <div class="container table-responsive">
         <table class="table">
           <thead class="thead-dark">
@@ -71,39 +32,27 @@
           </thead>
           <tbody>
             <tr v-for="(product, index) in products" :key="index">
-              <th scope="row">{{ index }}</th>
-              <td>{{ product.data().name }}</td>
-              <td>{{ product.data().description }}</td>
-              <td>{{ product.data().price }}</td>
-              <td>
-                <button
-                  class="btn btn-secondary mx-3"
-                  @click="editProduct(product)"
-                >
-                  <i class="fas fa-pen-alt"></i>
-                </button>
-                <button
-                  class="btn btn-danger mx-3"
-                  @click="deleteProduct(product.id)"
-                >
-                  <i class="far fa-trash-alt"></i>
-                </button>
-              </td>
+              <td> {{index}} </td>
+              <td> {{product.name}} </td>
+              <td> {{product.description}} </td>
+              <td> {{product.price}} </td>
+              <button class="btn btn-primary"><i class="fas fa-pen-alt"></i></button>
+              <button class="btn btn-danger" @click="deleteProduct()"><i class="far fa-trash-alt"></i></button>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <!-- Modal -->
+      <!-- @ Modal -->
       <div
-        class="modal fade px-3"
-        id="editModal"
+        class="modal fade"
+        id="product"
         tabindex="-1"
         role="dialog"
         aria-labelledby="editModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="editModalLabel">
@@ -118,39 +67,71 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
+            <div class="container modal-body">
               <form id="form">
-                <div class="form-group">
-                  <label for="nameProduct">Nom du produit</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="nameProduct"
-                    placeholder="Enter a product name"
-                    v-model="product.name"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="priceProduct">Prix</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="priceProduct"
-                    placeholder="10"
-                    v-model="product.price"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="descriptionProduct">Description</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="descriptionProduct"
-                    placeholder="Huile d'avocat"
-                    v-model="product.description"
-                  />
-                </div>
+                <div class="row">
+                  <div class="col">
+                    <legend>Le produit</legend>
+                    <hr />
+                    <div class="form-group">
+                      <label for="nameProduct">Nom du produit</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="nameProduct"
+                        placeholder="Enter a product name"
+                        v-model="product.name"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="descriptionProduct">Description</label>
+                      <textarea
+                        type="textarea"
+                        class="form-control"
+                        id="descriptionProduct"
+                        placeholder="Huile d'avocat"
+                        v-model="product.description"
+                        rows="3"
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <legend>Détails du produit</legend>
+                    <hr />
+                    <div class="form-group">
+                      <label for="priceProduct">Prix</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="priceProduct"
+                        placeholder="10"
+                        v-model="product.price"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="tagProduct">Tags</label>
 
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="tagProduct"
+                        placeholder="Enter a product tag"
+                        v-model="product.tag"
+                      />
+                    </div>
+                    <div class="custom-file">
+                      <input
+                        @change="uploadImage()"
+                        type="file"
+                        class="custom-file-input"
+                        id="customFile"
+                      />
+                      <label class="custom-file-label" for="customFile"
+                        >Choisir une image</label
+                      >
+                    </div>
+                  </div>
+                </div>
                 <div class="modal-footer">
                   <button
                     type="button"
@@ -160,7 +141,7 @@
                     Close
                   </button>
                   <button
-                    @click="updateProduct()"
+                    @click="addProduct()"
                     type="button"
                     class="btn btn-primary"
                   >
@@ -172,6 +153,7 @@
           </div>
         </div>
       </div>
+      <!--  # Modal -->
     </div>
   </div>
 </template>
@@ -188,76 +170,44 @@ export default {
       product: {
         name: null,
         price: null,
-        description: null
+        description: null,
+        tag: null,
+        image: null,
       },
-        activeItem: null,
+      activeItem: null,
+    };
+  },
+  firestore() {
+    return {
+      products: db.collection("products"),
     };
   },
   methods: {
-    watcher(){
-      db.collection("products").onSnapshot((querySnapshot) => {
-        this.products = [];
-          querySnapshot.forEach((doc) => {
-              this.products.push(doc);
-          });
-      });
+    uploadImage() {},
+    addNew() {
+      $("#product").modal("show");
     },
+    
     updateProduct() {
-      db.collection("products").doc(this.activeItem).update(this.product)
-        .then(() => {
-          this.watcher();
-          console.log("Document successfully updated!");
-        })
-        .catch(function (error) {
-          // The document probably doesn't exist.
-          console.error("Error updating document: ", error);
-        });
+     
     },
     editProduct(product) {
-      $("#editModal").modal("show");
-      this.product = product.data();
-      this.activeItem = product.id;
+    
     },
     deleteProduct(doc) {
-      if (confirm("Are you sure ?")) {
-        db.collection("products")
-          .doc(doc)
-          .delete()
-          .then(function () {
-            console.log("Document successfully deleted!");
-          })
-          .catch(function (error) {
-            console.error("Error removing document: ", error);
-          });
-      } else {
-      }
+      
     },
     readData() {
-      db.collection("products")
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            this.products.push(doc);
-          });
-        });
+      
     },
-    saveData() {
-      db.collection("products")
-        .add(this.product)
-        .then((docRef) => {
-          console.log("Document written with ID: ", docRef.id);
-          this.readData();
-        })
-        .catch((error) => {
-          console.error("Error adding document: ", error);
-        });
-    },
-    clearData() {
-      //Object.assign(this.$data, this.$options.data.apply(this));
-    },
+    addProduct() {
+      this.$firestore.products.add(this.product);
+      $("#product").modal("hide");
+
+    }
   },
   created() {
-    this.readData();
-  },
+    
+  }
 };
 </script>

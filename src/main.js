@@ -10,6 +10,7 @@ import {
   BootstrapVue,
   IconsPlugin
 } from 'bootstrap-vue'
+import VueFirestore from "vue-firestore"
 import {fb} from './firebase'
 
 
@@ -24,6 +25,8 @@ import {
   FontAwesomeIcon
 } from '@fortawesome/vue-fontawesome'
 import Carousel3d from 'vue-carousel-3d'
+
+Vue.use(VueFirestore)
 
 Vue.use(Carousel3d)
 // Install BootstrapVue
@@ -65,6 +68,7 @@ import router from './router'
 Vue.use(DropdownPlugin)
 Vue.use(TablePlugin)
 library.add(faUserSecret)
+
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
