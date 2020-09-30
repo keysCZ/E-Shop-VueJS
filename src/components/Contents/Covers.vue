@@ -1,17 +1,16 @@
 <template>
   <div class="cover">
     <b-jumbotron class="cover-focus">
-      <template v-slot:header>CAZAL <br> DoShinely</template>
+      <template v-slot:header
+        >CAZAL <br />
+        Eliane</template
+      >
 
-      <template v-slot:lead>
-        Révélez votre beauté naturelle !
-      </template>
+      <template v-slot:lead> Révélez votre beauté naturelle ! </template>
 
       <hr class="my-4" />
 
-      <p>
-        Optez pour des cosmétiques 100% bio, faits brillament pour tous !
-      </p>
+      <p>Optez pour des cosmétiques 100% bio, faits brillament pour tous !</p>
     </b-jumbotron>
   </div>
 </template>
