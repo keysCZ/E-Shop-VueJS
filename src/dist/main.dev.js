@@ -20,6 +20,8 @@ var _vueFirestore = _interopRequireDefault(require("vue-firestore"));
 
 var _firebase = require("./firebase");
 
+var _sweetalert = _interopRequireDefault(require("sweetalert2"));
+
 require("./assets/styles/app.scss");
 
 var _fontawesomeSvgCore = require("@fortawesome/fontawesome-svg-core");
@@ -33,6 +35,21 @@ var _vueCarousel3d = _interopRequireDefault(require("vue-carousel-3d"));
 var _router = _interopRequireDefault(require("./router"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+window.$ = window.jquery = jquery;
+window.Swal = _sweetalert["default"];
+
+var Toast = _sweetalert["default"].mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: function didOpen(toast) {
+    toast.addEventListener('mouseenter', _sweetalert["default"].stopTimer);
+    toast.addEventListener('mouseleave', _sweetalert["default"].resumeTimer);
+  }
+});
 
 _vue["default"].use(_vueFirestore["default"]);
 

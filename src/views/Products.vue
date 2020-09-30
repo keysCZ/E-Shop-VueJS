@@ -37,7 +37,7 @@
               <td> {{product.description}} </td>
               <td> {{product.price}} </td>
               <button class="btn btn-primary"><i class="fas fa-pen-alt"></i></button>
-              <button class="btn btn-danger" @click="deleteProduct()"><i class="far fa-trash-alt"></i></button>
+              <button class="btn btn-danger" @click="deleteProduct(product)"><i class="far fa-trash-alt"></i></button>
             </tr>
           </tbody>
         </table>
@@ -160,7 +160,6 @@
 
 <script>
 import { fb, db } from "../firebase";
-import $ from "jquery";
 
 export default {
   name: "Products",
@@ -195,7 +194,24 @@ export default {
     
     },
     deleteProduct(doc) {
-      
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.$firestore.products.doc(doc['.key']).delete()
+          Swal.fire(
+            'Deleted!',
+            'Le produit est supprimé.',
+            'success'
+          )
+        }
+      })
     },
     readData() {
       
@@ -203,7 +219,10 @@ export default {
     addProduct() {
       this.$firestore.products.add(this.product);
       $("#product").modal("hide");
-
+      Toast.fire({
+        icon: 'success',
+        title: 'Le produit est bien ajouté'
+      })
     }
   },
   created() {

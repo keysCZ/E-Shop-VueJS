@@ -1,17 +1,21 @@
 <template>
   <div class="admin">
     <div class="page-wrapper default-theme sidebar-bg bg1 toggled">
-        <a href="#" class=" btn btn-sm btn-dark" id="show-sidebar"
-            @click="closeMenu"> 
-            <i class="fas fa-bars"></i> 
-        </a>
+      <a
+        href="#"
+        class="btn btn-sm btn-dark"
+        id="show-sidebar"
+        @click="closeMenu"
+      >
+        <i class="fas fa-bars"></i>
+      </a>
       <nav id="sidebar" class="sidebar-wrapper">
         <div class="sidebar-content">
           <!-- sidebar-brand  -->
           <div class="sidebar-item sidebar-brand">
             <a href="#">pro sidebar</a>
             <div class="close-sidebar" @click="closeMenu">
-                <i class="fas fa-times"></i>
+              <i class="fas fa-times"></i>
             </div>
           </div>
           <!-- sidebar-header  -->
@@ -46,97 +50,97 @@
                 />
                 <div class="input-group-append">
                   <span class="input-group-text">
-                    <i class="fa fa-search" aria-hidden="true"/>
+                    <i class="fa fa-search" aria-hidden="true" />
                   </span>
                 </div>
               </div>
             </div>
           </div>
           <!-- sidebar-menu  -->
-                         <!-- sidebar-menu  -->
-                <div class=" sidebar-item sidebar-menu">
-                    <ul>
-                        <li class="header-menu">
-                            <span>Menu</span>
-                        </li>
+          <!-- sidebar-menu  -->
+          <div class="sidebar-item sidebar-menu">
+            <ul>
+              <li class="header-menu">
+                <span>Menu</span>
+              </li>
 
-                        <li>
-                            <router-link to="/admin/overview">
-                                <i class="fa fa-chart-line"></i>
-                                <span>Overview</span>
-                            </router-link>
-                        </li>
-                        <li>
-                            <router-link to="/admin/products">
-                                <i class="fab fa-amazon"></i>
-                                <span>Products</span>
-                            </router-link>
-                        </li>
-                        <li>
-                            <router-link to="/admin/orders">
-                                <i class="fa fa-shopping-cart"></i>
-                                <span>Orders</span>
-                            </router-link>
-                        </li>
+              <li>
+                <router-link to="/admin/overview">
+                  <i class="fa fa-chart-line"></i>
+                  <span>Overview</span>
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/admin/products">
+                  <i class="fab fa-amazon"></i>
+                  <span>Products</span>
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/admin/orders">
+                  <i class="fa fa-shopping-cart"></i>
+                  <span>Orders</span>
+                </router-link>
+              </li>
 
-                        <li>
-                            <router-link to="/admin/profile">
-                                <i class="fa fa-user"></i>
-                                <span>Profile</span>
-                            </router-link>
-                        </li>
-                        <li>
-                            <a href="#" @click="logout">
-                                <i class="fa fa-power-off"></i>
-                                <span>Logout</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- sidebar-menu  -->
-            </div>
-       
-        </nav>
-        <!-- sidebar-content  -->
-        <main class="page-content">
-            <router-view/>
-        </main>
-      
+              <li>
+                <router-link to="/admin/profile">
+                  <i class="fa fa-user"></i>
+                  <span>Profile</span>
+                </router-link>
+              </li>
+              <li>
+                <a href="#" @click="logout">
+                  <i class="fa fa-power-off"></i>
+                  <span>Logout</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <!-- sidebar-menu  -->
+        </div>
+      </nav>
+      <!-- sidebar-content  -->
+      <main class="page-content">
+        <router-view />
+      </main>
+
       <!-- page-content" -->
     </div>
   </div>
 </template>
 
 <script>
-import {fb} from '../firebase'
-import $ from "jquery";
+import { fb } from "../firebase";
+
 export default {
-    name: "Admin",
-    methods:{
-        closeMenu(){
-        $(".page-wrapper").toggleClass("toggled");
-        },
-        logout(){
-          fb.auth().signOut()
-          .then((user) =>{
-            this.$router.replace('/')
-          })
-          .catch((error) =>{
-            console.log(error)
-          });
-        }
-    }
+  name: "Admin",
+  methods: {
+    closeMenu() {
+      $(".page-wrapper").toggleClass("toggled");
+    },
+    logout() {
+      fb.auth()
+        .signOut()
+        .then((user) => {
+          this.$router.replace("/");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
-#app{
-    text-align: unset;
+#app {
+  text-align: unset;
 }
 
-img{
-    max-width: 300px;
+img {
+  max-width: 300px;
 }
-.intro{
-    margin-top: 3rem;
+.intro {
+  margin-top: 3rem;
 }
 </style>
