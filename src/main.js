@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import 'jquery'
-window.$ = window.jquery = jquery;
+import $ from 'jquery'
 import "popper.js"
 import 'bootstrap'
 import 'bootstrap-vue'
@@ -14,6 +14,10 @@ import {
 import VueFirestore from "vue-firestore"
 import {fb} from './firebase'
 
+Vue.use(VueFirestore, {
+  key: 'id',         // the name of the property. Default is '.key'.
+  enumerable: true  //  whether it is enumerable or not. Default is true.
+})
 
 import Swal from 'sweetalert2'
 window.Swal = Swal;
@@ -27,7 +31,9 @@ const Toast = Swal.mixin({
     toast.addEventListener('mouseenter', Swal.stopTimer)
     toast.addEventListener('mouseleave', Swal.resumeTimer)
   }
-});
+})
+window.Toast = Toast;
+
 import './assets/styles/app.scss'
 import {
   library

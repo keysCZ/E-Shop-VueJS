@@ -4,7 +4,7 @@ var _vue = _interopRequireDefault(require("vue"));
 
 var _App = _interopRequireDefault(require("./App.vue"));
 
-require("jquery");
+var _jquery = _interopRequireDefault(require("jquery"));
 
 require("popper.js");
 
@@ -36,7 +36,13 @@ var _router = _interopRequireDefault(require("./router"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-window.$ = window.jquery = jquery;
+_vue["default"].use(_vueFirestore["default"], {
+  key: 'id',
+  // the name of the property. Default is '.key'.
+  enumerable: true //  whether it is enumerable or not. Default is true.
+
+});
+
 window.Swal = _sweetalert["default"];
 
 var Toast = _sweetalert["default"].mixin({
@@ -50,6 +56,8 @@ var Toast = _sweetalert["default"].mixin({
     toast.addEventListener('mouseleave', _sweetalert["default"].resumeTimer);
   }
 });
+
+window.Toast = Toast;
 
 _vue["default"].use(_vueFirestore["default"]);
 

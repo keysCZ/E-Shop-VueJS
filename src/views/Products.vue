@@ -25,19 +25,21 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Nom</th>
-              <th scope="col">Description</th>
               <th scope="col">Prix</th>
               <th scope="col">Modifier</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(product, index) in products" :key="index">
-              <td> {{index}} </td>
-              <td> {{product.name}} </td>
-              <td> {{product.description}} </td>
-              <td> {{product.price}} </td>
-              <button class="btn btn-primary"><i class="fas fa-pen-alt"></i></button>
-              <button class="btn btn-danger" @click="deleteProduct(product)"><i class="far fa-trash-alt"></i></button>
+              <td>{{ index }}</td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.price }}</td>
+              <button class="btn btn-primary mx-3 butn" @click="editProduct(product)">
+                <i class="fas fa-pen-alt"></i>
+              </button>
+              <button class="btn btn-danger"  @click="deleteProduct(product)">
+                <i class="far fa-trash-alt" ></i>
+              </button>
             </tr>
           </tbody>
         </table>
@@ -85,14 +87,7 @@
                     </div>
                     <div class="form-group">
                       <label for="descriptionProduct">Description</label>
-                      <textarea
-                        type="textarea"
-                        class="form-control"
-                        id="descriptionProduct"
-                        placeholder="Huile d'avocat"
-                        v-model="product.description"
-                        rows="3"
-                      ></textarea>
+                      <vue-editor v-model="product.description"></vue-editor>
                     </div>
                   </div>
                   <div class="col">
@@ -114,22 +109,35 @@
                       <input
                         type="text"
                         class="form-control"
+                        @keyup.188="addTag"
                         id="tagProduct"
                         placeholder="Enter a product tag"
-                        v-model="product.tag"
+                        v-model="tag"
                       />
+                    </div>
+                    <div class="form-group d-flex">
+                      <div class="p-1" v-for="tag in product.tags" :key="tag.i">
+                        <span>{{tag}}</span>
+                      </div>
                     </div>
                     <div class="custom-file">
                       <input
-                        @change="uploadImage()"
+                        @change="uploadImage"
                         type="file"
                         class="custom-file-input"
                         id="customFile"
                       />
-                      <label class="custom-file-label" for="customFile"
-                        >Choisir une image</label
-                      >
+                      <label class="custom-file-label" for="customFile">Choisir une image</label>
                     </div>
+                    <div class="form-group d-flex">
+                        <div class="p-1 img-wrap"
+                          v-for="(image, index) in product.images" :key="image.i"
+                        >
+                          <img :src="image" alt="product picture" width="80px">
+                          <span class="delete-img" @click="deleteImage(image, index)"><i class="fas fa-times"></i></span>
+                        </div>
+                    </div>
+                    
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -144,6 +152,15 @@
                     @click="addProduct()"
                     type="button"
                     class="btn btn-primary"
+                    v-if=" modal == 'new'"
+                  >
+                    Add this product
+                  </button>
+                  <button
+                    @click="updateProduct()"
+                    type="button"
+                    class="btn btn-primary"
+                    v-if=" modal == 'edit'"
                   >
                     Save changes
                   </button>
@@ -159,10 +176,14 @@
 </template>
 
 <script>
-import { fb, db } from "../firebase";
-
+import { VueEditor } from "vue2-editor";
+import { fb, db } from "../firebase"
+import $ from "jquery"
 export default {
   name: "Products",
+  components: {
+    VueEditor
+  },
   data() {
     return {
       products: [],
@@ -170,63 +191,130 @@ export default {
         name: null,
         price: null,
         description: null,
-        tag: null,
-        image: null,
+        tags:[],
+        images:[]
       },
       activeItem: null,
-    };
+      modal: null,
+      tag : null
+    }
   },
   firestore() {
     return {
-      products: db.collection("products"),
-    };
+      products: db.collection("products")
+    }
   },
   methods: {
-    uploadImage() {},
+    addTag() {
+        this.product.tags.push(this.tag);
+        this.tag = "";
+    },
+    uploadImage(e) {
+      if (e.target.files[0]) {
+       let file = e.target.files[0];
+        var storageRef = fb.storage().ref('products/' + file.name);
+        var uploadTask = storageRef.put(file);
+        uploadTask.on('state_changed', (snapshot) => {
+        }, (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong! Your file isn\'t well upload',
+        })
+        }, () => {
+          uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) =>{
+            this.product.images.push(downloadURL);
+            console.log('File available at', downloadURL);
+            Swal.fire(
+              'Nice',
+              'Your file is upload successfully !',
+              'success'
+            )
+          });
+        }); 
+      }
+    },
+    deleteImage(image, index){
+      let img = fb.storage().refFromURL(image);
+      this.product.images.splice(index,1);
+      img.delete().then(() =>{
+        console.log('image deleted');
+      }).catch((error)=> {
+        console.log('image not deleted');
+      });
+    },
+    reset() {
+      this.product = {
+        name: null,
+        price: null,
+        description: null,
+        tags:[],
+        images:[]
+      }
+    },
     addNew() {
+      this.modal = 'new';
+      this.reset();
       $("#product").modal("show");
     },
-    
+
     updateProduct() {
-     
+      this.$firestore.products.doc(this.product.id).update(this.product);
+      Toast.fire({
+          icon: 'success',
+          title: 'Product updated successfully'
+        })
+      $("#product").modal("hide");
     },
     editProduct(product) {
-    
+      this.modal = 'edit';
+      this.product = product;
+      this.activeItem = product.id;
+      $("#product").modal("show");
     },
-    deleteProduct(doc) {
+    deleteProduct(product) {
       Swal.fire({
-        title: 'Are you sure?',
+        title: "Are you sure?",
         text: "You won't be able to revert this!",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
       }).then((result) => {
-        if (result.isConfirmed) {
-          this.$firestore.products.doc(doc['.key']).delete()
-          Swal.fire(
-            'Deleted!',
-            'Le produit est supprimé.',
-            'success'
-          )
+        if (result.isConfirmed) {          
+          this.product = product;
+          this.activeItem = product.id;
+          this.$firestore.products.doc(this.product.id).delete();
+          Swal.fire("Deleted!", "Le produit est supprimé.", "success");
         }
-      })
+      });
     },
-    readData() {
-      
-    },
+    readData() {},
     addProduct() {
       this.$firestore.products.add(this.product);
       $("#product").modal("hide");
       Toast.fire({
         icon: 'success',
-        title: 'Le produit est bien ajouté'
+        title: 'Product added successfully'
       })
-    }
+    },
   },
-  created() {
-    
-  }
+  created() {},
 };
 </script>
+<style scoped>
+.butn{
+  background: radial-gradient(circle, rgba(242,242,190,1) 0%, rgba(148,187,233,1) 100%)!important;
+}
+.img-wrap{
+  position:relative;
+}
+.img-wrap span.delete-img{
+  position: absolute;
+  margin:1px;
+}
+.img-wrap span.delete-img:hover{
+  cursor: pointer;
+}
+</style>

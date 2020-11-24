@@ -9,6 +9,8 @@ var _app = _interopRequireDefault(require("@firebase/app"));
 
 require("firebase/firebase-auth");
 
+require("firebase/storage");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 require('firebase/firestore');

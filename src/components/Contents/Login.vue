@@ -61,9 +61,8 @@
                     aria-describedby="emailHelp"
                     placeholder="Enter email"
                   />
-                  <small class="form-text text-muted"
-                    >We'll never share your email with anyone else.</small
-                  >
+                  <small class="form-text text-muted">
+                    We'll never share your email with anyone else.</small>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Password</label>
@@ -138,6 +137,7 @@
 
 <script>
 import { fb } from "../../firebase";
+import $ from 'jquery'
 
 export default {
   name: "Login",
@@ -147,8 +147,8 @@ export default {
         name: null,
         email: null,
         password: null,
-      },
-    };
+      }
+    }
   },
 
   methods: {
@@ -189,8 +189,8 @@ export default {
           }
           console.log(error);
         });
-    },
-  },
+    }
+  }
 };
 </script>
 
