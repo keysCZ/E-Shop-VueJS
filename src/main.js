@@ -45,7 +45,9 @@ import {
   FontAwesomeIcon
 } from '@fortawesome/vue-fontawesome'
 import Carousel3d from 'vue-carousel-3d'
+import VueCarousel from 'vue-carousel'
 
+Vue.use(VueCarousel)
 Vue.use(VueFirestore)
 
 Vue.use(Carousel3d)

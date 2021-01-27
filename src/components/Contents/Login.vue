@@ -12,11 +12,7 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-body">
-            <ul
-              class="nav nav-fill nav-pills mb-3"
-              id="pills-tab"
-              role="tablist"
-            >
+            <ul class="nav nav-fill nav-pills mb-3" id="pills-tab">
               <li class="nav-item">
                 <a
                   class="nav-link active"
@@ -62,7 +58,8 @@
                     placeholder="Enter email"
                   />
                   <small class="form-text text-muted">
-                    We'll never share your email with anyone else.</small>
+                    We'll never share your email with anyone else.</small
+                  >
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Password</label>
@@ -136,8 +133,8 @@
 </template>
 
 <script>
-import { fb } from "../../firebase";
-import $ from 'jquery'
+import { fb, db } from "../../firebase";
+import $ from "jquery";
 
 export default {
   name: "Login",
@@ -146,9 +143,9 @@ export default {
       form: {
         name: null,
         email: null,
-        password: null,
+        password: null
       }
-    }
+    };
   },
 
   methods: {
@@ -159,7 +156,7 @@ export default {
           $("#login").modal("hide");
           this.$router.replace("admin");
         })
-        .catch(function (error) {
+        .catch(function(error) {
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
@@ -174,11 +171,22 @@ export default {
     register() {
       fb.auth()
         .createUserWithEmailAndPassword(this.form.email, this.form.password)
-        .then((user) => {
+        .then(user => {
           $("#login").modal("hide");
+          db.collection("profiles")
+            .doc(user.user.uid)
+            .set({
+              name: this.form.name
+            })
+            .then(function() {
+              console.log("Document successfully written!");
+            })
+            .catch(function(error) {
+              console.error("Error writing document: ", error);
+            });
           this.$router.replace("admin");
         })
-        .catch(function (error) {
+        .catch(function(error) {
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;

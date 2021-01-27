@@ -32,7 +32,7 @@
                 >Jhon
                 <strong>Smith</strong>
               </span>
-              <span class="user-role">Administrator</span>
+              <span class="user-role">{{ email }}</span>
               <span class="user-status">
                 <i class="fa fa-circle"></i>
                 <span>Online</span>
@@ -112,9 +112,16 @@
 
 <script>
 import { fb } from "../firebase";
+import { $ } from "jquery";
 
 export default {
   name: "Admin",
+  data() {
+    return {
+      name: null,
+      email: null
+    };
+  },
   methods: {
     closeMenu() {
       $(".page-wrapper").toggleClass("toggled");
@@ -122,14 +129,18 @@ export default {
     logout() {
       fb.auth()
         .signOut()
-        .then((user) => {
+        .then(user => {
           this.$router.replace("/");
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
         });
-    },
+    }
   },
+  created() {
+    var user = fb.auth().currentUser;
+    this.email = user.email;
+  }
 };
 </script>
 <style lang="scss" scoped>

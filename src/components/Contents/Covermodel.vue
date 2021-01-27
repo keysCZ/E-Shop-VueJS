@@ -3,7 +3,7 @@
     <b-jumbotron class="cover-focus">
       <template v-slot:header
         >CAZAL <br />
-        Eliane</template
+        Perfumes</template
       >
 
       <template v-slot:lead> Révélez votre beauté naturelle ! </template>
@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: "CoverModel",
+  name: "CoverModel"
 };
 </script>
 

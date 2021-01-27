@@ -11,6 +11,7 @@
             <img src="/img/products.svg" alt="productssvg" class="img-fluid" />
           </div>
         </div>
+        </div>
       </div>
       <hr />
 
@@ -34,6 +35,7 @@
               <td>{{ index }}</td>
               <td>{{ product.name }}</td>
               <td>{{ product.price }}</td>
+              
               <button class="btn btn-primary mx-3 butn" @click="editProduct(product)">
                 <i class="fas fa-pen-alt"></i>
               </button>
@@ -171,7 +173,6 @@
         </div>
       </div>
       <!--  # Modal -->
-    </div>
   </div>
 </template>
 
@@ -240,7 +241,7 @@ export default {
       img.delete().then(() =>{
         console.log('image deleted');
       }).catch((error)=> {
-        console.log('image not deleted');
+        console.log(error);
       });
     },
     reset() {

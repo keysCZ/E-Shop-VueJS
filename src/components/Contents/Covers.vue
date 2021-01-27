@@ -2,9 +2,9 @@
   <div class="cover">
     <b-jumbotron class="cover-focus">
       <template v-slot:header
-        >CAZAL <br />
-        Eliane</template
-      >
+        >CAZAL Perfumes <br />
+        <!-- Eliane -->
+      </template>
 
       <template v-slot:lead> Révélez votre beauté naturelle ! </template>
 
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: "CoverHome",
+  name: "CoverHome"
 };
 </script>
 

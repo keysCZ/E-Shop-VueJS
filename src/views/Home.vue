@@ -3,7 +3,7 @@
     <headerh></headerh>
     <section class="bg-light py-5">
       <h2>Nos meilleures ventes</h2>
-      <b-container>
+      <!-- <b-container>
         <b-row>
           <b-col>
             <bscard :imagePath="imgPathCard[0]" :imageAlt="altCard[0]">
@@ -36,7 +36,8 @@
             </bscard>
           </b-col>
         </b-row>
-      </b-container>
+      </b-container> -->
+      <productslist></productslist>
     </section>
 
     <footerh></footerh>
@@ -49,13 +50,16 @@ import HeaderHome from "@/components/sections/Header.vue";
 import Gfooter from "@/components/sections/Footer.vue";
 // import Logocarousel from '@/components/Contents/Logocarousel.vue'
 import CardS from "@/components/Contents/Cards.vue";
+import Products from "@/components/sections/Products.vue";
+
 
 export default {
   name: "Home",
   components: {
     headerh: HeaderHome,
     footerh: Gfooter,
-    bscard: CardS
+    bscard: CardS,
+    productslist : Products
     // 'carouselh' : Logocarousel
   },
   data(){
