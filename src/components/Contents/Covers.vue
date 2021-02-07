@@ -8,7 +8,7 @@
 
       <template v-slot:lead> Révélez votre beauté naturelle ! </template>
 
-      <hr class="my-4" />
+      <!-- <hr class="my-4" /> -->
 
       <p>Optez pour des cosmétiques 100% bio, faits brillament pour tous !</p>
     </b-jumbotron>

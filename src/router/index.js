@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Checkout from '../views/Checkout.vue'
 import Admin from '../views/Admin.vue'
 import Overview from '../views/Overview.vue'
 import Products from '../views/Products.vue'
@@ -43,6 +44,14 @@ Vue.use(VueRouter)
       component: Profile
       }
     ]
+  },
+  {
+    path: '/checkout',
+    name: 'Checkout',
+    // route level code-splitting
+    // this generates a separate chunk (Checkout.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "checkout" */ '../views/Checkout.vue')
   },
   {
     path: '/about',

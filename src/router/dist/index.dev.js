@@ -11,6 +11,8 @@ var _vueRouter = _interopRequireDefault(require("vue-router"));
 
 var _Home = _interopRequireDefault(require("../views/Home.vue"));
 
+var _Checkout = _interopRequireDefault(require("../views/Checkout.vue"));
+
 var _Admin = _interopRequireDefault(require("../views/Admin.vue"));
 
 var _Overview = _interopRequireDefault(require("../views/Overview.vue"));
@@ -61,6 +63,17 @@ var routes = [{
     name: 'profile',
     component: _Profile["default"]
   }]
+}, {
+  path: '/checkout',
+  name: 'Checkout',
+  // route level code-splitting
+  // this generates a separate chunk (Checkout.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/Checkout.vue'));
+    });
+  }
 }, {
   path: '/about',
   name: 'About',

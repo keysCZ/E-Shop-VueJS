@@ -32,7 +32,13 @@ var _vueFontawesome = require("@fortawesome/vue-fontawesome");
 
 var _vueCarousel3d = _interopRequireDefault(require("vue-carousel-3d"));
 
+var _vueCarousel = _interopRequireDefault(require("vue-carousel"));
+
+var _vue2Filters = _interopRequireDefault(require("vue2-filters"));
+
 var _router = _interopRequireDefault(require("./router"));
+
+var _store = _interopRequireDefault(require("./store.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -58,6 +64,10 @@ var Toast = _sweetalert["default"].mixin({
 });
 
 window.Toast = Toast;
+
+_vue["default"].use(_vue2Filters["default"]);
+
+_vue["default"].use(_vueCarousel["default"]);
 
 _vue["default"].use(_vueFirestore["default"]);
 
@@ -90,6 +100,14 @@ _fontawesomeSvgCore.library.add(_freeSolidSvgIcons.faUserSecret);
 
 _vue["default"].component('font-awesome-icon', _vueFontawesome.FontAwesomeIcon);
 
+_vue["default"].component('Navbar', require("./components/sections/Nav.vue")["default"]);
+
+_vue["default"].component('Productslist', require("./components/sections/ProductsList.vue")["default"]);
+
+_vue["default"].component('add-to-cart', require("./components/Contents/AddToCart.vue")["default"]);
+
+_vue["default"].component('shopcart', require("./components/sections/ShopCart.vue")["default"]);
+
 _vue["default"].config.productionTip = false;
 var app = '';
 
@@ -97,6 +115,7 @@ _firebase.fb.auth().onAuthStateChanged(function (user) {
   if (!app) {
     new _vue["default"]({
       router: _router["default"],
+      store: _store["default"],
       render: function render(h) {
         return h(_App["default"]);
       }

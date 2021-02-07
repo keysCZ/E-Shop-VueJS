@@ -1,8 +1,7 @@
 <template>
   <div class="home">
     <headerh></headerh>
-    <section class="bg-light py-5">
-      <h2>Nos meilleures ventes</h2>
+    <section class="bg-light">
       <!-- <b-container>
         <b-row>
           <b-col>
@@ -37,9 +36,11 @@
           </b-col>
         </b-row>
       </b-container> -->
-      <productslist></productslist>
+      <products></products>
     </section>
-
+   
+    <!-- Modal -->
+   <shopcart></shopcart>
     <footerh></footerh>
   </div>
 </template>
@@ -52,30 +53,27 @@ import Gfooter from "@/components/sections/Footer.vue";
 import CardS from "@/components/Contents/Cards.vue";
 import Products from "@/components/sections/Products.vue";
 
-
 export default {
   name: "Home",
   components: {
     headerh: HeaderHome,
     footerh: Gfooter,
     bscard: CardS,
-    productslist : Products
+    products: Products,
+    
     // 'carouselh' : Logocarousel
   },
-  data(){
+  data() {
     return {
-      imgPathCard : [
-      '/img/thaismara-figueredo-MTMn2VDnLGM-unsplash.jpg',
-      'https://picsum.photos/600/300/?image=25', 
-      '/img/christin-hume-0MoF-Fe0w0A-unsplash.jpg'
+      imgPathCard: [
+        "/img/thaismara-figueredo-MTMn2VDnLGM-unsplash.jpg",
+        "https://picsum.photos/600/300/?image=25",
+        "/img/christin-hume-0MoF-Fe0w0A-unsplash.jpg"
       ],
-      altCard : [
-        "1",
-        "2",
-        "3"
-      ]
-    }
+      altCard: ["1", "2", "3"],
+      
+    };
   }
-}
+};
 </script>
 <style></style>

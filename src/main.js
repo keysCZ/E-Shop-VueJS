@@ -46,7 +46,9 @@ import {
 } from '@fortawesome/vue-fontawesome'
 import Carousel3d from 'vue-carousel-3d'
 import VueCarousel from 'vue-carousel'
+import Vue2Filters from 'vue2-filters'
 
+Vue.use(Vue2Filters)
 Vue.use(VueCarousel)
 Vue.use(VueFirestore)
 
@@ -87,12 +89,18 @@ import {
 } from 'bootstrap-vue'
 
 import router from './router'
+import store from './store.js'
+
 Vue.use(DropdownPlugin)
 Vue.use(TablePlugin)
 library.add(faUserSecret)
 
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component('Navbar', require("./components/sections/Nav.vue").default)
+Vue.component('Productslist', require("./components/sections/ProductsList.vue").default)
+Vue.component('add-to-cart', require("./components/Contents/AddToCart.vue").default)
+Vue.component('shopcart', require("./components/sections/ShopCart.vue").default)
 
 Vue.config.productionTip = false
 
@@ -102,6 +110,7 @@ fb.auth().onAuthStateChanged(function(user){
 if(!app){
   new Vue({
     router,
+    store,
     render: h => h(App)
   }).$mount('#app')
 }

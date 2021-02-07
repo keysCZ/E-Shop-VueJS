@@ -2,7 +2,7 @@
   <div class="nav">
     <b-navbar toggleable="lg" type="light" variant="white">
       <b-navbar-brand href="/"
-        ><img src="/img/ce logo 200.png" width="60px" alt="logo CE"
+        ><img src="/img/CAZAL Perfumes.png" width="150px" alt="logo CE"
       /></b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -27,6 +27,15 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
+          <b-nav-item
+            ><router-link to="/checkout"
+              ><i
+                class="fas fa-shopping-bag"
+                style="color: blue; font-size: 18px"
+              ></i
+            ></router-link>
+            |</b-nav-item
+          >
           <a data-toggle="modal" data-target="#login">
             <b-button
               size="sm"

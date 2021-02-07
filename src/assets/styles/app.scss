@@ -4,3 +4,22 @@
 body {
     font-family: 'Nunito', sans-serif !important;
 }
+
+.product-item {
+    width: 237px;
+    height: 390px;
+    border: none;
+}
+
+.card-prd-header{
+    background-color: #f0f0f0;
+    height: 250px;
+}
+
+.card-prd-header:hover{
+    background-color: #e7dede;
+    transition: opacity .2s;
+}
+.btn{
+    border-radius: 0px;
+}
