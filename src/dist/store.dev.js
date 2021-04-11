@@ -19,6 +19,15 @@ var _default = new _vuex["default"].Store({
   state: {
     cart: cart ? JSON.parse(cart) : []
   },
+  getters: {
+    totalPrice: function totalPrice(state) {
+      var total = 0;
+      state.cart.filter(function (item) {
+        total += item.productPrice * item.productQuantity;
+      });
+      return total;
+    }
+  },
   mutations: {
     addToCart: function addToCart(state, item) {
       var found = state.cart.find(function (product) {
