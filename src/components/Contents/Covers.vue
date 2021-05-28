@@ -1,23 +1,80 @@
 <template>
   <div class="cover">
-    <b-jumbotron class="cover-focus">
-      <template v-slot:header
-        >CAZAL Perfumes <br />
-        <!-- Eliane -->
-      </template>
 
-      <template v-slot:lead> Révélez votre beauté naturelle ! </template>
+    <b-carousel
+      id="carousel-1"
+      v-model="slide"
+      :interval="4000"
+      controls
+      indicators
+      background="#ababab"
+      img-width="1024"
+      img-height="480"
+      style="text-shadow: 1px 1px 2px #333;"
+      @sliding-start="onSlideStart"
+      @sliding-end="onSlideEnd"
+    >
+      <!-- Text slides with image -->
+      <b-carousel-slide
+        caption="First slide"
+        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
+        img-src="https://picsum.photos/1024/480/?image=52"
+      ></b-carousel-slide>
 
-      <!-- <hr class="my-4" /> -->
+      <!-- Slides with custom text -->
+      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54">
+        <h1>Hello world!</h1>
+      </b-carousel-slide>
 
-      <p>Optez pour des cosmétiques 100% bio, faits brillament pour tous !</p>
-    </b-jumbotron>
+      <!-- Slides with image only -->
+      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58"></b-carousel-slide>
+
+      <!-- Slides with img slot -->
+      <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
+      <b-carousel-slide>
+        <template #img>
+          <img
+            class="d-block img-fluid w-100"
+            width="1024"
+            height="480"
+            src="https://picsum.photos/1024/480/?image=55"
+            alt="image slot"
+          >
+        </template>
+      </b-carousel-slide>
+
+      <!-- Slide with blank fluid image to maintain slide aspect ratio -->
+      <b-carousel-slide caption="Blank Image" img-blank img-alt="Blank image">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eros felis, tincidunt
+          a tincidunt eget, convallis vel est. Ut pellentesque ut lacus vel interdum.
+        </p>
+      </b-carousel-slide>
+    </b-carousel>
+    <!-- <p class="mt-4">
+      Slide #: {{ slide }}<br>
+      Sliding: {{ sliding }}
+    </p> -->
   </div>
 </template>
 
 <script>
 export default {
-  name: "CoverHome"
+  name: "CoverHome",
+  data() {
+      return {
+        slide: 0,
+        sliding: null
+      }
+    },
+    methods: {
+      onSlideStart(slide) {
+        this.sliding = true
+      },
+      onSlideEnd(slide) {
+        this.sliding = false
+      }
+    }
 };
 </script>
 
@@ -25,11 +82,6 @@ export default {
 @import url(https://fonts.googleapis.com/css?family=Nunito:200,200italic,300,300italic,regularitalic,600,600italic,700,700italic,800,800italic,900,900italic);
 .cover {
   font-family: "Nunito", sans-serif;
-  background-image: url("../../assets/images/thaismara-figueredo-MTMn2VDnLGM-unsplash.jpg");
-  background-position: center;
-  background-attachment: fixed;
-  background-size: cover;
-  padding: 20px;
 }
 .cover-focus {
   width: 60%;

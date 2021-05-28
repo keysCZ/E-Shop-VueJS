@@ -19,6 +19,8 @@ var _Overview = _interopRequireDefault(require("../views/Overview.vue"));
 
 var _Products = _interopRequireDefault(require("../views/Products.vue"));
 
+var _PerfumeProduct = _interopRequireDefault(require("../views/PerfumeProduct.vue"));
+
 var _Orders = _interopRequireDefault(require("../views/Orders.vue"));
 
 var _Profile = _interopRequireDefault(require("../views/Profile.vue"));
@@ -105,6 +107,17 @@ var routes = [{
   component: function component() {
     return Promise.resolve().then(function () {
       return _interopRequireWildcard(require('../views/Produits/Perfumes.vue'));
+    });
+  }
+}, {
+  path: '/product/perfume',
+  name: 'parfum',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/PerfumeProduct.vue'));
     });
   }
 }];

@@ -100,6 +100,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('Navbar', require("./components/sections/Nav.vue").default)
 Vue.component('Productslist', require("./components/sections/ProductsList.vue").default)
 Vue.component('add-to-cart', require("./components/Contents/AddToCart.vue").default)
+Vue.component('ProductInfo', require("./components/Contents/ProductInfo.vue").default)
 Vue.component('shopcart', require("./components/sections/ShopCart.vue").default)
 
 Vue.config.productionTip = false

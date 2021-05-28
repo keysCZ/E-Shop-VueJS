@@ -5,6 +5,7 @@ import Checkout from '../views/Checkout.vue'
 import Admin from '../views/Admin.vue'
 import Overview from '../views/Overview.vue'
 import Products from '../views/Products.vue'
+import parfum from '../views/PerfumeProduct.vue'
 import Orders from '../views/Orders.vue'
 import Profile from '../views/Profile.vue'
 import {fb} from '../firebase'
@@ -76,6 +77,14 @@ Vue.use(VueRouter)
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Produits/Perfumes.vue')
+  },
+  {
+    path: '/product/perfume',
+    name: 'parfum',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/PerfumeProduct.vue')
   }
 ]
 

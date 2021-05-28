@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <headerh></headerh>
-    <section class="bg-light">
+    <section class="">
       <!-- <b-container>
         <b-row>
           <b-col>

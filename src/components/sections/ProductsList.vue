@@ -32,7 +32,13 @@
             </div>
             <div class="card-footer card-prd-footer mb-0 bg-light p-0">
               <button class="btn info col-6">
-                <i class="fas fa-info" style="color: white"></i>
+               <router-link to="/product/perfume"> 
+                Details
+                <!-- <ProductInfo 
+                  :product-id="product.id"
+                ></ProductInfo>                 -->
+                
+              </router-link>
               </button>
               <add-to-cart
                 :product-id="product.id"
@@ -52,6 +58,7 @@
 <script>
 import { db } from "../../firebase";
 import { Carousel, Slide } from "vue-carousel";
+import PerfumeProduct from "@/views/PerfumeProduct"
 export default {
   name: "Productslist",
   props: {
@@ -59,7 +66,8 @@ export default {
   },
   components: {
     Carousel,
-    Slide
+    Slide,
+    PerfumeProduct
   },
   data() {
     return {
@@ -67,7 +75,8 @@ export default {
       productName: this.name,
       productPrice: this.price,
       productId: this.id,
-      productImage : this.image
+      productImage : this.image,
+      productDescription : this.description
     };
   },
   firestore() {
@@ -90,7 +99,7 @@ export default {
   padding-bottom: 3rem;
 }
 .info {
-  background-color: rgb(160, 20, 20);
+  background-color: lightgrey;
   border: 1px solid white;
 }
 .product-item{

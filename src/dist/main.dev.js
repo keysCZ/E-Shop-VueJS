@@ -106,6 +106,8 @@ _vue["default"].component('Productslist', require("./components/sections/Product
 
 _vue["default"].component('add-to-cart', require("./components/Contents/AddToCart.vue")["default"]);
 
+_vue["default"].component('ProductInfo', require("./components/Contents/ProductInfo.vue")["default"]);
+
 _vue["default"].component('shopcart', require("./components/sections/ShopCart.vue")["default"]);
 
 _vue["default"].config.productionTip = false;

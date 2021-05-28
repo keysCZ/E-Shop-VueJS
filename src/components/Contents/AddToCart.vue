@@ -1,6 +1,6 @@
 <template>
   <button class="btn add-to-cart col-6" @click="addToCart">
-    <i class="fab fa-opencart" style="color: white"></i>
+    Ajouter au panier
   </button>
 </template>
 
