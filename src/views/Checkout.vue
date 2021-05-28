@@ -59,25 +59,24 @@ export default {
   methods: {
     pay() {
       
-      // let data = this.$store.state.cart.map(item => ({[item.product_id] : item.productQuantity}));
+      let data = this.$store.state.cart.map(item => ({[item.product_id] : item.productQuantity}));
 
-      // data = Object.assign({}, ...data);
+      data = Object.assign({}, ...data);
 
       // console.log(data);
-      axios
-        .post(
-          "http://localhost:5000/shop-vue-c6c23/us-central1/CheckoutSession",
-          // {
-          //   params: {
-          //     products : data
-          //   }
-          // }
+      axios.get(
+          "https://us-central1-shop-vue-c6c23.cloudfunctions.net/CheckoutSession",
+          {
+            params: {
+              products : data
+            }
+          }
         )
         .then(response => {
-          this.sessionId = response.data;
+          this.sessionId = response.data
           console.log(this.sessionId.id);
-          stripe
-            .redirectToCheckout({
+          console.log(response.data);
+          stripe.redirectToCheckout({
               sessionId: this.sessionId.id
             })
             .then(function(result) {});
