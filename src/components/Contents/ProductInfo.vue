@@ -20,16 +20,15 @@ export default {
       item: {
         productName: this.name,
         productPrice: this.price,
+        product_id: this.productId,
+        product_image: this.image,
         productDescription: this.description,
-        product_image: this.image
       }
     };
   },
   methods: {
     dataProduct() {
-        let product = new Array;
-        // product.push(this.item.productName);
-        console.log(item);
+      this.$store.commit("productDetails", this.item);
     }
   }
 };

@@ -4,10 +4,12 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 let cart = window.localStorage.getItem('cart');
+let product = window.localStorage.getItem('product');
 
 export default new Vuex.Store({
   state: {
     cart: cart ? JSON.parse(cart) : [],
+    product: product ? JSON.parse(product) : [],
   }, 
   getters : {
     totalPrice: state => {
@@ -20,6 +22,18 @@ export default new Vuex.Store({
     }
   },
   mutations : {
+     productDetails(state, item){
+      state.product.slice(1);
+      let found = state.product.find(product => product.product_id == item.product_id);
+     if(found){
+        console.log(item);
+     } else {
+        console.log(item);
+        state.product.slice(1);
+        state.product.push(item);
+        this.commit('saveData');
+     }
+    },
     addToCart(state, item){
 
       let found = state.cart.find(product => product.product_id == item.product_id);
@@ -30,9 +44,7 @@ export default new Vuex.Store({
         state.cart.push(item);
 
       }
-
       this.commit('saveData');
-
     },
 
     saveData(state) {

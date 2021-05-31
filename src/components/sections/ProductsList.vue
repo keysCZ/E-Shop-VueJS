@@ -33,13 +33,17 @@
             <div class="card-footer card-prd-footer mb-0 bg-light p-0">
               <button class="btn info col-6">
                <router-link to="/product/perfume"> 
-                Details
-                <!-- <ProductInfo 
-                  :product-id="product.id"
-                ></ProductInfo>                 -->
+                
+                <ProductInfo
+                :product-id="product.id"
+                :image="getImage(product.images)"
+                :name="product.name"
+                :price="product.price"
+                :description="product.description"></ProductInfo>                
                 
               </router-link>
               </button>
+             
               <add-to-cart
                 :product-id="product.id"
                 :image="getImage(product.images)"
@@ -59,15 +63,14 @@
 import { db } from "../../firebase";
 import { Carousel, Slide } from "vue-carousel";
 import PerfumeProduct from "@/views/PerfumeProduct"
+import ProductInfo from "@/components/Contents/ProductInfo.vue";
 export default {
   name: "Productslist",
-  props: {
-    msg: String
-  },
   components: {
     Carousel,
     Slide,
-    PerfumeProduct
+    PerfumeProduct,
+    ProductInfo
   },
   data() {
     return {

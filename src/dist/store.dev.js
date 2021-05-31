@@ -14,10 +14,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 _vue["default"].use(_vuex["default"]);
 
 var cart = window.localStorage.getItem('cart');
+var product = window.localStorage.getItem('product');
 
 var _default = new _vuex["default"].Store({
   state: {
-    cart: cart ? JSON.parse(cart) : []
+    cart: cart ? JSON.parse(cart) : [],
+    product: product ? JSON.parse(product) : []
   },
   getters: {
     totalPrice: function totalPrice(state) {
@@ -29,6 +31,21 @@ var _default = new _vuex["default"].Store({
     }
   },
   mutations: {
+    productDetails: function productDetails(state, item) {
+      state.product.slice(1);
+      var found = state.product.find(function (product) {
+        return product.product_id == item.product_id;
+      });
+
+      if (found) {
+        console.log(item);
+      } else {
+        console.log(item);
+        state.product.slice(1);
+        state.product.push(item);
+        this.commit('saveData');
+      }
+    },
     addToCart: function addToCart(state, item) {
       var found = state.cart.find(function (product) {
         return product.product_id == item.product_id;
