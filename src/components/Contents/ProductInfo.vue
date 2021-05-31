@@ -1,7 +1,10 @@
 <template>
   <div class="ProductInfo">
-    <p @click="dataProduct()">Voir le produit</p>
-
+    <div class="text-center">
+      <a class="btn btn-outline-dark mt-auto" @click="dataProduct()"
+        ><router-link to="/product/perfume">Voir le produit </router-link></a
+      >
+    </div>
   </div>
 </template>
 
@@ -22,7 +25,7 @@ export default {
         productPrice: this.price,
         product_id: this.productId,
         product_image: this.image,
-        productDescription: this.description,
+        productDescription: this.description
       }
     };
   },

@@ -65,6 +65,10 @@ var Toast = _sweetalert["default"].mixin({
 
 window.Toast = Toast;
 
+_fontawesomeSvgCore.library.add(_freeSolidSvgIcons.faUserSecret);
+
+_vue["default"].component('font-awesome-icon', _vueFontawesome.FontAwesomeIcon);
+
 _vue["default"].use(_vue2Filters["default"]);
 
 _vue["default"].use(_vueCarousel["default"]);
@@ -102,7 +106,7 @@ _vue["default"].component('font-awesome-icon', _vueFontawesome.FontAwesomeIcon);
 
 _vue["default"].component('Navbar', require("./components/sections/Nav.vue")["default"]);
 
-_vue["default"].component('Productslist', require("./components/sections/ProductsList.vue")["default"]);
+_vue["default"].component('card-product', require("./components/sections/ProductCard.vue")["default"]);
 
 _vue["default"].component('add-to-cart', require("./components/Contents/AddToCart.vue")["default"]);
 

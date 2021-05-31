@@ -37,10 +37,10 @@
               <td>{{ product.price }}</td>
               
               <button class="btn btn-primary mx-3 butn" @click="editProduct(product)">
-                <i class="fas fa-pen-alt"></i>
+                <font-awesome-icon icon="pen" />
               </button>
               <button class="btn btn-danger"  @click="deleteProduct(product)">
-                <i class="far fa-trash-alt" ></i>
+                <font-awesome-icon icon="trash" />
               </button>
             </tr>
           </tbody>
@@ -136,7 +136,7 @@
                           v-for="(image, index) in product.images" :key="image.i"
                         >
                           <img :src="image" alt="product picture" width="80px">
-                          <span class="delete-img" @click="deleteImage(image, index)"><i class="fas fa-times"></i></span>
+                          <span class="delete-img" @click="deleteImage(image, index)">X<i class="fas fa-times"></i></span>
                         </div>
                     </div>
                     

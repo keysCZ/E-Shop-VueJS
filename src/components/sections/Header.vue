@@ -4,7 +4,7 @@
     <coverhome>
       
     </coverhome>
-  </div>
+      </div>
 </template>
 
 <script>

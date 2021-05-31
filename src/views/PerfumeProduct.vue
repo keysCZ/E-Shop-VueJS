@@ -27,6 +27,7 @@
         </p>
 
         <b-button variant="primary" href="#">Acheter maintenant</b-button>
+      
                <add-to-cart
                 :product-id="item.product_id"
                 :image="item.product_image"

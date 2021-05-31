@@ -1,7 +1,7 @@
 <template>
-  <button class="btn add-to-cart col-6" @click="addToCart">
-    Ajouter au panier
-  </button>
+  <div class="text-center">
+    <a class="btn btn-outline-dark mt-auto" @click="addToCart"> Ajouter au panier</a>
+  </div>
 </template>
 
 <script>
@@ -34,8 +34,5 @@ export default {
 };
 </script>
 <style>
-.add-to-cart {
-  background-color: rgb(93, 212, 93);
-  border: 1px solid rgb(90, 83, 83);
-}
+
 </style>

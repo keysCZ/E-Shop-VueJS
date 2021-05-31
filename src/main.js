@@ -35,15 +35,15 @@ const Toast = Swal.mixin({
 window.Toast = Toast;
 
 import './assets/styles/app.scss'
-import {
-  library
-} from '@fortawesome/fontawesome-svg-core'
-import {
-  faUserSecret
-} from '@fortawesome/free-solid-svg-icons'
-import {
-  FontAwesomeIcon
-} from '@fortawesome/vue-fontawesome'
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faUserSecret)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
 import Carousel3d from 'vue-carousel-3d'
 import VueCarousel from 'vue-carousel'
 import Vue2Filters from 'vue2-filters'
@@ -98,7 +98,7 @@ library.add(faUserSecret)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('Navbar', require("./components/sections/Nav.vue").default)
-Vue.component('Productslist', require("./components/sections/ProductsList.vue").default)
+Vue.component('card-product', require("./components/sections/ProductCard.vue").default)
 Vue.component('add-to-cart', require("./components/Contents/AddToCart.vue").default)
 Vue.component('ProductInfo', require("./components/Contents/ProductInfo.vue").default)
 Vue.component('shopcart', require("./components/sections/ShopCart.vue").default)
