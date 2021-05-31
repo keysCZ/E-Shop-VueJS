@@ -27,7 +27,7 @@
                     >X</span
                   >
                 </h5>
-                <p class="mt-0">{{ item.productPrice | currency }}</p>
+                <p class="mt-0">{{ item.productPrice }}€</p>
                 <p class="mt-0">Quantity : {{ item.productQuantity }}</p>
               </div>
             </li>
@@ -35,7 +35,7 @@
         </div>
         <div class="col-md-4">
           <h4 class="my-5">
-            Total Price : {{ this.$store.getters.totalPrice | currency }}
+            Total Price : {{ this.$store.getters.totalPrice }}€
           </h4>
            <div ref="paypal"></div>
         </div>
@@ -49,9 +49,9 @@ export default {
   name: "Checkout",
   data() {
     return {
-      paypalDescription: "Article de votre panier",
+      paypalDescription: "description",
       paypalCurrency:"EUR",
-      paypalValue:this.$store.getters.totalPrice
+      paypalValue: this.$store.getters.totalPrice
     };
   },
   mounted: function() {
@@ -76,8 +76,8 @@ export default {
                 {
                   description: this.paypalDescription,
                   amount: {
-                    currency_code: EUR,
-                    value: this.  this.paypalValue,
+                    currency_code: "USD",
+                    value: this.paypalValue
                   }
                 }
               ]

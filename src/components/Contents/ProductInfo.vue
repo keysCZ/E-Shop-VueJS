@@ -28,6 +28,7 @@ export default {
   },
   methods: {
     dataProduct() {
+      this.$store.state.product.slice(1);
       this.$store.commit("productDetails", this.item);
     }
   }

@@ -35,7 +35,7 @@ export default {
 </script>
 <style>
 .add-to-cart {
-  background-color: black;
-  border: 1px solid white;
+  background-color: rgb(93, 212, 93);
+  border: 1px solid rgb(90, 83, 83);
 }
 </style>

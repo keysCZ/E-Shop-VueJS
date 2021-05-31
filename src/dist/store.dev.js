@@ -32,7 +32,7 @@ var _default = new _vuex["default"].Store({
   },
   mutations: {
     productDetails: function productDetails(state, item) {
-      state.product.slice(1);
+      window.localStorage.clear(state.product);
       var found = state.product.find(function (product) {
         return product.product_id == item.product_id;
       });
@@ -41,7 +41,8 @@ var _default = new _vuex["default"].Store({
         console.log(item);
       } else {
         console.log(item);
-        state.product.slice(1);
+        window.localStorage.clear(state.product);
+        console.log(state.product);
         state.product.push(item);
         this.commit('saveData');
       }
@@ -61,6 +62,7 @@ var _default = new _vuex["default"].Store({
     },
     saveData: function saveData(state) {
       window.localStorage.setItem('cart', JSON.stringify(state.cart));
+      window.localStorage.setItem('product', JSON.stringify(state.product));
     },
     removeFromCart: function removeFromCart(state, item) {
       var currentpdt = state.cart.indexOf(item);

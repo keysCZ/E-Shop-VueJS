@@ -27,7 +27,7 @@
             <div class="card-body card-prd-body">
               <div class="d-flex justify-content-between">
                 <h5 class="card-title">{{ product.name }}</h5>
-                <h5 class="card-prices">{{ product.price | currency }}</h5>
+                <h5 class="card-prices">{{ product.price }} €</h5>
               </div>
             </div>
             <div class="card-footer card-prd-footer mb-0 bg-light p-0">

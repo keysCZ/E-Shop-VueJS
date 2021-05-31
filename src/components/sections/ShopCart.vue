@@ -44,11 +44,11 @@
           <button
             type="button"
             class="btn btn-secondary"
-            data-bs-dismiss="modal"
+            data-bs-dismiss="modal" @click="hidecart()"
           >
             Continuer le shopping
           </button>
-          <button type="button" class="btn btn-primary" @click="checkout">
+          <button type="button" class="btn btn-primary" @click="checkout()">
             Voir le panier
           </button>
         </div>
@@ -64,6 +64,9 @@ export default {
     checkout() {
       $(".shopcart").modal("hide");
       this.$router.push("/checkout");
+    },
+    hidecart(){
+      $(".shopcart").modal("hide");
     }
   }
 };

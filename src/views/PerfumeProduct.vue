@@ -27,12 +27,12 @@
         </p>
 
         <b-button variant="primary" href="#">Acheter maintenant</b-button>
-         <add-to-cart
+               <add-to-cart
                 :product-id="item.product_id"
+                :image="item.product_image"
                 :name="item.productName"
                 :price="item.productPrice"
-                :image="item.product_image"
-              >Ajouter au panier
+              >
               </add-to-cart><br>
               <!-- <button class="btn btn-secondary" @click="viewid()">  Ajouter au panier</button> -->
       </b-jumbotron>

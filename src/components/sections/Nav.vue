@@ -27,9 +27,8 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-nav-item
-            ><router-link to="/checkout"
-              ><i
+          <b-nav-item><router-link to="/checkout"
+              >Mon Panier ({{this.cartnb}})<i
                 class="fas fa-shopping-bag"
                 style="color: blue; font-size: 18px"
               ></i
@@ -60,6 +59,11 @@ export default {
   name: "Navbar",
   components: {
     signin: Login
+  },
+  data() {
+    return {
+      cartnb : this.$store.state.cart.length
+    }
   }
 };
 </script>

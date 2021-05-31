@@ -23,13 +23,15 @@ export default new Vuex.Store({
   },
   mutations : {
      productDetails(state, item){
-      state.product.slice(1);
+      window.localStorage.clear(state.product);
+
       let found = state.product.find(product => product.product_id == item.product_id);
      if(found){
         console.log(item);
      } else {
         console.log(item);
-        state.product.slice(1);
+        window.localStorage.clear(state.product);
+        console.log(state.product);
         state.product.push(item);
         this.commit('saveData');
      }
@@ -49,6 +51,7 @@ export default new Vuex.Store({
 
     saveData(state) {
       window.localStorage.setItem('cart', JSON.stringify(state.cart));
+      window.localStorage.setItem('product', JSON.stringify(state.product));
     },
     
     removeFromCart(state, item){
