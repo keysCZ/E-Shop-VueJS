@@ -31,8 +31,9 @@ export default {
   },
   methods: {
     dataProduct() {
-      this.$store.state.product.slice(1);
-      this.$store.commit("productDetails", this.item);
+      // store.dispatch('firestore');
+      // console.log(this.$store.state.product);
+      // this.$store.commit("productDetails", this.item);
     }
   }
 };

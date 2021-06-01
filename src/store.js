@@ -22,32 +22,37 @@ export default new Vuex.Store({
       return total;
     },
     product: state => id => {
-      return state.product.find(product => product.id === id);
+        
+        return state.product.find(product => product.id === id);
+      
     }
   },
   mutations : {
-    firestore(state, item) {
-        item = db.collection("products").get()
-        .then(querySnapshot => {
-          item = querySnapshot.docs.map(doc => doc.data());
-        })
-        state.product.push(item);
-        this.commit('saveData');
-    },
-     productDetails(state, item){
-      window.localStorage.clear(state.product);
+    
+    // getData(state, itemData) {
+    //   // db.collection("products").get()
+    //   // .then(querySnapshot => {
+    //   //   itemData = querySnapshot.docs.map(doc => doc.data());
+    //     // console.log(itemData);
+    //     // state.product = itemData;
+    //     // this.commit('saveData');
+    //     // console.log(state.product);
+    //   });
+    // },
+    //  productDetails(state, item){
+    //   window.localStorage.clear(state.product);
 
-      let found = state.product.find(product => product.product_id == item.product_id);
-     if(found){
-        console.log(item);
-     } else {
-        console.log(item);
-        window.localStorage.clear(state.product);
-        console.log(state.product);
-        state.product.unshift(item);
-        this.commit('saveData');
-     }
-    },
+    //   let found = state.product.find(product => product.product_id == item.product_id);
+    //  if(found){
+    //     console.log(item);
+    //  } else {
+    //     console.log(item);
+    //     window.localStorage.clear(state.product);
+    //     console.log(state.product);
+    //     state.product.unshift(item);
+    //     this.commit('saveData');
+    //  }
+    // },
     addToCart(state, item){
 
       let found = state.cart.find(product => product.product_id == item.product_id);
@@ -72,5 +77,15 @@ export default new Vuex.Store({
       this.commit('saveData');
 
     }
+  },
+  actions: {
+    firestore(){
+      db.collection("products").get()
+      .then(querySnapshot => {
+        let itemData = querySnapshot.docs.map(doc => doc.data());
+        console.log(itemData);
+        return itemData;
+      });
+    },
   }
 })

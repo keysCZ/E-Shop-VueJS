@@ -40,31 +40,29 @@ var _default = new _vuex["default"].Store({
     }
   },
   mutations: {
-    firestore: function firestore(state, item) {
-      item = _firebase.db.collection("products").get().then(function (querySnapshot) {
-        item = querySnapshot.docs.map(function (doc) {
-          return doc.data();
-        });
-      });
-      state.product.push(item);
-      this.commit('saveData');
-    },
-    productDetails: function productDetails(state, item) {
-      window.localStorage.clear(state.product);
-      var found = state.product.find(function (product) {
-        return product.product_id == item.product_id;
-      });
-
-      if (found) {
-        console.log(item);
-      } else {
-        console.log(item);
-        window.localStorage.clear(state.product);
-        console.log(state.product);
-        state.product.unshift(item);
-        this.commit('saveData');
-      }
-    },
+    // getData(state, itemData) {
+    //   // db.collection("products").get()
+    //   // .then(querySnapshot => {
+    //   //   itemData = querySnapshot.docs.map(doc => doc.data());
+    //     // console.log(itemData);
+    //     // state.product = itemData;
+    //     // this.commit('saveData');
+    //     // console.log(state.product);
+    //   });
+    // },
+    //  productDetails(state, item){
+    //   window.localStorage.clear(state.product);
+    //   let found = state.product.find(product => product.product_id == item.product_id);
+    //  if(found){
+    //     console.log(item);
+    //  } else {
+    //     console.log(item);
+    //     window.localStorage.clear(state.product);
+    //     console.log(state.product);
+    //     state.product.unshift(item);
+    //     this.commit('saveData');
+    //  }
+    // },
     addToCart: function addToCart(state, item) {
       var found = state.cart.find(function (product) {
         return product.product_id == item.product_id;
@@ -86,6 +84,17 @@ var _default = new _vuex["default"].Store({
       var currentpdt = state.cart.indexOf(item);
       state.cart.splice(currentpdt, 1);
       this.commit('saveData');
+    }
+  },
+  actions: {
+    firestore: function firestore() {
+      _firebase.db.collection("products").get().then(function (querySnapshot) {
+        var itemData = querySnapshot.docs.map(function (doc) {
+          return doc.data();
+        });
+        console.log(itemData);
+        return itemData;
+      });
     }
   }
 });

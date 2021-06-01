@@ -62,6 +62,7 @@
     ></b-pagination>
       </div>
     </div>
+    <button @click="getData">Datas</button>
   </div>
 </template>
 
@@ -98,7 +99,21 @@ export default {
   methods: {
     getImage(images) {
       return images[0];
+    },
+    getData(){
+      db.collection("products").get()
+        .then(querySnapshot => {
+           var itemData = querySnapshot.docs.map(doc => doc.data());
+        
+          console.log("state.product : ");
+          this.$store.state.product = itemData;
+          this.$store.commit("saveData", this.$store.state.product);
+          console.log(this.$store.state.product);
+        });
+      // this.$store.dispatch('firestore');
+
     }
+    
   },
   computed: {
       rows() {
