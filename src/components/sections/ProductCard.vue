@@ -32,7 +32,7 @@
             <div class="card-footer card-prd-footer mb-0 bg-light p-0">
               <button class="btn info col-6">
                 <!-- <router-link :to="`/product/perfume/${product.id}`"> -->
-                <router-link :to="{name: 'parfum', params: {id: product.id}}">
+                <router-link :to="{name: 'productdetails', params: {id: product.id}}">
                 Details
                   <!-- <ProductInfo
                     :product-id="product.id"
@@ -118,7 +118,21 @@ export default {
   computed: {
       rows() {
         return this.products.length
-      }
+      },
+      product() {
+      db.collection("products")
+        .get()
+        .then(querySnapshot => {
+          var itemData = querySnapshot.docs.map(doc => doc.data());
+
+          // console.log("state.product : ");
+          this.$store.state.product = itemData;
+          this.$store.commit("saveData", this.$store.state.product);
+          // console.log(this.$store.state.product);
+          this.$store.getters.product(this.$route.params.id);
+        });
+    //   return id;
+    }
     }
 };
 </script>

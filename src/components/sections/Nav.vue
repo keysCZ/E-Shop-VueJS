@@ -35,10 +35,17 @@
                     </form>
                 </div>
             </div>
-        </nav>
+            <a data-toggle="modal" data-target="#login">
+            <b-button
+              class="my-2 my-sm-1 btn btn-outline-warning bg-light"
+              >Se connecter</b-button
+            ></a
+          >
+        </nav><signin></signin>
   </div>
+        
 </template>
-<signin></signin>
+
 <script>
 import Login from "../Contents/Login.vue";
 export default {

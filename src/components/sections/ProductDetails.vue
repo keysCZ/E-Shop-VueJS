@@ -1,5 +1,5 @@
 <template>
-  <div class="parfum">
+  <div class="productdetails">
     <b-jumbotron v-if="product">
       <template #header>{{ product.productName }}</template>
 
@@ -17,18 +17,20 @@
       <b-button variant="primary" href="#">Do Something</b-button>
       <b-button variant="success" href="#">Do Something Else</b-button>
     </b-jumbotron>
-
+    <button @click="product()">Data</button>
     <footerh></footerh>
   </div>
 </template>
 
 <script>
+import { db } from "../../firebase";
+
 // @ is an alias to /src
 import HeaderMarque from "@/components/sections/Headermarque.vue";
 import Gfooter from "@/components/sections/Footer.vue";
 
 export default {
-  name: "parfum",
+  name: "productdetails",
   props: {
     name: String,
     price: String,
@@ -42,6 +44,7 @@ export default {
   },
   data() {
     return {
+        itemData: [],
       item: {
         productName: this.name,
         productPrice: this.price,
@@ -56,16 +59,13 @@ export default {
       db.collection("products")
         .get()
         .then(querySnapshot => {
-          var itemData = querySnapshot.docs.map(doc => doc.data());
-
-          console.log("state.product : ");
-          this.$store.state.product = itemData;
-          this.$store.commit("saveData", this.$store.state.product);
-          console.log(this.$store.state.product);
+          this.itemData = querySnapshot.docs.map(doc => doc.data());
         });
-      let id = this.$store.getters.product(this.$route.params.id);
-      console.log(this.$store.state.product);
-      // return id;
+        //   this.$store.state.product.push(this.itemData);
+        //   this.$store.commit("saveData", this.$store.state.product);
+          this.$store.getters.product(this.$route.params.id);
+      console.log(this.itemData);
+    //   return id;
     }
   }
 };
