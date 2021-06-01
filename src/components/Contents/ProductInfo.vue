@@ -2,7 +2,7 @@
   <div class="ProductInfo">
     <div class="text-center">
       <a class="btn btn-outline-dark mt-auto" @click="dataProduct()"
-        ><router-link to="/product/perfume">Voir le produit </router-link></a
+        ><router-link to="/product/perfume">Details </router-link></a
       >
     </div>
   </div>

@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <a class="btn btn-outline-dark mt-auto" @click="addToCart"> Ajouter au panier</a>
+    <a class="btn btn-outline-dark mt-auto" @click="addToCart"> Au panier</a>
   </div>
 </template>
 

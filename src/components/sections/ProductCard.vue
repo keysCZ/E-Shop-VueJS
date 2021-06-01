@@ -4,12 +4,22 @@
       <div class="row">
            <div
           class="col-lg-3 col-sm-4 col-md-4 d-flex"
-           id="card-product-item" :current-page="currentPage" :per-page="perPage"
+          v-for="(product, index) in products"
+          :key="index" id="card-product-item" :current-page="currentPage" :per-page="perPage"
         >
           <div class="card product-item my-2" >
             <div class="card-header card-prd-header">
               <carousel :perPage="1" paginationPosition="bottom-overlay">
-               <img :src="product.images" alt="">
+                <slide v-for="(image, index) in product.images" :key="index">
+                  <div>
+                    <img
+                      :src="image"
+                      class="card-img-top"
+                      style="max-width: 100px"
+                      :alt="product.name"
+                    />
+                  </div>
+                </slide>
               </carousel>
             </div>
 
@@ -21,14 +31,16 @@
             </div>
             <div class="card-footer card-prd-footer mb-0 bg-light p-0">
               <button class="btn info col-6">
-                <router-link to="/product/perfume">
-                  <ProductInfo
+                <!-- <router-link :to="`/product/perfume/${product.id}`"> -->
+                <router-link :to="{name: 'parfum', params: {id: product.id}}">
+                Details
+                  <!-- <ProductInfo
                     :product-id="product.id"
                     :image="getImage(product.images)"
                     :name="product.name"
                     :price="product.price"
                     :description="product.description"
-                  ></ProductInfo>
+                  ></ProductInfo> -->
                 </router-link>
               </button>
 
@@ -66,7 +78,6 @@ export default {
     PerfumeProduct,
     ProductInfo
   },
-  props: ["product"],
   data() {
     return {
       products: [],

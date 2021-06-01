@@ -110,7 +110,7 @@ var routes = [{
     });
   }
 }, {
-  path: '/product/perfume',
+  path: '/product/perfume/:id',
   name: 'parfum',
   // route level code-splitting
   // this generates a separate chunk (about.[hash].js) for this route

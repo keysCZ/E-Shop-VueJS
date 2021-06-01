@@ -8,19 +8,13 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+
 export default {
   name: "Products",
   components : {
   },
   props: {
     msg: String
-  },
-  computed: {
-    ...mapGetters("product"),
-  },
-  methods: {
-     ...mapActions("product"),
   }
 };
 </script>

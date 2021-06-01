@@ -13,11 +13,11 @@ import {fb} from '../firebase'
 Vue.use(VueRouter)
 
   const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
+    {
+      path: '/',
+      name: 'Home',
+      component: Home
+    },
   {
     path: '/admin',
     name: 'admin',
@@ -79,7 +79,7 @@ Vue.use(VueRouter)
     component: () => import(/* webpackChunkName: "about" */ '../views/Produits/Perfumes.vue')
   },
   {
-    path: '/product/perfume',
+    path: '/product/perfume/:id',
     name: 'parfum',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

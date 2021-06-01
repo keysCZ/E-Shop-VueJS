@@ -4,46 +4,45 @@
       <Navbar/>
       <br class="m-5">
       <div class="section">
-        <div class="container" v-for="(item, i) in this.$store.state.product"
-              :key="i">
-        
+        <div class="container" v-if="perfume">
+          <p>id : {{perfume.product_id}}</p>
         <div class="row bloc1">
           <div class="col-md-6" style="height: 500px;">
-           <img :src="item.product_image" alt="">
+           <!-- <img :src="perfume.product_image" alt=""> -->
            <!-- <img src="../assets/images/dstudio-bcn-4mGc3id9-Jc-unsplash.jpg" alt=""> -->
           </div>
           <div class="col-md-6">
             <b-jumbotron>
-        <template #header> {{ item.productName }}</template>
+        <!-- <template #header> {{perfume.productName}}</template> -->
 
         <template #lead>
-          Prix :  {{ item.productPrice }}
+          <!-- Prix :  {{ perfume.productPrice }} -->
         </template>
 
         <hr class="my-4">
 
         <p>          
-          <!-- {{ item.description }} -->
+          <!-- {{ perfume.productDescription }} -->
         </p>
 
         <b-button variant="primary" href="#">Acheter maintenant</b-button>
       
-               <add-to-cart
-                :product-id="item.product_id"
-                :image="item.product_image"
-                :name="item.productName"
-                :price="item.productPrice"
+               <!-- <add-to-cart
+                :product-id="perfume.product_id"
+                :image="perfume.product_image"
+                :name="perfume.productName"
+                :price="perfume.productPrice"
               >
-              </add-to-cart><br>
+              </add-to-cart><br> -->
               <!-- <button class="btn btn-secondary" @click="viewid()">  Ajouter au panier</button> -->
       </b-jumbotron>
           </div>
         </div>
         <hr class="m-5">
-        <div class="row  bloc2">
+        <!-- <div class="row  bloc2">
           <div class="col-md-8">
           <h4>Description du produit</h4>
-            <p>{{ item.productDescription }}</p>
+             <p>{{ product.description }}</p> 
           </div>
 
           <div class="col-md-4">
@@ -52,7 +51,7 @@
             <h5>Note de fond</h5>
           </div>
 
-        </div>
+        </div> -->
         </div>
       </div>
       
@@ -84,6 +83,13 @@ export default {
     getImage(images) {
           return images[0];
         }
+  },
+  computed : {
+    perfume() {
+      let id = this.$store.getters.product(this.$route.params.id);
+      console.log(id);
+      return id;
+    }
   }
 };
 </script>
