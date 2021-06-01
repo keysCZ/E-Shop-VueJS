@@ -4,22 +4,12 @@
       <div class="row">
            <div
           class="col-lg-3 col-sm-4 col-md-4 d-flex"
-          v-for="(product, index) in products"
-          :key="index" id="card-product-item" :current-page="currentPage" :per-page="perPage"
+           id="card-product-item" :current-page="currentPage" :per-page="perPage"
         >
           <div class="card product-item my-2" >
             <div class="card-header card-prd-header">
               <carousel :perPage="1" paginationPosition="bottom-overlay">
-                <slide v-for="(image, index) in product.images" :key="index">
-                  <div>
-                    <img
-                      :src="image"
-                      class="card-img-top"
-                      style="max-width: 100px"
-                      :alt="product.name"
-                    />
-                  </div>
-                </slide>
+               <img :src="product.images" alt="">
               </carousel>
             </div>
 
@@ -76,6 +66,7 @@ export default {
     PerfumeProduct,
     ProductInfo
   },
+  props: ["product"],
   data() {
     return {
       products: [],

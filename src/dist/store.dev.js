@@ -18,8 +18,7 @@ var product = window.localStorage.getItem('product');
 
 var _default = new _vuex["default"].Store({
   state: {
-    cart: cart ? JSON.parse(cart) : [],
-    product: product ? JSON.parse(product) : []
+    cart: cart ? JSON.parse(cart) : []
   },
   getters: {
     totalPrice: function totalPrice(state) {
@@ -28,24 +27,14 @@ var _default = new _vuex["default"].Store({
         total += item.productPrice * item.productQuantity;
       });
       return total;
+    },
+    product: function product(state) {
+      return state.product;
     }
   },
   mutations: {
-    productDetails: function productDetails(state, item) {
-      window.localStorage.clear(state.product);
-      var found = state.product.find(function (product) {
-        return product.product_id == item.product_id;
-      });
-
-      if (found) {
-        console.log(item);
-      } else {
-        console.log(item);
-        window.localStorage.clear(state.product);
-        console.log(state.product);
-        state.product.push(item);
-        this.commit('saveData');
-      }
+    setProduct: function setProduct(state, val) {
+      state.product = val;
     },
     addToCart: function addToCart(state, item) {
       var found = state.cart.find(function (product) {
@@ -68,6 +57,20 @@ var _default = new _vuex["default"].Store({
       var currentpdt = state.cart.indexOf(item);
       state.cart.splice(currentpdt, 1);
       this.commit('saveData');
+    }
+  },
+  actions: {
+    productDetails: function productDetails(_ref, item) {
+      var commit = _ref.commit;
+      window.localStorage.clear(state.product);
+      var found = item.product_id;
+
+      if (found) {
+        console.log(item);
+      } else {
+        commit("setProduct", item);
+        console.log(setProduct);
+      }
     }
   }
 });

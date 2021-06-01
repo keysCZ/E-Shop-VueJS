@@ -9,7 +9,7 @@ let product = window.localStorage.getItem('product');
 export default new Vuex.Store({
   state: {
     cart: cart ? JSON.parse(cart) : [],
-    product: product ? JSON.parse(product) : [],
+    
   }, 
   getters : {
     totalPrice: state => {
@@ -19,23 +19,16 @@ export default new Vuex.Store({
       });
 
       return total;
+    },
+    product : state => {
+        return state.product
     }
   },
   mutations : {
-     productDetails(state, item){
-      window.localStorage.clear(state.product);
-
-      let found = state.product.find(product => product.product_id == item.product_id);
-     if(found){
-        console.log(item);
-     } else {
-        console.log(item);
-        window.localStorage.clear(state.product);
-        console.log(state.product);
-        state.product.push(item);
-        this.commit('saveData');
-     }
-    },
+      setProduct(state, val) {
+          state.product = val
+      },
+     
     addToCart(state, item){
 
       let found = state.cart.find(product => product.product_id == item.product_id);
@@ -60,5 +53,18 @@ export default new Vuex.Store({
       this.commit('saveData');
 
     }
+  },
+  actions : {
+    productDetails({commit}, item){
+      window.localStorage.clear(state.product);
+
+      let found = item.product_id;
+     if(found){
+        console.log(item);
+     } else {
+       commit("setProduct", item);
+       console.log(setProduct);
+     }
+    },
   }
 })
