@@ -84,6 +84,7 @@ export default {
       productId: this.id,
       productImage: this.image,
       productDescription: this.description,
+      productTags : this.tags,
       currentPage: 1,
       perPage: 10,
     };

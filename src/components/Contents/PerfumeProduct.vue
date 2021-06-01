@@ -10,14 +10,15 @@
         <hr class="my-4">
 
         <p>
-          {{ item.product_image }}  
+          {{ item.product_image }}  <br>
+          {{ item.productTags }}<br>
           {{ item.productDescription }}
         </p>
 
         <b-button variant="primary" href="#">Do Something</b-button>
         <b-button variant="success" href="#">Do Something Else</b-button>
       </b-jumbotron>
-
+        
     <footerh></footerh>
   </div>
 </template>
@@ -34,7 +35,8 @@ export default {
     price: String,
     productId: String,
     image: String,
-    description: String
+    description: String,
+    tags: []
   },
   components: {
     headerpdt: HeaderMarque,
@@ -47,7 +49,8 @@ export default {
             productPrice: this.price,
             product_id: this.productId,
             product_image: this.image,
-            productDescription : this.description
+            productDescription : this.description,
+            productTags : this.tags
         }
     }
   }

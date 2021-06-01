@@ -16,7 +16,8 @@ export default {
     price: String,
     productId: String,
     image: String,
-    description: String
+    description: String,
+    tags: []
   },
   data() {
     return {
@@ -25,7 +26,9 @@ export default {
         productPrice: this.price,
         product_id: this.productId,
         product_image: this.image,
-        productDescription: this.description
+        productDescription: this.description,
+        productTags : this.tags
+        
       }
     };
   },
