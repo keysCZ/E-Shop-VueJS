@@ -27,7 +27,10 @@ export default new Vuex.Store({
   },
   mutations : {
     firestore(state, item) {
-        item = db.collection("products");
+        item = db.collection("products").get()
+        .then(querySnapshot => {
+          item = querySnapshot.docs.map(doc => doc.data());
+        })
         state.product.push(item);
         this.commit('saveData');
     },

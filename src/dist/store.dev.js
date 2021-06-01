@@ -41,7 +41,11 @@ var _default = new _vuex["default"].Store({
   },
   mutations: {
     firestore: function firestore(state, item) {
-      item = _firebase.db.collection("products");
+      item = _firebase.db.collection("products").get().then(function (querySnapshot) {
+        item = querySnapshot.docs.map(function (doc) {
+          return doc.data();
+        });
+      });
       state.product.push(item);
       this.commit('saveData');
     },
