@@ -1,9 +1,9 @@
 <template>
   <div class="header">
     <Navbar/>
-    <coverhome>
+    <!-- <coverhome>
       
-    </coverhome>
+    </coverhome> -->
       </div>
 </template>
 

@@ -84,7 +84,7 @@ export default {
       productId: this.id,
       productImage: this.image,
       productDescription: this.description,
-      productTags : this.tags,
+      // productTags : this.tags,
       currentPage: 1,
       perPage: 10,
     };
@@ -97,7 +97,7 @@ export default {
   methods: {
     getImage(images) {
       return images[0];
-    }
+    },
   },
   computed: {
       rows() {

@@ -11,7 +11,7 @@
 
         <p>
           {{ item.product_image }}  <br>
-          {{ item.productTags }}<br>
+          <!-- {{ item.productTags }}<br> -->
           {{ item.productDescription }}
         </p>
 
@@ -36,7 +36,7 @@ export default {
     productId: String,
     image: String,
     description: String,
-    tags: []
+    // tags: []
   },
   components: {
     headerpdt: HeaderMarque,
@@ -50,7 +50,7 @@ export default {
             product_id: this.productId,
             product_image: this.image,
             productDescription : this.description,
-            productTags : this.tags
+            // productTags : this.tags
         }
     }
   }

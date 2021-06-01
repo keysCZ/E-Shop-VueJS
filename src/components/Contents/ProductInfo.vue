@@ -17,7 +17,7 @@ export default {
     productId: String,
     image: String,
     description: String,
-    tags: []
+    // tags: []
   },
   data() {
     return {
@@ -27,14 +27,14 @@ export default {
         product_id: this.productId,
         product_image: this.image,
         productDescription: this.description,
-        productTags : this.tags
+        // productTags : this.tags
         
       }
     };
   },
   methods: {
     dataProduct() {
-      this.$store.state.product.slice(1);
+   
       this.$store.commit("productDetails", this.item);
     }
   }
