@@ -1,12 +1,13 @@
 <template>
   <div class="card-product" id="product" v-if="products">
-     <div class="container">
+    <div class="container">
       <div class="row" id="all-card">
-           <div
-          class="col-lg-3 col-sm-4 col-md-4 d-flex card-group "
-          v-for="(product, index) in products" :key="index" >
-          <div class="card product-item my-2" 
-          id="card-product-item" >
+        <div
+          class="col-lg-3 col-sm-4 col-md-4 d-flex card-group"
+          v-for="(product, index) in products"
+          :key="index"
+        >
+          <div class="card product-item my-2" id="card-product-item">
             <div class="card-header card-prd-header">
               <carousel :perPage="1" paginationPosition="bottom-overlay">
                 <slide v-for="(image, index) in product.images" :key="index">
@@ -50,18 +51,16 @@
               </add-to-cart>
             </div>
           </div>
-          
         </div>
-
-      </div> 
+      </div>
     </div>
-    <pagination></pagination>
+    
   </div>
 </template>
 
 <script>
 import { db } from "../../firebase";
-import pagination from '@/components/Contents/Pagination.vue'
+import pagination from "@/components/Contents/Pagination.vue";
 import { Carousel, Slide } from "vue-carousel";
 import PerfumeProduct from "@/views/PerfumeProduct";
 import ProductInfo from "@/components/Contents/ProductInfo.vue";
@@ -85,7 +84,7 @@ export default {
       productDescription: this.description,
       // productTags : this.tags,
       currentPage: 1,
-      perPage: 10,
+      perPage: 10
       // nbcard : this.products.length
     };
   },
@@ -98,20 +97,13 @@ export default {
     getImage(images) {
       return images[0];
     },
-    nbCard(){
-
-      console.log($('.card-group').length);
+    nbCard() {
+      console.log($(".card-group").length);
     }
   },
-  computed: {
-      rows() {
-        	// var allcard =  ;
-	
-          // var numberOfItems = allcard.;
-        // console.log(this.products.length);
-        // return this.products.length
-      }
-    }
+  mounted () {
+   $("#all-card").after(<pagination></pagination>);
+  }
 };
 </script>
 

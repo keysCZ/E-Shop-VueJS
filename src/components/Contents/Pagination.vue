@@ -1,16 +1,21 @@
 <template>
   <div class="pagination">
-    <button @click="pagination()">Data</button>
+    <!-- <button @click="pagination()">Data</button> -->
 
-      <nav aria-label="Page navigation example" class="">
-            <ul class="pagination paginationnav pagination-lg justify-content-center">
-              <li class="page-item">
-                <a class="page-link" id="prev-page" href="javascript:void(0)" aria-label="Previous" >
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+    <nav aria-label="Page navigation example" class="">
+      <ul class="pagination paginationnav pagination-lg justify-content-center">
+        <li class="page-item">
+          <a
+            class="page-link"
+            id="prev-page"
+            href="javascript:void(0)"
+            aria-label="Previous"
+          >
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
 
@@ -26,13 +31,14 @@ export default{
         
       }
     },
-    methods : {
-      pagination() {
+    mounted () {
+      // pagination() {
       var numberOfItems = $('.card-group').length;
       console.log(numberOfItems);
       var limitPerPage = 8;
       // var limit = limitPerPage - 1;
-      $(".card-group:gt("+ limitPerPage - 1 +")").hide();
+      $(".card-group:gt(7)").addClass('d-none');
+      $(".card-group:gt(7)").removeClass('d-flex');
       var totalPages = Math.round(numberOfItems / limitPerPage);
       $(".paginationnav").append("<li class='page-item current-page active'><a class='page-link' href='javascript:void(0)'>" + 1 + "</a></li>");
 
@@ -50,13 +56,19 @@ export default{
           var currentPage = $(this).index();
           $(".paginationnav li").removeClass("active");
           $(this).addClass("active");
-          $("#all-card .card-group").hide();
+          // $(".card-group").hide();
+              
+          $(".card-group").addClass('d-none');
+          $(".card-group").removeClass('d-flex');
 
           var grandTotal = limitPerPage * currentPage;
 
           for (var i = grandTotal - limitPerPage; i < grandTotal; i++) {
-            $("#all-card .card-group:eq(" + i + ")").show();
-          }
+            // $(".card-group:eq(" + i + ")").show();
+            
+              $(".card-group:eq(" + i + ")").addClass('d-flex');
+              $(".card-group:eq(" + i + ")").removeClass('d-none');
+                  }
         }
       });
 
@@ -68,12 +80,18 @@ export default{
         } else {
           currentPage++;
           $(".paginationnav li").removeClass("active");
-          $("#all-card .card-group").hide();
+          // $(".card-group").hide();
+          
+      $(".card-group").addClass('d-none');
+      $(".card-group").removeClass('d-flex');
 
           var grandTotal = limitPerPage * currentPage;
 
           for (var i = grandTotal - limitPerPage; i < grandTotal; i++) {
-            $("#all-card .card-group:eq(" + i + ")").show();
+            // $(".card-group:eq(" + i + ")").show();
+              $(".card-group:eq(" + i + ")").addClass('d-flex');
+            $(".card-group:eq(" + i + ")").removeClass('d-none');
+                  
           }
           $(".paginationnav li.current-page:eq(" + (currentPage - 1) + ")").addClass("active");
         }
@@ -87,17 +105,23 @@ export default{
         } else {
           currentPage--;
           $(".paginationnav li").removeClass("active");
-          $("#all-card .card-group").hide();
+          // $(".card-group").hide();
+
+          $(".card-group").addClass('d-none');
+          $(".card-group").removeClass('d-flex');
 
           var grandTotal = limitPerPage * currentPage;
 
           for (var i = grandTotal - limitPerPage; i < grandTotal; i++) {
-            $("#all-card .card-group:eq(" + i + ")").show();
+            // $(".card-group:eq(" + i + ")").show();
+            
+              $(".card-group:eq(" + i + ")").addClass('d-flex');
+            $(".card-group:eq(" + i + ")").removeClass('d-none');
           }
           $(".paginationnav li.current-page:eq(" + (currentPage - 1) + ")").addClass("active");
         }
       });
-          }
+          // }
         }
   }
 </script>
