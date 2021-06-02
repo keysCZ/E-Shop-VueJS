@@ -1,5 +1,8 @@
 <template>
+
   <div class="parfum">
+      <Navbar/>
+
       <b-jumbotron>
         <template #header>{{ item.productName }}</template>
 
@@ -25,6 +28,7 @@
 
 <script>
 // @ is an alias to /src
+import Navbar from '@/components/sections/Nav.vue'
 import HeaderMarque from "@/components/sections/Headermarque.vue";
 import Gfooter from "@/components/sections/Footer.vue";
 
@@ -39,6 +43,7 @@ export default {
     // tags: []
   },
   components: {
+    Navbar,
     headerpdt: HeaderMarque,
     footerh: Gfooter,
   },
@@ -56,3 +61,10 @@ export default {
   }
 };
 </script>
+<style>
+.bloc1{
+  max-width: 100%;
+  max-height: 1000px;
+  border: solid 1px black;
+}
+</style>

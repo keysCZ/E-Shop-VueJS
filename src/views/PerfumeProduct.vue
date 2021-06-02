@@ -103,5 +103,9 @@ b-jumbotron {
     max-height:100%;
     display: block;
   }
-
+.parfum{
+  max-width: 100%;
+  max-height: 1000px;
+  border: solid 1px black;
+}
 </style>

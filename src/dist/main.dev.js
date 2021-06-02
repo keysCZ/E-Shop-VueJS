@@ -69,6 +69,8 @@ _fontawesomeSvgCore.library.add(_freeSolidSvgIcons.faUserSecret);
 
 _vue["default"].component('font-awesome-icon', _vueFontawesome.FontAwesomeIcon);
 
+_vue["default"].use(_bootstrapVue.PaginationPlugin);
+
 _vue["default"].use(_vue2Filters["default"]);
 
 _vue["default"].use(_vueCarousel["default"]);

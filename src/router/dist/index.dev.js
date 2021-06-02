@@ -117,7 +117,7 @@ var routes = [{
   // which is lazy-loaded when the route is visited.
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/PerfumeProduct.vue'));
+      return _interopRequireWildcard(require('../components/Contents/PerfumeProduct.vue'));
     });
   }
 }];

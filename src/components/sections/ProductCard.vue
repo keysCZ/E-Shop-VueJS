@@ -1,13 +1,12 @@
 <template>
-  <div class="card-product" id="product">
+  <div class="card-product" id="product" v-if="products">
      <div class="container">
-      <div class="row">
+      <div class="row" id="all-card">
            <div
-          class="col-lg-3 col-sm-4 col-md-4 d-flex"
-          v-for="(product, index) in products"
-          :key="index" id="card-product-item" :current-page="currentPage" :per-page="perPage"
-        >
-          <div class="card product-item my-2" >
+          class="col-lg-3 col-sm-4 col-md-4 d-flex card-group "
+          v-for="(product, index) in products" :key="index" >
+          <div class="card product-item my-2" 
+          id="card-product-item" >
             <div class="card-header card-prd-header">
               <carousel :perPage="1" paginationPosition="bottom-overlay">
                 <slide v-for="(image, index) in product.images" :key="index">
@@ -51,26 +50,26 @@
               </add-to-cart>
             </div>
           </div>
+          
         </div>
-  <b-pagination
-      v-model="currentPage"
-      :total-rows="rows"
-      :per-page="perPage"
-      aria-controls="card-product-item"
-    ></b-pagination>
-      </div>
+
+      </div> 
     </div>
+    <pagination></pagination>
   </div>
 </template>
 
 <script>
 import { db } from "../../firebase";
+import pagination from '@/components/Contents/Pagination.vue'
 import { Carousel, Slide } from "vue-carousel";
 import PerfumeProduct from "@/views/PerfumeProduct";
 import ProductInfo from "@/components/Contents/ProductInfo.vue";
+import $ from "jquery";
 export default {
   name: "card-product",
   components: {
+    pagination,
     Carousel,
     Slide,
     PerfumeProduct,
@@ -87,6 +86,7 @@ export default {
       // productTags : this.tags,
       currentPage: 1,
       perPage: 10,
+      // nbcard : this.products.length
     };
   },
   firestore() {
@@ -98,10 +98,18 @@ export default {
     getImage(images) {
       return images[0];
     },
+    nbCard(){
+
+      console.log($('.card-group').length);
+    }
   },
   computed: {
       rows() {
-        return this.products.length
+        	// var allcard =  ;
+	
+          // var numberOfItems = allcard.;
+        // console.log(this.products.length);
+        // return this.products.length
       }
     }
 };
