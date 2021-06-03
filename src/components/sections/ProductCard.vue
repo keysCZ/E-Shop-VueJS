@@ -1,13 +1,13 @@
 <template>
-  <div class="card-product" id="product">
-     <div class="container">
-      <div class="row">
-           <div
-          class="col-lg-3 col-sm-4 col-md-4 d-flex"
+  <div class="card-product" id="product" v-if="products">
+    <div class="container">
+      <div class="row" id="all-card">
+        <div
+          class="col-lg-3 col-sm-4 col-md-4 d-flex card-group"
           v-for="(product, index) in products"
-          :key="index" id="card-product-item" :current-page="currentPage" :per-page="perPage"
+          :key="index"
         >
-          <div class="card product-item my-2" >
+          <div class="card product-item my-2" id="card-product-item">
             <div class="card-header card-prd-header">
               <carousel :perPage="1" paginationPosition="bottom-overlay">
                 <slide v-for="(image, index) in product.images" :key="index">
@@ -31,16 +31,14 @@
             </div>
             <div class="card-footer card-prd-footer mb-0 bg-light p-0">
               <button class="btn info col-6">
-                <!-- <router-link :to="`/product/perfume/${product.id}`"> -->
-                <router-link :to="{name: 'productdetails', params: {id: product.id}}">
-                Details
-                  <!-- <ProductInfo
+                <router-link to="/product/perfume">
+                  <ProductInfo
                     :product-id="product.id"
                     :image="getImage(product.images)"
                     :name="product.name"
                     :price="product.price"
                     :description="product.description"
-                  ></ProductInfo> -->
+                  ></ProductInfo>
                 </router-link>
               </button>
 
@@ -54,26 +52,24 @@
             </div>
           </div>
         </div>
-  <b-pagination
-      v-model="currentPage"
-      :total-rows="rows"
-      :per-page="perPage"
-      aria-controls="card-product-item"
-    ></b-pagination>
       </div>
+      <div v-if="charged"><pagination></pagination></div>
     </div>
-    <button @click="getData">Datas</button>
+    
   </div>
 </template>
 
 <script>
 import { db } from "../../firebase";
+// import pagination from "@/components/Contents/Pagination.vue";
 import { Carousel, Slide } from "vue-carousel";
 import PerfumeProduct from "@/views/PerfumeProduct";
 import ProductInfo from "@/components/Contents/ProductInfo.vue";
+import $ from "jquery";
 export default {
   name: "card-product",
   components: {
+    pagination : () => import(/*webpackChunkName: "pagination"*/'@/components/Contents/Pagination.vue'),
     Carousel,
     Slide,
     PerfumeProduct,
@@ -81,14 +77,17 @@ export default {
   },
   data() {
     return {
+      charged: false,
       products: [],
       productName: this.name,
       productPrice: this.price,
       productId: this.id,
       productImage: this.image,
       productDescription: this.description,
+      // productTags : this.tags,
       currentPage: 1,
-      perPage: 10,
+      perPage: 10
+      // nbcard : this.products.length
     };
   },
   firestore() {
@@ -100,40 +99,15 @@ export default {
     getImage(images) {
       return images[0];
     },
-    getData(){
-      db.collection("products").get()
-        .then(querySnapshot => {
-           var itemData = querySnapshot.docs.map(doc => doc.data());
-        
-          console.log("state.product : ");
-          this.$store.state.product = itemData;
-          this.$store.commit("saveData", this.$store.state.product);
-          console.log(this.$store.state.product);
-        });
-      // this.$store.dispatch('firestore');
-
+    nbCard() {
+      console.log($(".card-group").length);
     }
-    
   },
-  computed: {
-      rows() {
-        return this.products.length
-      },
-      product() {
-      db.collection("products")
-        .get()
-        .then(querySnapshot => {
-          var itemData = querySnapshot.docs.map(doc => doc.data());
-
-          // console.log("state.product : ");
-          this.$store.state.product = itemData;
-          this.$store.commit("saveData", this.$store.state.product);
-          // console.log(this.$store.state.product);
-          this.$store.getters.product(this.$route.params.id);
-        });
-    //   return id;
+  mounted () {
+    if($("#all-card")){
+      this.charged = true;
     }
-    }
+  }
 };
 </script>
 
