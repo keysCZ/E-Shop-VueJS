@@ -1,4 +1,5 @@
 <template>
+<<<<<<< Updated upstream
   <div class="overflow-auto">
     <b-pagination
       v-model="currentPage"
@@ -16,11 +17,31 @@
       :current-page="currentPage"
       small
     ></b-table>
+=======
+  <div class="pagination">
+    <!-- <button @click="pagination()">Data</button> -->
+
+    <nav aria-label="Page navigation m-3" class="">
+      <ul class="pagination paginationnav pagination-lg justify-content-center">
+        <li class="page-item">
+          <a
+            class="page-link"
+            id="prev-page"
+            href="javascript:void(0)"
+            aria-label="Previous"
+          >
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+>>>>>>> Stashed changes
   </div>
 </template>
 
 <script>
 export default{
+<<<<<<< Updated upstream
     name : 'Pagination',
     data() {
       return {
@@ -42,6 +63,24 @@ export default{
     computed: {
       rows() {
         return this.items.length
+=======
+  
+    name : 'pagination',
+    mounted () {
+      // pagination() { 
+      var numberOfItems = $('.card-group').length;
+      console.log(numberOfItems);
+      var limitPerPage = 8;
+      // var limit = limitPerPage - 1;
+      $(".card-group:gt(7)").addClass('d-none');
+      $(".card-group:gt(7)").removeClass('d-flex');
+      var totalPages = Math.round(numberOfItems / limitPerPage);
+      $(".paginationnav").append("<li class='page-item current-page active'><a class='page-link' href='javascript:void(0)'>" + 1 + "</a></li>");
+
+
+      for (var i = 2; i <= totalPages; i++) {
+        $(".paginationnav").append("<li class='page-item current-page'><a class='page-link' href='javascript:void(0)'>" + i + "</a></li>");
+>>>>>>> Stashed changes
       }
     }
   }

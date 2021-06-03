@@ -59,7 +59,7 @@ export default {
       db.collection("products")
         .get()
         .then(querySnapshot => {
-          this.itemData = querySnapshot.docs.map(doc => doc.data());
+          this.itemData = querySnapshot.docs.map(doc =>  doc.data());
         });
         //   this.$store.state.product.push(this.itemData);
         //   this.$store.commit("saveData", this.$store.state.product);
