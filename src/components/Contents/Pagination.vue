@@ -32,7 +32,7 @@ export default{
       }
     },
     mounted () {
-      // pagination() {
+      // pagination() { 
       var numberOfItems = $('.card-group').length;
       console.log(numberOfItems);
       var limitPerPage = 8;

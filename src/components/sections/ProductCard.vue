@@ -53,6 +53,7 @@
           </div>
         </div>
       </div>
+      <div v-if="charged"><pagination></pagination></div>
     </div>
     
   </div>
@@ -60,7 +61,7 @@
 
 <script>
 import { db } from "../../firebase";
-import pagination from "@/components/Contents/Pagination.vue";
+// import pagination from "@/components/Contents/Pagination.vue";
 import { Carousel, Slide } from "vue-carousel";
 import PerfumeProduct from "@/views/PerfumeProduct";
 import ProductInfo from "@/components/Contents/ProductInfo.vue";
@@ -68,7 +69,7 @@ import $ from "jquery";
 export default {
   name: "card-product",
   components: {
-    pagination,
+    pagination : () => import(/*webpackChunkName: "pagination"*/'@/components/Contents/Pagination.vue'),
     Carousel,
     Slide,
     PerfumeProduct,
@@ -76,6 +77,7 @@ export default {
   },
   data() {
     return {
+      charged: false,
       products: [],
       productName: this.name,
       productPrice: this.price,
@@ -102,7 +104,9 @@ export default {
     }
   },
   mounted () {
-   $("#all-card").after(<pagination></pagination>);
+    if($("#all-card")){
+      this.charged = true;
+    }
   }
 };
 </script>
