@@ -1,6 +1,6 @@
 <template>
   <div class="pagination">
-    <!-- <button @click="pagination()">Data</button> -->
+    <!-- <button >{{nbcard}}</button> -->
 
     <nav aria-label="Page navigation example" class="">
       <ul class="pagination paginationnav pagination-lg justify-content-center">
@@ -24,21 +24,15 @@ import $ from "jquery";
 export default{
   
     name : 'pagination',
-    data() {
-      return {
-        nbCard : $('.card-group').length,
-        
-      }
-    },
+    props: ['nbcard'],
     mounted () {
       // pagination() { 
-      var numberOfItems = $('.card-group').length;
-      console.log(numberOfItems);
+      console.log(this.nbcard);
       var limitPerPage = 8;
       // var limit = limitPerPage - 1;
       $(".card-group:gt(7)").addClass('d-none');
       $(".card-group:gt(7)").removeClass('d-flex');
-      var totalPages = Math.round(numberOfItems / limitPerPage);
+      var totalPages = Math.round(this.nbcard / limitPerPage);
       $(".paginationnav").append("<li class='page-item current-page active'><a class='page-link' href='javascript:void(0)'>" + 1 + "</a></li>");
       for (var i = 2; i <= totalPages; i++) {
         $(".paginationnav").append("<li class='page-item current-page'><a class='page-link' href='javascript:void(0)'>" + i + "</a></li>");
