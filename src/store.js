@@ -25,7 +25,7 @@ export default new Vuex.Store({
     },
     product: state => id => {
         
-        return state.articles.find(product => product.id === id);
+        return state.articles[0].find(product => product.id === id);
       
     }
   },

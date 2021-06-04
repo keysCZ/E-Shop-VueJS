@@ -11,15 +11,11 @@ var _vueRouter = _interopRequireDefault(require("vue-router"));
 
 var _Home = _interopRequireDefault(require("../views/Home.vue"));
 
-var _Checkout = _interopRequireDefault(require("../views/Checkout.vue"));
-
 var _Admin = _interopRequireDefault(require("../views/Admin.vue"));
 
 var _Overview = _interopRequireDefault(require("../views/Overview.vue"));
 
 var _Products = _interopRequireDefault(require("../views/Products.vue"));
-
-var _PerfumeProduct = _interopRequireDefault(require("../views/PerfumeProduct.vue"));
 
 var _Orders = _interopRequireDefault(require("../views/Orders.vue"));
 
@@ -89,7 +85,7 @@ var routes = [{
   }
 }, {
   path: '/oils',
-  name: 'Huiles',
+  name: 'oils',
   // route level code-splitting
   // this generates a separate chunk (about.[hash].js) for this route
   // which is lazy-loaded when the route is visited.
@@ -100,7 +96,7 @@ var routes = [{
   }
 }, {
   path: '/perfumes',
-  name: 'Parfums',
+  name: 'perfumes',
   // route level code-splitting
   // this generates a separate chunk (about.[hash].js) for this route
   // which is lazy-loaded when the route is visited.
@@ -111,7 +107,7 @@ var routes = [{
   }
 }, {
   path: '/product/details/:id',
-  name: 'productdetails',
+  name: 'details',
   // route level code-splitting
   // this generates a separate chunk (about.[hash].js) for this route
   // which is lazy-loaded when the route is visited.

@@ -35,7 +35,7 @@ var _default = new _vuex["default"].Store({
     },
     product: function product(state) {
       return function (id) {
-        return state.articles.find(function (product) {
+        return state.articles[0].find(function (product) {
           return product.id === id;
         });
       };

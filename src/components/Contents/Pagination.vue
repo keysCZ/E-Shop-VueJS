@@ -26,13 +26,13 @@ export default{
     name : 'pagination',
     props: ['nbcard'],
     mounted () {
-      // pagination() { 
-      console.log(this.nbcard);
       var limitPerPage = 8;
       // var limit = limitPerPage - 1;
+      var totalPages = Math.round(this.nbcard / limitPerPage);
+      console.log(totalPages);
+      
       $(".card-group:gt(7)").addClass('d-none');
       $(".card-group:gt(7)").removeClass('d-flex');
-      var totalPages = Math.round(this.nbcard / limitPerPage);
       $(".paginationnav").append("<li class='page-item current-page active'><a class='page-link' href='javascript:void(0)'>" + 1 + "</a></li>");
       for (var i = 2; i <= totalPages; i++) {
         $(".paginationnav").append("<li class='page-item current-page'><a class='page-link' href='javascript:void(0)'>" + i + "</a></li>");

@@ -1,9 +1,9 @@
 <template>
   <div class="nav">
        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-md navbar-light ">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand"><img src="/img/logo/Cazal Perfumes.png" width="400px" alt="logo"
+                <a class="navbar-brand"><img src="/img/logo/Cazal Perfumes.png" width="300px" alt="logo"
                     /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -47,6 +47,7 @@
 </template>
 
 <script>
+
 import Login from "../Contents/Login.vue";
 export default {
   name: "Navbar",
@@ -65,7 +66,9 @@ export default {
 @import url(https://fonts.googleapis.com/css?family=Nunito:200,200italic,300,300italic,regular,italic);
 nav {
   font-family: "Nunito", sans-serif;
-  font-size: 20px;
+  font-size: 18px;
+  text-transform: capitalize;
   width: 100%;
+  position: static;
 }
 </style>

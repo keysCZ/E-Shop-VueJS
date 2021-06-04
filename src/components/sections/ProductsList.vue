@@ -1,5 +1,5 @@
 <template>
-  <div class="products" id="products">
+  <div class="productslist" id="products">
      <h2>Tous nos parfums</h2> 
      <card-product></card-product>
                
@@ -10,7 +10,7 @@
 <script>
 
 export default {
-  name: "Products",
+  name: "ProductsList",
   components : {
   },
   props: {

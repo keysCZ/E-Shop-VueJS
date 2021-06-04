@@ -48,18 +48,16 @@
 <script>
 // @ is an alias to /src
 import HeaderHome from "@/components/sections/Header.vue";
+import ProductsList from "@/components/sections/ProductsList.vue";
 import Gfooter from "@/components/sections/Footer.vue";
 // import Logocarousel from '@/components/Contents/Logocarousel.vue'
-import CardS from "@/components/Contents/Cards.vue";
-import Products from "@/components/sections/Products.vue";
 
 export default {
   name: "Home",
   components: {
     headerh: HeaderHome,
     footerh: Gfooter,
-    bscard: CardS,
-    products: Products,
+    products: ProductsList,
     
     // 'carouselh' : Logocarousel
   },

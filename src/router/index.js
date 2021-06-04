@@ -1,11 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Checkout from '../views/Checkout.vue'
 import Admin from '../views/Admin.vue'
 import Overview from '../views/Overview.vue'
 import Products from '../views/Products.vue'
-import parfum from '../views/PerfumeProduct.vue'
 import Orders from '../views/Orders.vue'
 import Profile from '../views/Profile.vue'
 import {fb} from '../firebase'
@@ -64,27 +62,27 @@ Vue.use(VueRouter)
   },
   {
     path: '/oils',
-    name: 'Huiles',
+    name: 'oils',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Produits/Oils.vue')
+    component: () => import(/* webpackChunkName: "oils" */ '../views/Produits/Oils.vue')
   },
   {
     path: '/perfumes',
-    name: 'Parfums',
+    name: 'perfumes',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Produits/Perfumes.vue')
+    component: () => import(/* webpackChunkName: "perfumes" */ '../views/Produits/Perfumes.vue')
   },
   {
     path: '/product/details/:id',
-    name: 'productdetails',
+    name: 'details',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../components/sections/ProductDetails.vue')
+    component: () => import(/* webpackChunkName: "details" */ '../components/sections/ProductDetails.vue')
   }
 ]
 

@@ -30,15 +30,9 @@
               </div>
             </div>
             <div class="card-footer card-prd-footer mb-0 bg-light p-0">
-              <button class="btn info col-6">
-                <router-link to="/product/perfume">
-                  <ProductInfo
-                    :product-id="product.id"
-                    :image="getImage(product.images)"
-                    :name="product.name"
-                    :price="product.price"
-                    :description="product.description"
-                  ></ProductInfo>
+              <button @click="getPrd()" class="btn info col-6">
+                <router-link :to="{name: 'details', params:{id:product.id}}">
+                  Details
                 </router-link>
               </button>
 
@@ -53,7 +47,7 @@
           </div>
         </div>
       </div>
-      <button @click="getPrd()">Data</button>
+      <!-- <button @click="getPrd()">Data</button> -->
       <div v-if="products.length"><pagination :nbcard="nbcard"></pagination></div>
     </div>
     
@@ -64,35 +58,18 @@
 import { db } from "../../firebase";
 // import pagination from "@/components/Contents/Pagination.vue";
 import { Carousel, Slide } from "vue-carousel";
-import PerfumeProduct from "@/views/PerfumeProduct";
-import ProductInfo from "@/components/Contents/ProductInfo.vue";
 import $ from "jquery";
 export default {
   name: "card-product",
   components: {
     pagination : () => import(/*webpackChunkName: "pagination"*/'@/components/Contents/Pagination.vue'),
     Carousel,
-    Slide,
-    PerfumeProduct,
-    ProductInfo
+    Slide
   },
   data() {
     return {
       charged: false,
       products: [],
-      productName: this.name,
-      productPrice: this.price,
-      productId: this.id,
-      productImage: this.image,
-      productDescription: this.description,
-      // item : {
-      //   productName: product.name,
-      //   productPrice: product.price,
-      //   productId: product.id,
-      //   productImage: this.image,
-      //   productDescription: this.description,
-      // },
-      // productTags : this.tags,
       currentPage: 1,
       perPage: 10,
       nbcard : 0
@@ -114,47 +91,21 @@ export default {
         //console.log(`${property}: ${object[property]}`);
         items.push(this.products[item]);
       }
-      console.log(items);
+      // console.log(items);
       this.$store.commit("getProducts", items);
 
     }
   },
 
    created () {
-     
-      this.charged = true;
-      this.nbcard = $(".card-group").length;
-      // let item = this.products;
-      // console.log(this.item);
-     
-      // console.log($(".card-group").length);
-      // console.log(this.products.length);
-    // if($("#all-card")){
-      
-      
-    // }
+    if($("#all-card")){
+       this.charged = true;
+       this.nbcard = $(".card-group").length;
+    }
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-// .card-header {
-//   width: 200px;
-//   height: 300px;
-// }
-// .card-img-top {
-//   width: 100%;
-// }
-// .products {
-//   margin-top: 2rem;
-//   padding-bottom: 3rem;
-// }
-// .info {
-//   background-color: lightgrey;
-//   border: 1px solid white;
-// }
-// .product-item {
-//   border: 1.5px solid black;
-// }
 </style>
