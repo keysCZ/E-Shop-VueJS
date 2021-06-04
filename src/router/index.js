@@ -1,11 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import MainAdmin from '../views/Admin/MainAdmin.vue'
 import Admin from '../views/Admin.vue'
-import Overview from '../views/Overview.vue'
-import Products from '../views/Products.vue'
-import Orders from '../views/Orders.vue'
-import Profile from '../views/Profile.vue'
+
 import {fb} from '../firebase'
 
 Vue.use(VueRouter)
@@ -16,31 +14,35 @@ Vue.use(VueRouter)
       name: 'Home',
       component: Home
     },
+    {
+      path: '/adminczperfumes',
+      name: 'Admin',
+      component: Admin
+    },
   {
-    path: '/admin',
-    name: 'admin',
-    component: Admin,
-    meta: { requiresAuth: true },
+    path: '/adminczperfumes/dashboard',
+    name: 'MainAdmin',
+    component: MainAdmin,
     children : [
      { 
       path: 'overview',
       name: 'overview',
-      component: Overview
+      component: () => import(/* webpackChunkName: "overview" */'@/views/Admin/Overview'),
       },
      { 
       path: 'products',
       name: 'products',
-      component: Products
+      component: () => import(/* webpackChunkName: "crud_products" */'@/views/Admin/Products'),
       },
      { 
       path: 'orders',
       name: 'orders',
-      component: Orders
+      component: () => import(/* webpackChunkName: "orderslist" */'@/views/Admin/Orders'),
       },
      { 
       path: 'profile',
       name: 'profile',
-      component: Profile
+      component: () => import(/* webpackChunkName: "admin_profile" */'@/views/Admin/Profile'),
       }
     ]
   },
@@ -69,12 +71,12 @@ Vue.use(VueRouter)
     component: () => import(/* webpackChunkName: "oils" */ '../views/Produits/Oils.vue')
   },
   {
-    path: '/perfumes',
-    name: 'perfumes',
+    path: '/women-perfumes',
+    name: 'womenperfumes',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "perfumes" */ '../views/Produits/Perfumes.vue')
+    component: () => import(/* webpackChunkName: "perfumes" */ '../views/Produits/Perfumes/WomenPerfumes.vue')
   },
   {
     path: '/product/details/:id',
@@ -83,6 +85,27 @@ Vue.use(VueRouter)
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "details" */ '../components/sections/ProductDetails.vue')
+  },
+  {
+    path: '/user',
+    name: 'user',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "user" */ '@/views/User.vue'),
+    meta: { requiresAuth: true },
+    children : [
+     { 
+      path: 'orders',
+      name: 'UserOrders',
+      component: () => import(/* webpackChunkName: "user_order" */'@/views/User/Orders'),
+      },
+     { 
+      path: 'profile',
+      name: 'UserProfile',
+      component: () => import(/* webpackChunkName: "user_profile" */'@/views/User/Profile'),
+      }
+    ]
   }
 ]
 

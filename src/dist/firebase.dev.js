@@ -3,7 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.db = exports.fb = void 0;
+Object.defineProperty(exports, "firebase", {
+  enumerable: true,
+  get: function get() {
+    return _app["default"];
+  }
+});
+exports.provider = exports.db = exports.fb = void 0;
 
 var _app = _interopRequireDefault(require("@firebase/app"));
 
@@ -33,3 +39,5 @@ exports.fb = fb;
 var db = _app["default"].firestore();
 
 exports.db = db;
+var provider = new _app["default"].auth.GoogleAuthProvider();
+exports.provider = provider;

@@ -12,10 +12,12 @@ var firebaseConfig = {
   messagingSenderId: "786061405001",
   appId: "1:786061405001:web:be17f4997fe0b9f3338898",
   measurementId: "G-WDSH26FBLE"
-}
+};
 // Initialize Firebase
 const fb = firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 
-export {fb,db}
+const provider = new firebase.auth.GoogleAuthProvider();
+ 
+export {firebase, fb,db,provider}

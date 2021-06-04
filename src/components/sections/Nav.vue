@@ -38,7 +38,7 @@
             <a data-toggle="modal" data-target="#login">
             <b-button
               class="my-2 my-sm-1 btn btn-outline-warning bg-light"
-              >Se connecter</b-button
+              >S'identifier</b-button
             ></a
           >
         </nav><signin></signin>

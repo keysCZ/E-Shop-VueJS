@@ -11,15 +11,9 @@ var _vueRouter = _interopRequireDefault(require("vue-router"));
 
 var _Home = _interopRequireDefault(require("../views/Home.vue"));
 
+var _MainAdmin = _interopRequireDefault(require("../views/Admin/MainAdmin.vue"));
+
 var _Admin = _interopRequireDefault(require("../views/Admin.vue"));
-
-var _Overview = _interopRequireDefault(require("../views/Overview.vue"));
-
-var _Products = _interopRequireDefault(require("../views/Products.vue"));
-
-var _Orders = _interopRequireDefault(require("../views/Orders.vue"));
-
-var _Profile = _interopRequireDefault(require("../views/Profile.vue"));
 
 var _firebase = require("../firebase");
 
@@ -38,28 +32,45 @@ var routes = [{
   name: 'Home',
   component: _Home["default"]
 }, {
-  path: '/admin',
-  name: 'admin',
-  component: _Admin["default"],
-  meta: {
-    requiresAuth: true
-  },
+  path: '/adminczperfumes',
+  name: 'Admin',
+  component: _Admin["default"]
+}, {
+  path: '/adminczperfumes/dashboard',
+  name: 'MainAdmin',
+  component: _MainAdmin["default"],
   children: [{
     path: 'overview',
     name: 'overview',
-    component: _Overview["default"]
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('@/views/Admin/Overview'));
+      });
+    }
   }, {
     path: 'products',
     name: 'products',
-    component: _Products["default"]
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('@/views/Admin/Products'));
+      });
+    }
   }, {
     path: 'orders',
     name: 'orders',
-    component: _Orders["default"]
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('@/views/Admin/Orders'));
+      });
+    }
   }, {
     path: 'profile',
     name: 'profile',
-    component: _Profile["default"]
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('@/views/Admin/Profile'));
+      });
+    }
   }]
 }, {
   path: '/checkout',
@@ -95,14 +106,14 @@ var routes = [{
     });
   }
 }, {
-  path: '/perfumes',
-  name: 'perfumes',
+  path: '/women-perfumes',
+  name: 'womenperfumes',
   // route level code-splitting
   // this generates a separate chunk (about.[hash].js) for this route
   // which is lazy-loaded when the route is visited.
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/Produits/Perfumes.vue'));
+      return _interopRequireWildcard(require('../views/Produits/Perfumes/WomenPerfumes.vue'));
     });
   }
 }, {
@@ -116,6 +127,37 @@ var routes = [{
       return _interopRequireWildcard(require('../components/sections/ProductDetails.vue'));
     });
   }
+}, {
+  path: '/user',
+  name: 'user',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('@/views/User.vue'));
+    });
+  },
+  meta: {
+    requiresAuth: true
+  },
+  children: [{
+    path: 'orders',
+    name: 'UserOrders',
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('@/views/User/Orders'));
+      });
+    }
+  }, {
+    path: 'profile',
+    name: 'UserProfile',
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('@/views/User/Profile'));
+      });
+    }
+  }]
 }];
 var router = new _vueRouter["default"]({
   routes: routes,

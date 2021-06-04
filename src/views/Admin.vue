@@ -1,157 +1,96 @@
 <template>
   <div class="admin">
-    <div class="page-wrapper default-theme sidebar-bg bg1 toggled">
-      <a
-        href="#"
-        class="btn btn-sm btn-dark"
-        id="show-sidebar"
-        @click="closeMenu"
-      >
-        <i class="fas fa-bars"></i>
-      </a>
-      <nav id="sidebar" class="sidebar-wrapper">
-        <div class="sidebar-content">
-          <!-- sidebar-brand  -->
-          <div class="sidebar-item sidebar-brand">
-            <a href="#">pro sidebar</a>
-            <div class="close-sidebar" @click="closeMenu">
-              <i class="fas fa-times"></i>
-            </div>
-          </div>
-          <!-- sidebar-header  -->
-          <div class="sidebar-item sidebar-header d-flex flex-nowrap">
-            <div class="user-pic">
-              <img
-                class="img-responsive img-rounded"
-                src="/img/user.svg"
-                alt="User picture"
-              />
-            </div>
-            <div class="user-info">
-              <span class="user-name"
-                >Jhon
-                <strong>Smith</strong>
-              </span>
-              <span class="user-role">{{ email }}</span>
-              <span class="user-status">
-                <i class="fa fa-circle"></i>
-                <span>Online</span>
-              </span>
-            </div>
-          </div>
-          <!-- sidebar-search  -->
-          <div class="sidebar-item sidebar-search">
-            <div>
-              <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control search-menu"
-                  placeholder="Search..."
-                />
-                <div class="input-group-append">
-                  <span class="input-group-text">
-                    <i class="fa fa-search" aria-hidden="true" />
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- sidebar-menu  -->
-          <!-- sidebar-menu  -->
-          <div class="sidebar-item sidebar-menu">
-            <ul>
-              <li class="header-menu">
-                <span>Menu</span>
-              </li>
-
-              <li>
-                <router-link to="/admin/overview">
-                  <i class="fa fa-chart-line"></i>
-                  <span>Overview</span>
-                </router-link>
-              </li>
-              <li>
-                <router-link to="/admin/products">
-                  <i class="fab fa-amazon"></i>
-                  <span>Products</span>
-                </router-link>
-              </li>
-              <li>
-                <router-link to="/admin/orders">
-                  <i class="fa fa-shopping-cart"></i>
-                  <span>Orders</span>
-                </router-link>
-              </li>
-
-              <li>
-                <router-link to="/admin/profile">
-                  <i class="fa fa-user"></i>
-                  <span>Profile</span>
-                </router-link>
-              </li>
-              <li>
-                <a href="#" @click="logout">
-                  <i class="fa fa-power-off"></i>
-                  <span>Logout</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <!-- sidebar-menu  -->
-        </div>
-      </nav>
-      <!-- sidebar-content  -->
-      <main class="page-content">
-        <router-view />
-      </main>
-
-      <!-- page-content" -->
-    </div>
+    <!-- <span class="h1 m-5"><b-icon icon="power" variant="danger"></b-icon></span>
+    <h2 class="m-5">L'accès à l'espace administrateur est restreint.</h2>
+    <h3  class="m-5"> Veuillez vous identifier par l'intermédiaire de votre compte Google</h3>
+      -->
+      <b-button class="mt-3" @click="show = !show" id="btn-cancel">Annuler</b-button>
+      <b-overlay :show="show" rounded="lg" variant="primary">
+        <b-card title="Espace administrateur" :aria-hidden="show ? 'true' : null" class="p-5">
+          <b-card-text>L'accès à l'espace administrateur est restreint.</b-card-text>
+          <b-card-text>Veuillez vous identifier par l'intermédiaire de votre compte Google</b-card-text>
+          <b-button :disabled="show" variant="light" id="glogin" @click="googleLogin()" class="btn btn-outline-dark mt-auto">
+            S'identifier avec Google
+          </b-button>
+        </b-card>
+      </b-overlay>
+     
   </div>
 </template>
 
 <script>
-import { fb } from "../firebase";
+import { fb, provider } from "../firebase.js";
 import { $ } from "jquery";
-
+import { BOverlay } from 'bootstrap-vue'
 export default {
   name: "Admin",
+  component : {
+    'b-overlay': BOverlay
+  },
   data() {
     return {
       name: null,
-      email: null
+      email: null,
+      show: false,
     };
   },
   methods: {
-    closeMenu() {
-      $(".page-wrapper").toggleClass("toggled");
-    },
-    logout() {
+    
+    googleLogin(){
+      this.show = true;
       fb.auth()
-        .signOut()
-        .then(user => {
-          this.$router.replace("/");
-        })
-        .catch(error => {
-          console.log(error);
-        });
+  .signInWithPopup(provider)
+  .then((result) => {
+    console.log(result);
+    // /** @type {firebase.auth.OAuthCredential} */
+    // var credential = result.credential;
+
+    // // This gives you a Google Access Token. You can use it to access the Google API.
+    // var token = credential.accessToken;
+    // // The signed-in user info.
+    // var user = result.user;
+    // ...
+  }).catch((error) => {
+        console.log(error);
+
+    // Handle Errors here.
+    // var errorCode = error.code;
+    // var errorMessage = error.message;
+    // // The email of the user's account used.
+    // var email = error.email;
+    // // The firebase.auth.AuthCredential type that was used.
+    // var credential = error.credential;
+    // ...
+  });
     }
-  },
-  created() {
-    var user = fb.auth().currentUser;
-    this.email = user.email;
   }
-};
+}
 </script>
 <style lang="scss" scoped>
-#app {
-  text-align: unset;
+.admin{
+background:linear-gradient(90deg, #fcf4f4 0%,#dcd6d6 100% );
+background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
 }
-
-img {
-  max-width: 300px;
+.b-overlay-wrap{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  z-index:1;
 }
-.intro {
-  margin-top: 3rem;
+#btn-cancel{
+ display: flex;
+ position: absolute;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 95vh;
+  z-index:2;
 }
 </style>

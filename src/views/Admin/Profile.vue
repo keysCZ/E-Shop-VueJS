@@ -158,7 +158,7 @@
 </template>
 
 <script>
-import { fb, db } from "../firebase";
+import { fb, db } from "../../firebase";
 import $ from "jquery";
 export default {
   name: "Profile",

@@ -154,16 +154,24 @@ export default {
         .signInWithEmailAndPassword(this.form.email, this.form.password)
         .then(() => {
           $("#login").modal("hide");
-          this.$router.replace("admin");
+          this.$router.replace("user");
         })
         .catch(function(error) {
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
           if (errorCode === "auth/wrong-password") {
-            alert("Wrong password.");
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Le mot de passe n\'est pas le bon',
+            })
           } else {
-            alert(errorMessage);
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: errorMessage,
+            })
           }
           console.log(error);
         });
@@ -184,16 +192,24 @@ export default {
             .catch(function(error) {
               console.error("Error writing document: ", error);
             });
-          this.$router.replace("admin");
+          this.$router.replace("user");
         })
         .catch(function(error) {
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
           if (errorCode == "auth/weak-password") {
-            alert("The password is too weak.");
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Votre mot de passe est trop faible',
+          })
           } else {
-            alert(errorMessage);
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: errorMessage,
+            })
           }
           console.log(error);
         });
