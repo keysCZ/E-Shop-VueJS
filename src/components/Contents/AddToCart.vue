@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <a class="btn btn-outline-dark mt-auto" @click="addToCart"> Au panier</a>
+    <a class="btn btn-outline-dark mt-auto tocart" @click="addToCart"> Au panier <b-icon class="icon" icon="bag-plus" variant="success"></b-icon></a>
   </div>
 </template>
 
@@ -28,6 +28,8 @@ export default {
   methods: {
     addToCart() {
       $("#shopcart").modal("show");
+      $(".tocart").addClass('btn-lg');
+      // $(".icon").replaceWith('<b-icon icon="bag-check" variant="success"></b-icon>');
       this.$store.commit("addToCart", this.item);
     }
   }

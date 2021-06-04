@@ -4,7 +4,7 @@
     <div class="section">
       <div class="container">
         <div class="row p-3">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <carousel :perPage="1" paginationPosition="bottom-overlay">
               <slide v-for="(image, index) in product.images" :key="index">
                 <div>
@@ -18,7 +18,7 @@
               </slide>
             </carousel>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-8">
             <b-jumbotron v-if="product" class="section-details">
               <template v-slot:header>
                 <h6>PARFUM</h6>
@@ -26,6 +26,7 @@
               </template>
 
               <template v-slot:lead> {{ product.price }} €</template>
+              
               <add-to-cart
                 :product-id="product.id"
                 :image="getImage(product.images)"
@@ -41,7 +42,7 @@
                 </p>
               </div>
 
-              <b-button variant="primary" href="#">Do Something</b-button>
+              <!-- <b-button variant="primary" href="#">Do Something</b-button> -->
             </b-jumbotron>
           </div>
         </div>
@@ -106,8 +107,8 @@ export default {
   /* padding: 20px; */
 }
 .section-details {
-  width: 60%;
-  height: 60%;
+  /* width: 60%;
+  height: 60%; */
   margin: auto;
 }
 .jumbotron {
@@ -117,6 +118,8 @@ export default {
 div #details {
   padding: 10px;
   border-left: solid 1px rgb(12, 11, 11);
+  max-height:230px;
+  overflow: auto;
 }
 .pdtname {
   font-size: 22px;
