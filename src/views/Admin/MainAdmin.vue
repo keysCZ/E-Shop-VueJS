@@ -13,7 +13,7 @@
         <div class="sidebar-content">
           <!-- sidebar-brand  -->
           <div class="sidebar-item sidebar-brand">
-            <a href="#">pro sidebar</a>
+            <a href="#">Panneau D'administration</a>
             <div class="close-sidebar" @click="closeMenu">
               <b-icon icon="x-square"></b-icon>
 
@@ -24,19 +24,19 @@
             <div class="user-pic">
               <img
                 class="img-responsive img-rounded"
-                src="/img/user.svg"
+                :src="avatar"
                 alt="User picture"
               />
             </div>
             <div class="user-info">
               <span class="user-name"
-                >Jhon
-                <strong>Smith</strong>
+                > {{ name }}
               </span>
               <span class="user-role">{{ email }}</span>
               <span class="user-status">
-                  <font-awesome-icon icon="circle"/>
-                <span>Online</span>
+              <b-icon icon="circle-fill" variant="success"></b-icon>
+
+                <span>  Online</span>
               </span>
             </div>
           </div>
@@ -51,7 +51,7 @@
                 />
                 <div class="input-group-append">
                   <span class="input-group-text">
-                  <font-awesome-icon icon="search" aria-hidden="true"/>
+                  <b-icon icon="search"></b-icon>
 
                   </span>
                 </div>
@@ -76,7 +76,7 @@
                 <router-link to="/adminczperfumes/dashboard/products">
                   <b-icon icon="tags-fill"></b-icon>
                   <span class="mx-2">Products</span>
-                </router-link>
+                </router-link> 
               </li>
               <li>
                 <router-link to="/adminczperfumes/dashboard/orders">
@@ -115,25 +115,26 @@
 
 <script>
 import { fb } from "../../firebase";
-import { $ } from "jquery";
+import $ from "jquery";
 
 export default {
   name: "MainAdmin",
   data() {
     return {
       name: null,
-      email: null
+      email: null,
+      avatar: null,
     };
   },
   methods: {
     closeMenu() {
-      $(".page-wrapper").toggleClass("toggled");
+      $(".sidebar-wrapper").toggle();
     },
     logout() {
       fb.auth()
         .signOut()
         .then(user => {
-          this.$router.replace("/");
+          this.$router.replace("/adminczperfumes");
         })
         .catch(error => {
           console.log(error);
@@ -142,7 +143,9 @@ export default {
   },
   created() {
     var user = fb.auth().currentUser;
+    this.name = user.displayName;
     this.email = user.email;
+    this.avatar = user.photoURL;
   }
 };
 </script>

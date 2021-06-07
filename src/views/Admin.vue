@@ -43,23 +43,29 @@ export default {
   .then((result) => {
     console.log(result);
     // /** @type {firebase.auth.OAuthCredential} */
-    // var credential = result.credential;
+     var credential = result.credential;
 
     // // This gives you a Google Access Token. You can use it to access the Google API.
-    // var token = credential.accessToken;
+     var token = credential.accessToken;
     // // The signed-in user info.
-    // var user = result.user;
+     var user = result.user;
+     this.$router.replace("adminczperfumes/dashboard");
     // ...
   }).catch((error) => {
         console.log(error);
 
     // Handle Errors here.
-    // var errorCode = error.code;
-    // var errorMessage = error.message;
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: errorMessage,
+            })
     // // The email of the user's account used.
-    // var email = error.email;
+    var email = error.email;
     // // The firebase.auth.AuthCredential type that was used.
-    // var credential = error.credential;
+    var credential = error.credential;
     // ...
   });
     }

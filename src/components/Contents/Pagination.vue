@@ -1,5 +1,5 @@
 <template>
-  <div class="pagination">
+  <div class="pagination mt-3">
     <!-- <button >{{nbcard}}</button> -->
 
     <nav aria-label="Page navigation example" class="">
@@ -29,7 +29,8 @@ export default{
       var limitPerPage = 8;
       // var limit = limitPerPage - 1;
       var totalPages = Math.round(this.nbcard / limitPerPage);
-      console.log(totalPages);
+      // console.log(totalPages);
+          $(".item-group:gt(7)").hide();
       
       $(".card-group:gt(7)").addClass('d-none');
       $(".card-group:gt(7)").removeClass('d-flex');
@@ -45,13 +46,13 @@ export default{
           var currentPage = $(this).index();
           $(".paginationnav li").removeClass("active");
           $(this).addClass("active");
-          // $(".card-group").hide();
+          $(".item-group").hide();
               
           $(".card-group").addClass('d-none');
           $(".card-group").removeClass('d-flex');
           var grandTotal = limitPerPage * currentPage;
           for (var i = grandTotal - limitPerPage; i < grandTotal; i++) {
-            // $(".card-group:eq(" + i + ")").show();
+            $(".item-group:eq(" + i + ")").show();
             
               $(".card-group:eq(" + i + ")").addClass('d-flex');
               $(".card-group:eq(" + i + ")").removeClass('d-none');
@@ -65,13 +66,13 @@ export default{
         } else {
           currentPage++;
           $(".paginationnav li").removeClass("active");
-          // $(".card-group").hide();
+          $(".item-group").hide();
           
       $(".card-group").addClass('d-none');
       $(".card-group").removeClass('d-flex');
           var grandTotal = limitPerPage * currentPage;
           for (var i = grandTotal - limitPerPage; i < grandTotal; i++) {
-            // $(".card-group:eq(" + i + ")").show();
+            $(".item-group:eq(" + i + ")").show();
               $(".card-group:eq(" + i + ")").addClass('d-flex');
             $(".card-group:eq(" + i + ")").removeClass('d-none');
                   
@@ -86,12 +87,12 @@ export default{
         } else {
           currentPage--;
           $(".paginationnav li").removeClass("active");
-          // $(".card-group").hide();
+          $(".item-group").hide();
           $(".card-group").addClass('d-none');
           $(".card-group").removeClass('d-flex');
           var grandTotal = limitPerPage * currentPage;
           for (var i = grandTotal - limitPerPage; i < grandTotal; i++) {
-            // $(".card-group:eq(" + i + ")").show();
+            $(".item-group:eq(" + i + ")").show();
             
               $(".card-group:eq(" + i + ")").addClass('d-flex');
             $(".card-group:eq(" + i + ")").removeClass('d-none');

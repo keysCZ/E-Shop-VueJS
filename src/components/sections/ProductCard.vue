@@ -8,16 +8,12 @@
           :key="index"
         >
           <cards 
-          :name="product.name"
-          :description="product.description"
-          :price="product.price"
-          :id="product.id"
-          :images="product.images"
+          :item="product"
           />
         </div>
       </div>
       <!-- <button @click="getPrd()">Data</button> -->
-      <div v-if="products.length"><pagination :nbcard="nbcard"></pagination></div>
+      <div v-if="products.length"><pagination :nbcard="nbCard"></pagination></div>
     </div>
     
   </div>
@@ -38,11 +34,8 @@ export default {
 
   data() {
     return {
-      charged: false,
       products: [],
-      currentPage: 1,
-      perPage: 10,
-      nbcard : 0
+      // nbcard : 0
     };
   },
   firestore() {
@@ -54,23 +47,14 @@ export default {
     getImage(images) {
       return images[0];
     },
-    
-    getPrd() {
-      let items = [];
-      for (const item in this.products) {
-        //console.log(`${property}: ${object[property]}`);
-        items.push(this.products[item]);
-      }
-      // console.log(items);
-      this.$store.commit("getProducts", items);
-
-    }
+  
   },
 
-   created () {
-    if($("#all-card")){
-       this.charged = true;
-       this.nbcard = $(".card-group").length;
+  computed : {
+    nbCard(){
+      if($("#all-card")){
+       return this.products.length;
+    }
     }
   }
 };

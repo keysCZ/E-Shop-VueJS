@@ -39,6 +39,7 @@ import './assets/styles/app.scss'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { GridPlugin } from '@syncfusion/ej2-vue-grids';
 
 library.add(faUserSecret)
 
@@ -48,7 +49,9 @@ import Carousel3d from 'vue-carousel-3d'
 import VueCarousel from 'vue-carousel'
 import Vue2Filters from 'vue2-filters'
 
+
 Vue.use(Vue2Filters)
+Vue.use(GridPlugin)
 Vue.use(VueCarousel)
 Vue.use(VueFirestore)
 

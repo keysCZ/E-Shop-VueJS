@@ -31,6 +31,10 @@ export default {
       $(".tocart").addClass('btn-lg');
       // $(".icon").replaceWith('<b-icon icon="bag-check" variant="success"></b-icon>');
       this.$store.commit("addToCart", this.item);
+      Toast.fire({
+          icon: 'success',
+          title: 'Le produit a été ajouté au panier'
+        })
     }
   }
 };

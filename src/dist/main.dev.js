@@ -30,6 +30,8 @@ var _freeSolidSvgIcons = require("@fortawesome/free-solid-svg-icons");
 
 var _vueFontawesome = require("@fortawesome/vue-fontawesome");
 
+var _ej2VueGrids = require("@syncfusion/ej2-vue-grids");
+
 var _vueCarousel3d = _interopRequireDefault(require("vue-carousel-3d"));
 
 var _vueCarousel = _interopRequireDefault(require("vue-carousel"));
@@ -70,6 +72,8 @@ _fontawesomeSvgCore.library.add(_freeSolidSvgIcons.faUserSecret);
 _vue["default"].component('font-awesome-icon', _vueFontawesome.FontAwesomeIcon);
 
 _vue["default"].use(_vue2Filters["default"]);
+
+_vue["default"].use(_ej2VueGrids.GridPlugin);
 
 _vue["default"].use(_vueCarousel["default"]);
 

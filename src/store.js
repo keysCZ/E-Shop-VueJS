@@ -5,14 +5,13 @@ import { db } from "firebase";
 Vue.use(Vuex)
 
 let cart = window.localStorage.getItem('cart');
-let articles = window.localStorage.getItem('articles');
+let article = window.localStorage.getItem('article');
 let products = window.localStorage.getItem('products');
 
 export default new Vuex.Store({
   state: {
     cart: cart ? JSON.parse(cart) : [],
-    products: products ? JSON.parse(products) : [],
-    articles: articles ? JSON.parse(articles) : [],
+    article: article ? JSON.parse(article) : [],
   }, 
   getters : {
     totalPrice: state => {
@@ -25,7 +24,7 @@ export default new Vuex.Store({
     },
     product: state => id => {
         
-        return state.articles[0].find(product => product.id === id);
+        return state.article.find(product => product.id === id);
       
     }
   },
@@ -56,7 +55,7 @@ export default new Vuex.Store({
     //  }
     // },
     getProducts(state, products){
-      state.articles[0] = products;
+      state.article[0] = products;
       this.commit('saveData');
     },
     addToCart(state, item){
@@ -74,7 +73,7 @@ export default new Vuex.Store({
 
     saveData(state) {
       window.localStorage.setItem('cart', JSON.stringify(state.cart));
-      window.localStorage.setItem('articles', JSON.stringify(state.articles));
+      window.localStorage.setItem('article', JSON.stringify(state.article));
     },
     
     removeFromCart(state, item){

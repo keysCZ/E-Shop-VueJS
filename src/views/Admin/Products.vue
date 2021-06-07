@@ -15,13 +15,21 @@
       </div>
       <hr />
 
-      <h3 class="d-inline-block">Tous les produits :</h3>
-      <button class="btn btn-primary float-right" @click="addNew">
+     <h3 class="d-inline-block">Tous les produits :</h3>
+      
+      <hr /> <button class="btn btn-primary" @click="addNew">
         Ajouter un produit
       </button>
-      <hr />
+      <hr>
+      <!-- <ejs-grid :dataSource="products" :allowPaging="true" :pageSettings='pageSettings' :commandClick='editProduct' >
+        <e-columns>
+          <e-column field='name' headerText='Nom du produit' textAlign='Center'></e-column>
+          <e-column field='price' headerText='Prix' textAlign='Center' format="C2"></e-column>
+          <e-column headerText='Commands' width=150 :commands='commands'></e-column>
+        </e-columns>
+      </ejs-grid> -->
       <div class="container table-responsive">
-        <table class="table">
+        <table class="table" id="products-table" >
           <thead class="thead-dark">
             <tr>
               <th scope="col">#</th>
@@ -31,21 +39,23 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(product, index) in products" :key="index">
+            <tr v-for="(product, index) in products" :key="index" class="item-group">
               <td>{{ index }}</td>
               <td>{{ product.name }}</td>
               <td>{{ product.price }}</td>
               
               <button class="btn btn-primary mx-3 butn" @click="editProduct(product)">
-                <font-awesome-icon icon="pen" />
+                <b-icon icon="pen"></b-icon>
               </button>
               <button class="btn btn-danger"  @click="deleteProduct(product)">
-                <font-awesome-icon icon="trash" />
+                <b-icon icon="trash2-fill"></b-icon>
               </button>
             </tr>
           </tbody>
         </table>
       </div>
+      <!-- <button @click="rows()">Data</button> -->
+      <div v-if="products.length"><pagination :nbcard="nbCard"></pagination></div>
 
       <!-- @ Modal -->
       <div
@@ -136,7 +146,7 @@
                           v-for="(image, index) in product.images" :key="image.i"
                         >
                           <img :src="image" alt="product picture" width="80px">
-                          <span class="delete-img" @click="deleteImage(image, index)">X<i class="fas fa-times"></i></span>
+                          <span class="delete-img" @click="deleteImage(image, index)"><b-icon icon="x"></b-icon></span>
                         </div>
                     </div>
                     
@@ -178,16 +188,23 @@
 
 <script>
 import { VueEditor } from "vue2-editor";
-import { fb, db } from "../../firebase"
-import $ from "jquery"
+// import { GridPlugin, Page, Toolbar, Edit, CommandColumn } from '@syncfusion/ej2-vue-grids';
+import { fb, db } from "../../firebase";
+import $ from "jquery";
 export default {
   name: "Products",
   components: {
-    VueEditor
+    VueEditor,
+    pagination : () => import(/*webpackChunkName: "pagination"*/'@/components/Contents/Pagination.vue'),
+
+    // GridPlugin,
+    // Page
   },
   data() {
     return {
       products: [],
+      // pageSettings: { pageSize: 5 },
+      // commands: [{ buttonOption: { content: 'Edit', cssClass: 'e-flat' } }],
       product: {
         name: null,
         price: null,
@@ -197,15 +214,20 @@ export default {
       },
       activeItem: null,
       modal: null,
-      tag : null
+      tag : null,
+      
     }
   },
+  // provide: {
+  //   grid: [Page, Edit, Toolbar, CommandColumn]
+  // },
   firestore() {
     return {
       products: db.collection("products")
     }
   },
   methods: {
+    
     addTag() {
         this.product.tags.push(this.tag);
         this.tag = "";
@@ -301,10 +323,24 @@ export default {
       })
     },
   },
-  created() {},
+    computed : {
+      nbCard(){
+        if($("#all-card")){
+          $(".item-group").removeClass('d-flex');
+          $(".item-group").removeClass('d-none');
+        return this.products.length;
+      }
+    }
+  },
+  mounted(){
+    
+          $(".item-group").removeClass('d-flex');
+          $(".item-group").removeClass('d-none');
+  }
 };
 </script>
 <style scoped>
+/* @import '../../../node_modules/@syncfusion/ej2-vue-grids/styles/material.css'; */
 .butn{
   background: radial-gradient(circle, rgba(242,242,190,1) 0%, rgba(148,187,233,1) 100%)!important;
 }

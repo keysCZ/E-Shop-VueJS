@@ -61,11 +61,13 @@ import $ from "jquery";
 export default {
   name: "ProductDetails",
   props: {
-    name: String,
-    price: String,
-    productId: String,
-    image: String,
-    description: String
+    item : {
+      name: String,
+      price: String,
+      productId: String,
+      image: String,
+      description: String
+    }
   },
   components: {
     headerpdt: HeaderMarque,

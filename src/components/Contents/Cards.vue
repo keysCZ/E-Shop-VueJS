@@ -3,13 +3,13 @@
     <div class="card product-item my-2" id="card-product-item">
             <div class="card-header card-prd-header">
               <carousel :perPage="1" paginationPosition="bottom-overlay">
-                <slide v-for="(image, index) in images" :key="index">
+                <slide v-for="(image, index) in item.images" :key="index">
                   <div>
                     <img
                       :src="image"
                       class="card-img-top"
                       style="max-width: 100px"
-                      :alt="name"
+                      :alt="item.name"
                     />
                   </div>
                 </slide>
@@ -18,22 +18,21 @@
 
             <div class="card-body card-prd-body">
               <div class="d-flex justify-content-between">
-                <h6 class="card-title">{{ name }}</h6>
-                <h6 class="card-prices">{{ price }} €</h6>
+                <h6 class="card-title">{{ item.name }}</h6>
+                <h6 class="card-prices">{{ item.price }} €</h6>
               </div>
             </div>
             <div class="card-footer card-prd-footer mb-0 bg-light p-0">
               <button @click="getPrd()" class="btn info col-6">
-                <router-link :to="{name: 'details', params:{id:id}}">
+                <router-link :to="{name: 'details', params:{id:item.id}}">
                   Details
                 </router-link>
               </button>
 
               <add-to-cart
-                :product-id="id"
-                :image="getImage(images)"
-                :name="name"
-                :price="price"
+                :product-id="item.id"
+                :name="item.name"
+                :price="item.price"
               >
               </add-to-cart>
             </div>
@@ -51,18 +50,31 @@ export default {
     Slide,
   },
   props: {
-    name: String,
-    price: String,
-    id: String,
-    images: [],
-    tags: [],
-    description: String
+    item : {
+      id: String,
+      name: String,
+      price: String,
+      id: String,
+      images: Array,
+      tags: [],
+      description: String
+    }
   },
   methods: {
     getImage(images) {
-      return images[0];
+      return item.images[0];
     },
-  }
+   
+    getPrd() {
+      // for (const item in this.products) {
+      //   console.log(`${property}: ${object[property]}`);
+      //   items.push(this.products[item]);
+      // }
+      console.log(this.item);
+      this.$store.commit("getProducts", this.item);
+      console.log(this.$store.state.article);
+    },
+  }    
 };
 </script>
 

@@ -16,14 +16,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 _vue["default"].use(_vuex["default"]);
 
 var cart = window.localStorage.getItem('cart');
-var articles = window.localStorage.getItem('articles');
+var article = window.localStorage.getItem('article');
 var products = window.localStorage.getItem('products');
 
 var _default = new _vuex["default"].Store({
   state: {
     cart: cart ? JSON.parse(cart) : [],
-    products: products ? JSON.parse(products) : [],
-    articles: articles ? JSON.parse(articles) : []
+    article: article ? JSON.parse(article) : []
   },
   getters: {
     totalPrice: function totalPrice(state) {
@@ -35,7 +34,7 @@ var _default = new _vuex["default"].Store({
     },
     product: function product(state) {
       return function (id) {
-        return state.articles[0].find(function (product) {
+        return state.article.find(function (product) {
           return product.id === id;
         });
       };
@@ -66,7 +65,7 @@ var _default = new _vuex["default"].Store({
     //  }
     // },
     getProducts: function getProducts(state, products) {
-      state.articles[0] = products;
+      state.article[0] = products;
       this.commit('saveData');
     },
     addToCart: function addToCart(state, item) {
@@ -84,7 +83,7 @@ var _default = new _vuex["default"].Store({
     },
     saveData: function saveData(state) {
       window.localStorage.setItem('cart', JSON.stringify(state.cart));
-      window.localStorage.setItem('articles', JSON.stringify(state.articles));
+      window.localStorage.setItem('article', JSON.stringify(state.article));
     },
     removeFromCart: function removeFromCart(state, item) {
       var currentpdt = state.cart.indexOf(item);
