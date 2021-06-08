@@ -1,21 +1,41 @@
 <template>
-  <div class="productslist" id="products">
-     <h2>Tous nos parfums</h2> 
-     <card-product></card-product>
-               
-    
+  <div class="productslist" id="productslist">
+    <div class="container">
+      <div class="row">
+          <div class="col-12">
+            <h2 class="m-5">Tous nos parfums</h2>
+          </div>  
+          <!-- <card-product></card-product> -->
+          <div  class="col-lg-3 col-sm-4 col-md-4" v-for="(category, index) in categories"
+                  :key="index">
+            <category :category="category"> </category>
+          </div> 
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { db } from "../../firebase";
+import CategoryCard from "@/components/Contents/CategoryCard.vue";
 
 export default {
-  name: "ProductsList",
-  components : {
-  },
-  props: {
-    msg: String
-  }
+    name: "ProductsList",
+    components : {
+      category : CategoryCard
+    },
+    data() {
+      return {
+        categories: [],
+        // nbcard : 0
+      };
+    },
+    firestore() {
+      return {
+        categories: db.collection("categories")
+      };
+    },
+  
 };
 </script>
 

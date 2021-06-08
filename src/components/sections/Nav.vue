@@ -12,6 +12,9 @@
                         <li class="nav-item"><a class="nav-link"><router-link to="/about"
                             >A propos</router-link
                           ></a></li>
+                          <li class="nav-item"><a class="nav-link"><router-link to="/women-perfumes"
+                            >Nos parfums</router-link
+                          ></a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">

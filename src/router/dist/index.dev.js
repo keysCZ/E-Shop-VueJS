@@ -39,6 +39,9 @@ var routes = [{
   path: '/adminczperfumes/dashboard',
   name: 'MainAdmin',
   component: _MainAdmin["default"],
+  meta: {
+    requiresAuth: true
+  },
   children: [{
     path: 'overview',
     name: 'overview',

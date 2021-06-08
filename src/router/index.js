@@ -23,6 +23,7 @@ Vue.use(VueRouter)
     path: '/adminczperfumes/dashboard',
     name: 'MainAdmin',
     component: MainAdmin,
+    meta: { requiresAuth: true },
     children : [
      { 
       path: 'overview',

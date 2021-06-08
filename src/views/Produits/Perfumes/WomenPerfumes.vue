@@ -1,41 +1,67 @@
 <template>
-  <div class="womenperfumes">
-    <headerpdt></headerpdt>
-<h2>Parfums pour Femmes</h2> 
-     <card-product :gender="women"></card-product>
-    <pagination></pagination>
-    <footerh></footerh>
+  <div class="women-perfumes" id="product" v-if="products">
+    <div class="container">
+      <div class="row" id="all-card">
+        <div
+          class="col-lg-3 col-sm-4 col-md-4 d-flex card-group"
+          v-for="(product, index) in products"
+          :key="index"
+        >
+          <cards 
+          :item="product"
+          />
+        </div>
+      </div>
+      <!-- <button @click="WomenPerfumes()">Data</button> -->
+      <!-- <div v-if="womenperfumes.length"><pagination :nbcard="nbCard"></pagination></div> -->
+    </div>
+    
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HeaderMarque from "@/components/sections/Headermarque.vue";
-import Gfooter from "@/components/sections/Footer.vue";
-import CardS from "@/components/Contents/Cards.vue";
-import Pagination from "@/components/Contents/Pagination.vue";
-
+import { db } from "../../../firebase";
+// import pagination from "@/components/Contents/Pagination.vue";
+import Cards from "@/components/Contents/Cards.vue";
+import $ from "jquery";
 export default {
-  name: "Parfums",
+  name: "card-product",
   components: {
-    headerpdt: HeaderMarque,
-    footerh: Gfooter,
-    bscard: CardS,
-    pagination: Pagination
+    pagination : () => import(/*webpackChunkName: "pagination"*/'@/components/Contents/Pagination.vue'),
+    Cards
   },
+  props : ["gender"],
+
   data() {
     return {
-      imgPathCard: [
-        "https://picsum.photos/600/300/?image=25",
-        "src/assets/images/christin-hume-0MoF-Fe0w0A-unsplash.jpg",
-        "https://picsum.photos/600/300/?image=25",
-        "https://picsum.photos/600/300/?image=25",
-        "https://picsum.photos/600/300/?image=25",
-        "https://picsum.photos/600/300/?image=25",
-        "https://picsum.photos/600/300/?image=25",
-      ],
-      altCard: ["1", "2", "3"],
+      womenperfumes: [],
+      // nbcard : 0
     };
   },
+  firestore() {
+    return {
+      products: db.collection("products")
+    };
+  },
+  methods: {
+    getImage(images) {
+      return images[0];
+    },
+   },
+
+  computed : {
+    WomenPerfumes(){
+      console.log(this.product.tags);
+    },
+    nbCard(){
+      if($("#all-card")){
+       return this.products.length;
+    }
+    }
+  }
 };
 </script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="scss">
+</style>
