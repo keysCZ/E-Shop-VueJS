@@ -104,7 +104,14 @@
                     </div>
                     <div class="form-group">
                       <label for="descriptionCategory">Description</label>
-                      <vue-editor name="descriptionCategory" v-model="category.cdescription"></vue-editor>
+                      
+                      <textarea
+                        type="text"
+                        class="form-control"
+                        id="descriptionCategory"
+                        placeholder="Description de la catégorie"
+                        v-model="category.cdescription"
+                      ></textarea>
                     </div>
                   </div>
                   <div class="col">

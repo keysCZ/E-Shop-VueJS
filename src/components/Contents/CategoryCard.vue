@@ -1,6 +1,24 @@
 <template>
+
   <div class="category-card">
-    <div class=" "
+    <div class="container">
+      <div class="card card-category">
+        <figure class="card__thumb">
+          <div class="img">
+           <img :src="category.cbackground" alt="Picture by Kyle Cottrell" class="card__image ">
+          </div> 
+          <figcaption class="card__caption">
+            <h2 class="card__title"> {{ category.cname }} </h2>
+            <p class="card__snippet">{{ category.cdescription }}</p>
+            <a href="" class="card__button"><router-link :to="category.clink">Voir +</router-link> </a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+     
+    
+    
+    <!-- <div class=" "
     >
             <div class="card" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2))" v-bind:style="{backgroundImage : 'url(' + category.cbackground +')'}" >
               <div class="card-category">{{ category.cname }}</div>
@@ -12,7 +30,7 @@
                 <router-link :to="category.clink">  </router-link> 
               </div>
             </div>
-          </div>
+          </div> -->
   </div>
 </template>
 
@@ -36,8 +54,197 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+$desktop: 1024px;
+
+@mixin breakpoint($point) {
+  @if $point == desktop {
+    @media (min-width: $desktop) {
+      @content;
+    }
+  }
+}
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #e6e6e6;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin: 20px 0 80px;
+}
+.img{
+  width : 400px;
+  height: 500px;
+}
+img {
+  display: block;
+  position : relative;
+  width: 100%;
+  height:100%; 
+}
+
 .card {
+  width: 400px;
+  margin: 10px;
+  background-color: white;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+
+  &:hover {
+    .card__caption {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .card__image {
+      transform: translateY(-10px);
+    }
+
+    .card__thumb {
+      &::after {
+        top: 0;
+      }
+    }
+
+    .card__snippet {
+      margin: 20px 0;
+    }
+  }
+
+  &__thumb {
+    position: relative;
+    max-height: 400px;
+    overflow: hidden;
+    
+    @include breakpoint(desktop) {
+      max-height: 500px;
+    }
+
+    &::after {
+      position: absolute;
+      top: 0;
+      display: block;
+      content: '';
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(0deg, rgba(0, 0, 0, .5) 40%, rgba(255, 255 ,255 , 0) 100%);
+      transition: .3s;
+      
+      @include breakpoint(desktop) {
+        top: calc(100% - 140px);
+      }
+    }
+  }
+  
+  &__image {
+    transition: .5s ease-in-out;
+  }
+  
+  &__caption {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    padding: 0 20px;
+    color: white;
+    transform: translateY(-50%);
+    text-align: center;
+    transition: .3s;
+
+    @include breakpoint(desktop) {
+      top: calc(100% - 110px);
+      transform: unset;
+    }
+  }
+
+  &__title {
+    display: -webkit-box;
+    max-height: 85px;
+    overflow: hidden;
+    font-family: 'Playfair Display', serif;
+    font-size: 23px;
+    line-height: 28px;
+    text-shadow: 0px 1px 5px black;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  &__snippet {
+    display: -webkit-box;
+    max-height: 150px;
+    margin: 20px 0;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+    text-overflow: ellipsis;
+    transition: .5s ease-in-out;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    
+    @include breakpoint(desktop) {
+      margin: 60px 0;
+    }
+  }
+
+  &__button {
+    display: inline-block;
+    padding: 10px 20px;
+    color: white;
+    border: 1px solid white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: .3s;
+
+    &:hover {
+      color: black;
+      background-color: white;
+    }
+  }
+}
+
+.disclaimer {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  z-index: 2;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20px 10px;
+  background-color: white;
+  transform: translateX(-50%);
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  text-align: center;
+  
+  &__link {
+    color: #755D87;
+    text-decoration: none;
+  }
+}
+
+
+/* .card {
   height: 250px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
   background-size: cover !important;
@@ -76,5 +283,5 @@ export default {
     border-radius: 5px;
 
   opacity: 0.4;
-}
+} */
 </style>
