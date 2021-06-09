@@ -100,6 +100,7 @@ img {
   position : relative;
   width: 100%;
   height:100%; 
+  transform : translateX(1);
 }
 
 .card {

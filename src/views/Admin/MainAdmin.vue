@@ -16,7 +16,6 @@
             <a href="#">Panneau D'administration</a>
             <div class="close-sidebar" @click="closeMenu">
               <b-icon icon="x-square"></b-icon>
-
             </div>
           </div>
           <!-- sidebar-header  -->
@@ -29,14 +28,12 @@
               />
             </div>
             <div class="user-info">
-              <span class="user-name"
-                > {{ name }}
-              </span>
+              <span class="user-name"> {{ name }} </span>
               <span class="user-role">{{ email }}</span>
               <span class="user-status">
-              <b-icon icon="circle-fill" variant="success"></b-icon>
+                <b-icon icon="circle-fill" variant="success"></b-icon>
 
-                <span>  Online</span>
+                <span> Online</span>
               </span>
             </div>
           </div>
@@ -51,8 +48,7 @@
                 />
                 <div class="input-group-append">
                   <span class="input-group-text">
-                  <b-icon icon="search"></b-icon>
-
+                    <b-icon icon="search"></b-icon>
                   </span>
                 </div>
               </div>
@@ -76,7 +72,7 @@
                 <router-link to="/adminczperfumes/dashboard/products">
                   <b-icon icon="tags-fill"></b-icon>
                   <span class="mx-2">Products</span>
-                </router-link> 
+                </router-link>
               </li>
               <li>
                 <router-link to="/adminczperfumes/dashboard/orders">
@@ -114,16 +110,20 @@
 </template>
 
 <script>
+import { BIcon } from "bootstrap-vue";
 import { fb } from "../../firebase";
 import $ from "jquery";
 
 export default {
   name: "MainAdmin",
+  components: {
+    "b-icon": BIcon
+  },
   data() {
     return {
       name: null,
       email: null,
-      avatar: null,
+      avatar: null
     };
   },
   methods: {

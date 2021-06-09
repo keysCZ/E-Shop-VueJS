@@ -24,14 +24,6 @@ var _sweetalert = _interopRequireDefault(require("sweetalert2"));
 
 require("./assets/styles/app.scss");
 
-var _fontawesomeSvgCore = require("@fortawesome/fontawesome-svg-core");
-
-var _freeSolidSvgIcons = require("@fortawesome/free-solid-svg-icons");
-
-var _vueFontawesome = require("@fortawesome/vue-fontawesome");
-
-var _ej2VueGrids = require("@syncfusion/ej2-vue-grids");
-
 var _vueCarousel3d = _interopRequireDefault(require("vue-carousel-3d"));
 
 var _vueCarousel = _interopRequireDefault(require("vue-carousel"));
@@ -67,13 +59,7 @@ var Toast = _sweetalert["default"].mixin({
 
 window.Toast = Toast;
 
-_fontawesomeSvgCore.library.add(_freeSolidSvgIcons.faUserSecret);
-
-_vue["default"].component('font-awesome-icon', _vueFontawesome.FontAwesomeIcon);
-
 _vue["default"].use(_vue2Filters["default"]);
-
-_vue["default"].use(_ej2VueGrids.GridPlugin);
 
 _vue["default"].use(_vueCarousel["default"]);
 
@@ -83,9 +69,7 @@ _vue["default"].use(_vueCarousel3d["default"]); // Install BootstrapVue
 
 
 _vue["default"].use(_bootstrapVue.BootstrapVue); // Optionally install the BootstrapVue icon components plugin
-
-
-_vue["default"].use(_bootstrapVue.IconsPlugin); // This imports all the layout components such as <b-container>, <b-row>, <b-col>:
+// This imports all the layout components such as <b-container>, <b-row>, <b-col>:
 
 
 _vue["default"].use(_bootstrapVue.LayoutPlugin); // This imports <b-modal> as well as the v-b-modal directive as a plugin:
@@ -103,10 +87,6 @@ _vue["default"].use(_bootstrapVue.VBScrollspyPlugin); // This imports the dropdo
 _vue["default"].use(_bootstrapVue.DropdownPlugin);
 
 _vue["default"].use(_bootstrapVue.TablePlugin);
-
-_fontawesomeSvgCore.library.add(_freeSolidSvgIcons.faUserSecret);
-
-_vue["default"].component('font-awesome-icon', _vueFontawesome.FontAwesomeIcon);
 
 _vue["default"].component('Navbar', require("./components/sections/Nav.vue")["default"]);
 

@@ -1,23 +1,21 @@
 <template>
-  <div class="women-perfumes" id="product" v-if="products">
-    <div class="container">
+  <div class="women-perfumes">
+    <Navbar />
+    <div class="container" id="product" v-if="products">
       <div class="row" id="all-card">
         <div
           class="col-lg-3 col-sm-4 col-md-4 d-flex card-group"
           v-for="(product, index) in products"
           :key="index"
         >
-          <cards 
-          :item="product"
-          />
+          <cards :item="product" />
         </div>
       </div>
       <!-- <button @click="WomenPerfumes()">Data</button> -->
       <!-- <div v-if="womenperfumes.length"><pagination :nbcard="nbCard"></pagination></div> -->
     </div>
-    
   </div>
-</template>
+</template> 
 
 <script>
 import { db } from "../../../firebase";
@@ -27,14 +25,17 @@ import $ from "jquery";
 export default {
   name: "card-product",
   components: {
-    pagination : () => import(/*webpackChunkName: "pagination"*/'@/components/Contents/Pagination.vue'),
+    pagination: () =>
+      import(
+        /*webpackChunkName: "pagination"*/ "@/components/Contents/Pagination.vue"
+      ),
     Cards
   },
-  props : ["gender"],
+  props: ["gender"],
 
   data() {
     return {
-      womenperfumes: [],
+      womenperfumes: []
       // nbcard : 0
     };
   },
@@ -46,17 +47,17 @@ export default {
   methods: {
     getImage(images) {
       return images[0];
-    },
-   },
+    }
+  },
 
-  computed : {
-    WomenPerfumes(){
+  computed: {
+    WomenPerfumes() {
       console.log(this.product.tags);
     },
-    nbCard(){
-      if($("#all-card")){
-       return this.products.length;
-    }
+    nbCard() {
+      if ($("#all-card")) {
+        return this.products.length;
+      }
     }
   }
 };

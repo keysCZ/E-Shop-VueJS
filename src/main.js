@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import {
   BootstrapVue,
-  IconsPlugin
+  IconsPlugin,
 } from 'bootstrap-vue'
 import VueFirestore from "vue-firestore"
 import {fb} from './firebase'
@@ -36,22 +36,12 @@ window.Toast = Toast;
 
 import './assets/styles/app.scss'
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { GridPlugin } from '@syncfusion/ej2-vue-grids';
-
-library.add(faUserSecret)
-
-Vue.component('font-awesome-icon', FontAwesomeIcon)
-
 import Carousel3d from 'vue-carousel-3d'
 import VueCarousel from 'vue-carousel'
 import Vue2Filters from 'vue2-filters'
 
 
 Vue.use(Vue2Filters)
-Vue.use(GridPlugin)
 Vue.use(VueCarousel)
 Vue.use(VueFirestore)
 
@@ -59,7 +49,6 @@ Vue.use(Carousel3d)
 // Install BootstrapVue
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
-Vue.use(IconsPlugin)
 
 // This imports all the layout components such as <b-container>, <b-row>, <b-col>:
 import {
@@ -96,10 +85,8 @@ import store from './store.js'
 
 Vue.use(DropdownPlugin)
 Vue.use(TablePlugin)
-library.add(faUserSecret)
 
 
-Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('Navbar', require("./components/sections/Nav.vue").default)
 Vue.component('card-product', require("./components/sections/ProductCard.vue").default)
 Vue.component('add-to-cart', require("./components/Contents/AddToCart.vue").default)
