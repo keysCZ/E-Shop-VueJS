@@ -26,7 +26,11 @@
               </template>
 
               <template v-slot:lead> {{ product.price }} €</template>
-              
+              <h3 class="m-2">
+                <strong>
+                  <em>{{ product.impact }}</em>
+                </strong>
+              </h3>
               <add-to-cart
                 :product-id="product.id"
                 :image="getImage(product.images)"
@@ -61,12 +65,13 @@ import $ from "jquery";
 export default {
   name: "ProductDetails",
   props: {
-    item : {
+    item: {
       name: String,
       price: String,
       productId: String,
       image: String,
-      description: String
+      description: String,
+      impact: String
     }
   },
   components: {
@@ -120,7 +125,7 @@ export default {
 div #details {
   padding: 10px;
   border-left: solid 1px rgb(12, 11, 11);
-  max-height:230px;
+  max-height: 230px;
   overflow: auto;
 }
 .pdtname {

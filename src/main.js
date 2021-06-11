@@ -7,6 +7,8 @@ import 'bootstrap'
 import 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import vuetify from '@/plugins/vuetify' // path to vuetify export
+
 import {
   BootstrapVue,
   IconsPlugin,
@@ -100,6 +102,7 @@ let app = '';
 fb.auth().onAuthStateChanged(function(user){
 if(!app){
   new Vue({
+    vuetify,
     router,
     store,
     render: h => h(App)

@@ -16,6 +16,8 @@ require("bootstrap/dist/css/bootstrap.min.css");
 
 require("bootstrap-vue/dist/bootstrap-vue.css");
 
+var _vuetify = _interopRequireDefault(require("@/plugins/vuetify"));
+
 var _vueFirestore = _interopRequireDefault(require("vue-firestore"));
 
 var _firebase = require("./firebase");
@@ -36,6 +38,7 @@ var _store = _interopRequireDefault(require("./store.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+// path to vuetify export
 _vue["default"].use(_vueFirestore["default"], {
   key: 'id',
   // the name of the property. Default is '.key'.
@@ -104,6 +107,7 @@ var app = '';
 _firebase.fb.auth().onAuthStateChanged(function (user) {
   if (!app) {
     new _vue["default"]({
+      vuetify: _vuetify["default"],
       router: _router["default"],
       store: _store["default"],
       render: function render(h) {

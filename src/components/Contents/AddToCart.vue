@@ -1,8 +1,8 @@
 <template>
   <div class="text-center">
     <a class="btn btn-outline-dark mt-auto tocart" @click="addToCart">
-      Au panier <b-icon class="icon" icon="bag-plus" variant="black"></b-icon
-    ></a>
+      Au panier
+    </a>
   </div>
 </template>
 

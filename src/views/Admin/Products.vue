@@ -277,6 +277,14 @@
                 <div class="col">
                   <legend>Détails du produit</legend>
                   <hr />
+                  <textarea
+                    name="impact"
+                    id="productImpact"
+                    cols="30"
+                    rows="10"
+                    v-model="product.impact"
+                    placeholder="Une phrase d'impact pour ce beau produit."
+                  ></textarea>
                   <div class="form-group">
                     <label for="priceProduct">Prix</label>
                     <input
@@ -396,7 +404,8 @@ export default {
         price: null,
         description: null,
         tags: [],
-        images: []
+        images: [],
+        impact: null
       },
       categories: [],
       category: {
@@ -472,7 +481,8 @@ export default {
         price: null,
         description: null,
         tags: [],
-        images: []
+        images: [],
+        impact: null
       };
     },
     addNew() {

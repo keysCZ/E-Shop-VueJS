@@ -2,6 +2,85 @@
   <div class="Cards">
     <div class="wrapper">
       <div class="container">
+        <div class="top">
+          <div class="imagec">
+            <carousel
+              :perPage="1"
+              :autoplay="true"
+              :loop="true"
+              autoplayHoverPause
+            >
+              <slide v-for="(image, index) in item.images" :key="index">
+                <div>
+                  <img :src="image" class="card-img-top" :alt="item.name" />
+                </div>
+              </slide>
+            </carousel>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="left">
+            <div class="details">
+              <div class="mt-4">
+                <h4 class="nameUp">{{ item.name }}</h4>
+                <p>{{ item.price }} €</p>
+              </div>
+            </div>
+            <div class="buy" @click.self="buy()">
+              <div class="mt-5">
+                <add-to-cart
+                  :product-id="item.id"
+                  :name="item.name"
+                  :price="item.price"
+                  :image="getImage(item.images)"
+                  ><span class="glyphicon glyphicon-shopping-cart"></span>
+                  <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                </add-to-cart>
+              </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="done">
+              <span class="glyphicon glyphicon-remove-sign mt-5"></span>
+            </div>
+            <div class="details">
+              <h4>{{ item.name }}</h4>
+              <p>Added to your cart</p>
+            </div>
+            <div class="remove" @click="rmv()">
+              <span class="glyphicon glyphicon-ok-sign mt-5"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="inside">
+        <div class="icon">
+          <span class="glyphicon glyphicon-info-sign"></span>
+        </div>
+        <div class="contents">
+          <p>
+            {{ item.impact }}
+          </p>
+          <button
+            @click="getPrd()"
+            class="
+              info
+              col-6
+              btn btn-outline-light btn-lg btn-secondary
+              mt-auto
+            "
+          >
+            <router-link :to="{ name: 'details', params: { id: item.id } }">
+              Details
+            </router-link>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 
+<div class="wrapper">
+      <div class="container">
         <div
           class="top"
           v-bind:style="{ backgroundImage: 'url(' + item.images[0] + ')' }"
@@ -57,7 +136,7 @@
           </button>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- <div class="card product-item my-2" id="card-product-item">
             <div class="card-header card-prd-header">
@@ -102,7 +181,7 @@
 <script>
 import { Carousel, Slide } from "vue-carousel";
 import { BIcon } from "bootstrap-vue";
-
+import $ from "jquery";
 export default {
   name: "Cards",
   components: {
@@ -118,8 +197,14 @@ export default {
       id: String,
       images: Array,
       tags: [],
-      description: String
+      description: String,
+      impact: String
     }
+  },
+  data() {
+    return {
+      true: true
+    };
   },
   methods: {
     getImage(images) {
@@ -137,17 +222,25 @@ export default {
     },
     buy() {
       $(".bottom").addClass("clicked");
+      $(".right").css("top", "0%");
+      $(".right").css("transform", "translateX(100%)");
+      $(".right").css("position", "absolute");
     },
 
     rmv() {
       $(".bottom").removeClass("clicked");
+      $(".right").css("display", "none");
     }
+  },
+  mounted() {
+    console.log(this.item.name);
+    $(".nameUp").toUppercase();
   }
 };
 </script>
 <style>
 .glyphicon {
-  width: 20px;
+  font-size: 2em;
 }
 </style>
 <style scoped lang="scss">
@@ -157,9 +250,12 @@ body {
   font-family: sans-serif;
   padding: 25px;
 }
+.card-img-top {
+  width: 100%;
+}
 
 .wrapper {
-  width: 290px;
+  width: 250px;
   height: 450px;
   background: white;
   margin: auto;
@@ -167,7 +263,7 @@ body {
   overflow: hidden;
   border-radius: 10px 10px 10px 10px;
   box-shadow: 0;
-  transform: scale(0.95);
+  transform: scale(0.8);
   transition: box-shadow 0.5s, transform 0.5s;
   &:hover {
     transform: scale(1);
@@ -181,11 +277,11 @@ body {
     .top {
       height: 80%;
       width: 100%;
-      background: no-repeat center center;
-      -webkit-background-size: 70%;
-      -moz-background-size: 100%;
-      -o-background-size: 100%;
-      background-size: 100%;
+      // background: no-repeat center center;
+      // -webkit-background-size: 70%;
+      // -moz-background-size: 100%;
+      // -o-background-size: 100%;
+      // background-size: 100%;
     }
     .bottom {
       width: 200%;
@@ -205,7 +301,7 @@ body {
       }
       .left {
         height: 100%;
-        width: 50%;
+        width: 51%;
         background: #f4f4f4;
         position: relative;
         float: left;
@@ -216,7 +312,7 @@ body {
         }
         .buy {
           float: right;
-          width: 90px;
+          width: 80px;
           height: 100%;
           background: #f1f1f1;
           transition: background 0.5s;
@@ -243,11 +339,10 @@ body {
         float: right;
         height: 200%;
         overflow: hidden;
-        transform: translateX(15px);
         .details {
           padding: 20px;
           float: right;
-          width: calc(70% - 40px);
+          width: calc(70% - 20px);
         }
         .done {
           width: calc(30% - 2px);
