@@ -4,7 +4,7 @@
     <div class="section full-height">
       <div class="absolute-center">
         <div class="section">
-          <h1>Nos Huiles Essentielles</h1>
+          <h1>Prenez soin de vos cheveux</h1>
         </div>
       </div>
     </div>

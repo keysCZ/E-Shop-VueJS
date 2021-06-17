@@ -1,19 +1,26 @@
 <template>
   <div class="men-perfumes">
     <Navbar />
-    <div class="container" id="container_product" v-if="products">
-      <div class="row" id="all-card">
-        <div
-          class="col-lg-3 col-sm-4 col-md-4 d-flex card-group"
-          v-for="(product, index) in filteredMenPerfumes"
-          :key="index"
-        >
-          <cards :item="product" />
+    <div class="section full-height">
+      <div class="absolute-center">
+        <div class="section">
+          <h1>Parfums pour Hommes</h1>
+          <div class="container" id="container_product" v-if="products">
+            <div class="row" id="all-card">
+              <div
+                class="col-lg-3 col-sm-4 col-md-4 d-flex card-group"
+                v-for="(product, index) in filteredMenPerfumes"
+                :key="index"
+              >
+                <cards :item="product" />
+              </div>
+            </div>
+            <!-- <button @click="WomenPerfumes()">Data</button> -->
+            <div v-if="products.length">
+              <pagination :nbcard="nbCard"></pagination>
+            </div>
+          </div>
         </div>
-      </div>
-      <!-- <button @click="WomenPerfumes()">Data</button> -->
-      <div v-if="products.length">
-        <pagination :nbcard="nbCard"></pagination>
       </div>
     </div>
   </div>
