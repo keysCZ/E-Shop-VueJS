@@ -32,7 +32,7 @@ import { db } from "../../../firebase";
 import Cards from "@/components/Contents/Cards.vue";
 import $ from "jquery";
 export default {
-  name: "card-product",
+  name: "men-perfumes",
   components: {
     pagination: () =>
       import(
