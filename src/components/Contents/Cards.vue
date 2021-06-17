@@ -6,8 +6,8 @@
           <div class="imagec">
             <carousel
               :perPage="1"
-              :autoplay="true"
-              :loop="true"
+              :navigationEnabled="true"
+              :paginationEnabled="false"
               autoplayHoverPause
             >
               <slide v-for="(image, index) in item.images" :key="index">
@@ -62,7 +62,7 @@
             {{ item.impact }}
           </p>
           <button
-            @click="getPrd()"
+            v-on:click="getPrd()"
             class="
               info
               col-6
@@ -196,19 +196,20 @@ export default {
       price: String,
       id: String,
       images: Array,
-      tags: [],
+      tags: Array,
       description: String,
       impact: String
     }
   },
   data() {
     return {
-      true: true
+      true: true,
+      false: false
     };
   },
   methods: {
     getImage(images) {
-      return item.images[0];
+      return this.item.images[0];
     },
 
     getPrd() {
@@ -216,7 +217,7 @@ export default {
       //   console.log(`${property}: ${object[property]}`);
       //   items.push(this.products[item]);
       // }
-      console.log(this.item);
+      // console.log(this.item);
       this.$store.commit("getProducts", this.item);
       console.log(this.$store.state.article);
     },
@@ -233,8 +234,9 @@ export default {
     }
   },
   mounted() {
-    console.log(this.item.name);
-    $(".nameUp").toUppercase();
+    // console.log(this.item.name);
+    $("carousel");
+    // $(".nameUp").toUppercase();
   }
 };
 </script>
@@ -251,7 +253,7 @@ body {
   padding: 25px;
 }
 .card-img-top {
-  width: 100%;
+  width: 80%;
 }
 
 .wrapper {

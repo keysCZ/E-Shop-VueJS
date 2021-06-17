@@ -1,23 +1,26 @@
 <template>
-
   <div class="category-card">
     <div class="container">
       <div class="card card-category">
         <figure class="card__thumb">
           <div class="img">
-           <img :src="category.cbackground" alt="Picture by Kyle Cottrell" class="card__image ">
-          </div> 
+            <img
+              :src="category.cbackground"
+              alt="Picture by Kyle Cottrell"
+              class="card__image"
+            />
+          </div>
           <figcaption class="card__caption">
-            <h2 class="card__title"> {{ category.cname }} </h2>
-            <p class="card__snippet">{{ category.cdescription }}</p>
-            <a href="" class="card__button"><router-link :to="category.clink">Voir +</router-link> </a>
+            <h2 class="card__title">{{ category.cname }}</h2>
+            <p class="card__snippet"></p>
+            <a href="" class="card__button"
+              ><router-link :to="category.clink">Voir +</router-link>
+            </a>
           </figcaption>
         </figure>
       </div>
     </div>
-     
-    
-    
+
     <!-- <div class=" "
     >
             <div class="card" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2))" v-bind:style="{backgroundImage : 'url(' + category.cbackground +')'}" >
@@ -41,16 +44,19 @@ export default {
   name: "CategoryCard",
   components: {
     Carousel,
-    Slide,
+    Slide
   },
   props: {
-    category : {
-      name : String,
-      description : String,
-      background : String,
-      link : String
+    category: {
+      name: String,
+      description: String,
+      background: String,
+      link: String
     }
   },
+  mounted() {
+    $(".card__snippet").html(this.category.cdescription);
+  }
 };
 </script>
 
@@ -91,16 +97,16 @@ body {
   width: 100%;
   margin: 20px 0 80px;
 }
-.img{
-  width : 400px;
+.img {
+  width: 400px;
   height: 500px;
 }
 img {
   display: block;
-  position : relative;
+  position: relative;
   width: 100%;
-  height:100%; 
-  transform : translateX(1);
+  height: 100%;
+  transform: translateX(-25%);
 }
 
 .card {
@@ -134,7 +140,7 @@ img {
     position: relative;
     max-height: 400px;
     overflow: hidden;
-    
+
     @include breakpoint(desktop) {
       max-height: 500px;
     }
@@ -143,22 +149,26 @@ img {
       position: absolute;
       top: 0;
       display: block;
-      content: '';
+      content: "";
       width: 100%;
       height: 100%;
-      background: linear-gradient(0deg, rgba(0, 0, 0, .5) 40%, rgba(255, 255 ,255 , 0) 100%);
-      transition: .3s;
-      
+      background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.5) 40%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transition: 0.3s;
+
       @include breakpoint(desktop) {
         top: calc(100% - 140px);
       }
     }
   }
-  
+
   &__image {
-    transition: .5s ease-in-out;
+    transition: 0.5s ease-in-out;
   }
-  
+
   &__caption {
     position: absolute;
     top: 50%;
@@ -167,7 +177,7 @@ img {
     color: white;
     transform: translateY(-50%);
     text-align: center;
-    transition: .3s;
+    transition: 0.3s;
 
     @include breakpoint(desktop) {
       top: calc(100% - 110px);
@@ -179,7 +189,7 @@ img {
     display: -webkit-box;
     max-height: 85px;
     overflow: hidden;
-    font-family: 'Playfair Display', serif;
+    font-family: "Playfair Display", serif;
     font-size: 23px;
     line-height: 28px;
     text-shadow: 0px 1px 5px black;
@@ -193,14 +203,14 @@ img {
     max-height: 150px;
     margin: 20px 0;
     overflow: hidden;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 16px;
     line-height: 20px;
     text-overflow: ellipsis;
-    transition: .5s ease-in-out;
+    transition: 0.5s ease-in-out;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
-    
+
     @include breakpoint(desktop) {
       margin: 60px 0;
     }
@@ -211,11 +221,11 @@ img {
     padding: 10px 20px;
     color: white;
     border: 1px solid white;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 12px;
     text-transform: uppercase;
     text-decoration: none;
-    transition: .3s;
+    transition: 0.3s;
 
     &:hover {
       color: black;
@@ -234,16 +244,15 @@ img {
   padding: 20px 10px;
   background-color: white;
   transform: translateX(-50%);
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 14px;
   text-align: center;
-  
+
   &__link {
-    color: #755D87;
+    color: #755d87;
     text-decoration: none;
   }
 }
-
 
 /* .card {
   height: 250px;

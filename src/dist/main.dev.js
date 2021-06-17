@@ -16,7 +16,7 @@ require("bootstrap/dist/css/bootstrap.min.css");
 
 require("bootstrap-vue/dist/bootstrap-vue.css");
 
-var _vuetify = _interopRequireDefault(require("@/plugins/vuetify"));
+var _vuetify = _interopRequireDefault(require("./plugins/vuetify"));
 
 var _vueFirestore = _interopRequireDefault(require("vue-firestore"));
 

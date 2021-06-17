@@ -5,13 +5,20 @@
       <div class="container">
         <div class="row p-3">
           <div class="col-md-4">
-            <carousel :perPage="1" paginationPosition="bottom-overlay">
+            <carousel
+              :perPage="1"
+              paginationPosition="bottom-overlay"
+              :paginationEnabled="false"
+              :navigationEnabled="true"
+              :loop="true"
+              autoplayHoverPause
+            >
               <slide v-for="(image, index) in product.images" :key="index">
                 <div>
                   <img
                     :src="image"
                     class="card-img-top"
-                    style="max-width: 300px"
+                    style="max-width: "
                     :alt="product.name"
                   />
                 </div>
@@ -26,11 +33,12 @@
               </template>
 
               <template v-slot:lead> {{ product.price }} €</template>
-              <h3 class="m-2">
+              <h4 class="m-2">
                 <strong>
                   <em>{{ product.impact }}</em>
                 </strong>
-              </h3>
+              </h4>
+              <div>#{{ product.tags }}</div>
               <add-to-cart
                 :product-id="product.id"
                 :image="getImage(product.images)"
@@ -39,9 +47,10 @@
               >
               </add-to-cart>
               <hr class="my-4" />
-              <div id="details">
+
+              <div class="details">
                 <h6>Plus de détails</h6>
-                <p>
+                <p id="details">
                   <!-- {{ product.description }} -->
                 </p>
               </div>
@@ -64,15 +73,11 @@ import { Carousel, Slide } from "vue-carousel";
 import $ from "jquery";
 export default {
   name: "ProductDetails",
-  props: {
-    item: {
-      name: String,
-      price: String,
-      productId: String,
-      image: String,
-      description: String,
-      impact: String
-    }
+  data() {
+    return {
+      true: true,
+      false: false
+    };
   },
   components: {
     headerpdt: HeaderMarque,
@@ -91,7 +96,9 @@ export default {
     },
     desc() {
       let description = this.product.description;
-      $("#details h6").after(description);
+      $("#details").html(description);
+      console.log(this.product.tags);
+      console.log(this.product.images);
     }
   },
   computed: {
@@ -122,11 +129,26 @@ export default {
   background-color: none !important;
   text-align: left;
 }
-div #details {
+#details {
   padding: 10px;
   border-left: solid 1px rgb(12, 11, 11);
   max-height: 230px;
   overflow: auto;
+}
+#details::-webkit-scrollbar {
+  width: 10px; /* width of the entire scrollbar */
+}
+
+#details::-webkit-scrollbar-track {
+  border: 1px solid lightskyblue;
+  border-radius: 20px; /* roundness of the scroll thumb */
+  /* color of the tracking area */
+}
+
+#details::-webkit-scrollbar-thumb {
+  background-color: black; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: 3px solid #e8ecef; /* creates padding around scroll thumb */
 }
 .pdtname {
   font-size: 22px;

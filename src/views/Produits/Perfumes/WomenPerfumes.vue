@@ -1,18 +1,20 @@
 <template>
   <div class="women-perfumes">
     <Navbar />
-    <div class="container" id="product" v-if="products">
+    <div class="container" id="container_product" v-if="products">
       <div class="row" id="all-card">
         <div
           class="col-lg-3 col-sm-4 col-md-4 d-flex card-group"
-          v-for="(product, index) in products"
+          v-for="(product, index) in filteredWomenPerfumes"
           :key="index"
         >
           <cards :item="product" />
         </div>
       </div>
       <!-- <button @click="WomenPerfumes()">Data</button> -->
-      <!-- <div v-if="womenperfumes.length"><pagination :nbcard="nbCard"></pagination></div> -->
+      <div v-if="products.length">
+        <pagination :nbcard="nbCard"></pagination>
+      </div>
     </div>
   </div>
 </template> 
@@ -31,11 +33,11 @@ export default {
       ),
     Cards
   },
-  props: ["gender"],
+  // props: ["gender"],
 
   data() {
     return {
-      womenperfumes: []
+      products: []
       // nbcard : 0
     };
   },
@@ -51,11 +53,13 @@ export default {
   },
 
   computed: {
-    WomenPerfumes() {
-      console.log(this.product.tags);
+    filteredWomenPerfumes() {
+      // console.log(this.product.tags);
+      return this.products.filter(pdt => pdt.tags.includes("femme,"));
     },
     nbCard() {
       if ($("#all-card")) {
+        console.log(this.products.length);
         return this.products.length;
       }
     }
