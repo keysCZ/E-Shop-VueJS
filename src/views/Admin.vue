@@ -64,7 +64,7 @@ export default {
           var token = credential.accessToken;
           // // The signed-in user info.
           var user = result.user;
-          this.$router.replace("/dashboard");
+          this.$router.replace("/adminczperfumes/dashboard");
           // ...
         })
         .catch(error => {

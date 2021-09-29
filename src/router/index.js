@@ -30,11 +30,16 @@ Vue.use(VueRouter)
       name: 'overview',
       component: () => import(/* webpackChunkName: "overview" */'@/views/Admin/Overview'),
       },
-     { 
-      path: 'products',
-      name: 'products',
-      component: () => import(/* webpackChunkName: "crud_products" */'@/views/Admin/Products'),
-      },
+      { 
+       path: 'articles',
+       name: 'articles',
+       component: () => import(/* webpackChunkName: "crud_products" */'@/views/Admin/Articles'),
+       },
+       { 
+        path: 'products',
+        name: 'products',
+        component: () => import(/* webpackChunkName: "crud_products" */'@/views/Admin/Products'),
+        },
      { 
       path: 'orders',
       name: 'orders',
@@ -62,6 +67,20 @@ Vue.use(VueRouter)
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },{
+    path: '/successpayment',
+    name: 'SuccessPayment',
+    // route level code-splitting
+    // this generates a separate chunk (SuccessPayment.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "successpayment" */ '../views/SuccessPayment.vue')
+  },{
+    path: '/failedpayment',
+    name: 'FailedPayment',
+    // route level code-splitting
+    // this generates a separate chunk (FailedPayment.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "failedpayment" */ '../views/FailedPayment.vue')
   },
   {
     path: '/hair-care',

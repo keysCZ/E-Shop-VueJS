@@ -21,9 +21,9 @@ body::-webkit-scrollbar {
   width: 15px; /* width of the entire scrollbar */
 }
 
-body::-webkit-scrollbar-track {
-  border: 3px solid rgb(207, 171, 51);
-}
+// body::-webkit-scrollbar-track {
+//   border: 3px solid rgb(207, 171, 51);
+// }
 
 body::-webkit-scrollbar-thumb {
   background-color: black; /* color of the scroll thumb */

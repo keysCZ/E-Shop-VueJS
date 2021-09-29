@@ -51,6 +51,14 @@ var routes = [{
       });
     }
   }, {
+    path: 'articles',
+    name: 'articles',
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('@/views/Admin/Articles'));
+      });
+    }
+  }, {
     path: 'products',
     name: 'products',
     component: function component() {
@@ -95,6 +103,28 @@ var routes = [{
   component: function component() {
     return Promise.resolve().then(function () {
       return _interopRequireWildcard(require('../views/About.vue'));
+    });
+  }
+}, {
+  path: '/successpayment',
+  name: 'SuccessPayment',
+  // route level code-splitting
+  // this generates a separate chunk (SuccessPayment.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/SuccessPayment.vue'));
+    });
+  }
+}, {
+  path: '/failedpayment',
+  name: 'FailedPayment',
+  // route level code-splitting
+  // this generates a separate chunk (FailedPayment.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/FailedPayment.vue'));
     });
   }
 }, {

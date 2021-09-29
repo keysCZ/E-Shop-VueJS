@@ -16,6 +16,7 @@
         </li>
       </ul>
     </nav>
+
   </div>
 </template>
 
@@ -25,7 +26,7 @@ export default {
   name: "pagination",
   props: ["nbcard"],
   mounted() {
-    var limitPerPage = 8;
+    var limitPerPage = 4;
     // var limit = limitPerPage - 1;
     var totalPages = Math.round(this.nbcard / limitPerPage);
     // console.log(totalPages);

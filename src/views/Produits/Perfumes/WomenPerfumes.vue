@@ -81,6 +81,7 @@ export default {
   transform: translateY(20%);
   width: 100%;
   display: block;
+  margin-top: 50px;
 }
 .full-height {
   height: 100vh;

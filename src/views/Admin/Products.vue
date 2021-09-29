@@ -4,7 +4,7 @@
       <div class="intro h-100">
         <div class="row h-100 justify-content-center align-items-center">
           <div class="col-md-6">
-            <h3>Gestion des articles</h3>
+            <h3>Gestion des produits</h3>
             <p>
               Ajouter, mettre à jour, supprimer un produit ou une catégorie.
             </p>
@@ -54,10 +54,10 @@
             <td>{{ category.clink }}</td>
 
             <button class="btn btn-primary mx-3 butn" @click="editCg(category)">
-              <!-- <b-icon icon="pen"></b-icon> -->
+              <v-icon color="red">mdi-pencil-outline</v-icon>
             </button>
             <button class="btn btn-danger" @click="deleteCg(category)">
-              <!-- <b-icon icon="trash2-fill"></b-icon> -->
+              <v-icon color="red">mdi-delete-sweep-outline</v-icon>
             </button>
           </tr>
         </tbody>
@@ -215,11 +215,10 @@
               class="btn btn-primary mx-3 butn"
               @click="editProduct(product)"
             >
-              <!-- <b-icon icon="pen"></b-icon> -->Modifier
+              <v-icon color="red">mdi-pencil-outline</v-icon>
             </button>
             <button class="btn btn-danger" @click="deleteProduct(product)">
-              <!-- <b-icon icon="trash2-fill"></b-icon> -->
-              Supprimer
+              <v-icon color="red">mdi-delete-sweep-outline</v-icon>
             </button>
           </tr>
         </tbody>
@@ -293,6 +292,17 @@
                       id="priceProduct"
                       placeholder="10"
                       v-model="product.price"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="keywordPost">Mot-clé</label>
+
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="keywordPost"
+                      placeholder="Entrer le mot-clé du produit. ex : 'coco' "
+                      v-model="keyword"
                     />
                   </div>
                   <div class="form-group">
@@ -405,7 +415,8 @@ export default {
         description: null,
         tags: [],
         images: [],
-        impact: null
+        impact: null,
+        keyword: null
       },
       categories: [],
       category: {
@@ -482,7 +493,8 @@ export default {
         description: null,
         tags: [],
         images: [],
-        impact: null
+        impact: null,
+        keyword: null
       };
     },
     addNew() {

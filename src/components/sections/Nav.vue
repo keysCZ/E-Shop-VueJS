@@ -50,10 +50,10 @@
                     </div>
                   </li> -->
 
-                  <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <!-- <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                     <a class="nav-link" href="#">Nos conseils</a>
-                  </li>
-                  <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  </li> -->
+                  <!-- <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                     <a
                       class="nav-link dropdown-toggle"
                       data-toggle="dropdown"
@@ -69,24 +69,63 @@
                       <a class="dropdown-item" href="#">Something else here</a>
                       <a class="dropdown-item" href="#">Another action</a>
                     </div>
-                  </li>
+                  </li> -->
                   <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                    <a class="nav-link" href="#">Journal</a>
+                    <a class="nav-link" href="#">
+                      <router-link to="/checkout"
+                        >Mon Panier <i class="bi-cart-fill me-1"></i>
+                        <span
+                          class="badge bg-dark text-white ms-1 rounded-pill"
+                          >{{ this.cartnb }}</span
+                        ></router-link
+                      ></a
+                    >
                   </li>
-                  <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <!-- <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                     <a class="nav-link" href="#">Contact</a>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
-              <div id="switch">
-                <div id="circle"></div>
+              <div class="cuser" v-if="uid !== null ">
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    data-toggle="dropdown"
+                    href="#"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    >Bonjour {{ profile.name }}
+                    <v-icon>mdi-menu-down</v-icon>
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">
+                      <router-link to="/user/profile">Mon profil</router-link>
+                    </a>
+                    <a class="dropdown-item" href="#"
+                      ><router-link to="/user/orders"
+                        >Mes achats</router-link
+                      ></a
+                    >
+                  </div>
+                </li>
+              </div>
+              <div class="login" v-else>
+                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                  <a class="nav-link" data-toggle="modal" data-target="#login"
+                    >S'identifier</a
+                  >
+                </li>
+              </div>
+              <div id="switch" class="p-5">
+                <v-icon>mdi-weather-sunny-off</v-icon>
               </div>
             </nav>
           </div>
         </div>
       </div>
     </div>
-
+    <signin></signin>
     <!-- <nav class="navbar navbar-expand-md navbar-light ">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand"><img src="/img/logo/Cazal Perfumes.png" width="300px" alt="logo"
@@ -136,6 +175,7 @@
 
 <script>
 import $ from "jquery";
+import { fb, db } from "../../firebase";
 import Login from "../Contents/Login.vue";
 export default {
   name: "Navbar",
@@ -144,7 +184,23 @@ export default {
   },
   data() {
     return {
-      cartnb: this.$store.state.cart.length
+      cartnb: this.$store.state.cart.length,
+      user: fb.auth().currentUser,
+
+      profile: {
+        name: null
+      },
+      email: null,
+      photoURL: null,
+      emailVerified: null,
+      uid: null
+    };
+  },
+  firestore() {
+    var user = fb.auth().currentUser;
+
+    return {
+      profile: db.collection("profiles").doc(user.uid)
     };
   },
   mounted() {
@@ -182,7 +238,25 @@ export default {
         $("#switch").addClass("switched");
       }
     });
-  }
+  },
+  computed: {}
+  // watch: {
+  //   user: function(val) {
+  //     this.user = val;
+  //     console.log(this.user);
+  //     $(".cuser").show();
+  //     $(".login").hide();
+  //     this.displayName = user.displayName;
+  //     this.email = user.email;
+  //     this.photoURL = user.photoURL;
+  //     this.emailVerified = user.emailVerified;
+
+  //     // The user's ID, unique to the Firebase project. Do NOT use
+  //     // this value to authenticate with your backend server, if
+  //     // you have one. Use User.getToken() instead.
+  //     this.uid = user.uid;
+  //   }
+  // }
 };
 </script>
 

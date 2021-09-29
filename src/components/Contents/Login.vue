@@ -2,7 +2,7 @@
   <div class="login">
     <!-- Modal -->
     <div
-      class="modal fade"
+      class="modal"
       id="login"
       tabindex="-1"
       role="dialog"
@@ -41,7 +41,7 @@
 
             <div class="tab-content" id="pills-tabContent">
               <div
-                class="tab-pane fade show active"
+                class="tab-pane show active"
                 id="pills-login"
                 role="tabpanel"
                 aria-labelledby="pills-login-tab"
@@ -78,7 +78,7 @@
                 </div>
               </div>
               <div
-                class="tab-pane fade"
+                class="tab-pane"
                 id="pills-register"
                 role="tabpanel"
                 aria-labelledby="pills-register-tab"
@@ -154,7 +154,8 @@ export default {
         .signInWithEmailAndPassword(this.form.email, this.form.password)
         .then(() => {
           $("#login").modal("hide");
-          this.$router.replace("user");
+          console.log(fb.auth().currentUser);
+          this.$router.replace("/");
         })
         .catch(function(error) {
           // Handle Errors here.
@@ -162,16 +163,16 @@ export default {
           var errorMessage = error.message;
           if (errorCode === "auth/wrong-password") {
             Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Le mot de passe n\'est pas le bon',
-            })
+              icon: "error",
+              title: "Oops...",
+              text: "Le mot de passe n'est pas le bon"
+            });
           } else {
             Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: errorMessage,
-            })
+              icon: "error",
+              title: "Oops...",
+              text: errorMessage
+            });
           }
           console.log(error);
         });
@@ -192,7 +193,7 @@ export default {
             .catch(function(error) {
               console.error("Error writing document: ", error);
             });
-          this.$router.replace("user");
+          this.$router.replace("/");
         })
         .catch(function(error) {
           // Handle Errors here.
@@ -200,16 +201,16 @@ export default {
           var errorMessage = error.message;
           if (errorCode == "auth/weak-password") {
             Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Votre mot de passe est trop faible',
-          })
+              icon: "error",
+              title: "Oops...",
+              text: "Votre mot de passe est trop faible"
+            });
           } else {
             Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: errorMessage,
-            })
+              icon: "error",
+              title: "Oops...",
+              text: errorMessage
+            });
           }
           console.log(error);
         });

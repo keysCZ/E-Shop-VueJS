@@ -44,7 +44,7 @@ export default {
 
   data() {
     return {
-      products: []
+      products: [],
       // nbcard : 0
     };
   },
@@ -75,5 +75,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style lang="scss">
+.section {
+margin-top: 200px;
+}
 </style>

@@ -13,9 +13,9 @@
           <figcaption class="card__caption">
             <h2 class="card__title">{{ category.cname }}</h2>
             <p class="card__snippet"></p>
-            <a href="" class="card__button"
-              ><router-link :to="category.clink">Voir +</router-link>
-            </a>
+            <div href="" class="card__button">
+              <router-link :to="category.clink">Voir +</router-link>
+            </div>
           </figcaption>
         </figure>
       </div>

@@ -64,34 +64,40 @@
 
               <li>
                 <router-link to="/adminczperfumes/dashboard/overview">
-                  <b-icon icon="bar-chart-line"> </b-icon>
-                  <span class="mx-2"> Overview</span>
+                  <v-icon icon="mdi-xbox-controller-menu"> </v-icon>
+                  <span class="mx-2"> Vue d'ensemble</span>
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/adminczperfumes/dashboard/articles">
+                  <b-icon icon="tags-fill"></b-icon>
+                  <span class="mx-2">Articles</span>
                 </router-link>
               </li>
               <li>
                 <router-link to="/adminczperfumes/dashboard/products">
                   <b-icon icon="tags-fill"></b-icon>
-                  <span class="mx-2">Products</span>
+                  <span class="mx-2">Produits</span>
                 </router-link>
               </li>
               <li>
                 <router-link to="/adminczperfumes/dashboard/orders">
                   <b-icon icon="shop-window"></b-icon>
 
-                  <span class="mx-2">Orders</span>
+                  <span class="mx-2">Commandes</span>
                 </router-link>
               </li>
 
               <li>
                 <router-link to="/adminczperfumes/dashboard/profile">
                   <b-icon icon="person-bounding-box"> </b-icon>
-                  <span class="mx-2"> Profile</span>
+                  <span class="mx-2"> Profil</span>
                 </router-link>
               </li>
               <li>
                 <a href="#" @click="logout">
                   <b-icon icon="power"></b-icon>
-                  <span class="mx-2">Logout</span>
+                  <span class="mx-2">Déconnexion</span>
                 </a>
               </li>
             </ul>
