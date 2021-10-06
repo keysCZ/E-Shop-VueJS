@@ -41,7 +41,9 @@ import './assets/styles/app.scss'
 import Carousel3d from 'vue-carousel-3d'
 import VueCarousel from 'vue-carousel'
 import Vue2Filters from 'vue2-filters'
+import VueCookies from 'vue-cookies'
 
+Vue.use(VueCookies)
 
 Vue.use(Vue2Filters)
 Vue.use(VueCarousel)

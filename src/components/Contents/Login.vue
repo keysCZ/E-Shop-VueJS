@@ -153,9 +153,12 @@ export default {
       fb.auth()
         .signInWithEmailAndPassword(this.form.email, this.form.password)
         .then(() => {
-          $("#login").modal("hide");
-          console.log(fb.auth().currentUser);
-          this.$router.replace("/");
+          var currentuser = fb.auth().currentUser.toJSON();
+          $(".modal #login").modal("hide");
+          
+          this.$cookies.set("user", currentuser, "2d");
+          // location.reload();
+          // console.log(currentuser);
         })
         .catch(function(error) {
           // Handle Errors here.
@@ -176,23 +179,43 @@ export default {
           }
           console.log(error);
         });
+        
     },
     register() {
       fb.auth()
         .createUserWithEmailAndPassword(this.form.email, this.form.password)
-        .then(user => {
+        .then((user) => {
           $("#login").modal("hide");
+          fb.auth().currentUser.updateProfile({
+              displayName: this.form.name
+            })
+            .then(
+              function() {
+              console.log("Document successfully written!");
+              },
+              function(error) {
+                // An error happened.
+                var errorMessage = error.message;
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: errorMessage
+                });
+              }
+            );
           db.collection("profiles")
             .doc(user.user.uid)
             .set({
               name: this.form.name
             })
             .then(function() {
+             
               console.log("Document successfully written!");
             })
             .catch(function(error) {
               console.error("Error writing document: ", error);
             });
+          
           this.$router.replace("/");
         })
         .catch(function(error) {
@@ -214,6 +237,8 @@ export default {
           }
           console.log(error);
         });
+        
+
     }
   }
 };

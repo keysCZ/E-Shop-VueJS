@@ -76,7 +76,7 @@
                         >Mon Panier <i class="bi-cart-fill me-1"></i>
                         <span
                           class="badge bg-dark text-white ms-1 rounded-pill"
-                          >{{ this.cartnb }}</span
+                          >{{ cartnb }}</span
                         ></router-link
                       ></a
                     >
@@ -86,7 +86,7 @@
                   </li> -->
                 </ul>
               </div>
-              <div class="cuser" v-if="uid !== null ">
+              <div class="cuser" v-if="this.$cookies.isKey('user') == true">
                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                   <a
                     class="nav-link dropdown-toggle"
@@ -95,7 +95,7 @@
                     role="button"
                     aria-haspopup="true"
                     aria-expanded="false"
-                    >Bonjour {{ profile.name }}
+                    >Bonjour {{ display_name }}
                     <v-icon>mdi-menu-down</v-icon>
                   </a>
                   <div class="dropdown-menu">
@@ -107,6 +107,8 @@
                         >Mes achats</router-link
                       ></a
                     >
+                    <a class="dropdown-item" @click="logout"
+                      >Déconnexion</a>
                   </div>
                 </li>
               </div>
@@ -117,8 +119,9 @@
                   >
                 </li>
               </div>
-              <div id="switch" class="p-5">
+              <div id="switch" class="p-5" >
                 <v-icon>mdi-weather-sunny-off</v-icon>
+                
               </div>
             </nav>
           </div>
@@ -184,24 +187,38 @@ export default {
   },
   data() {
     return {
-      cartnb: this.$store.state.cart.length,
-      user: fb.auth().currentUser,
-
-      profile: {
-        name: null
-      },
-      email: null,
-      photoURL: null,
-      emailVerified: null,
-      uid: null
+      user : fb.auth().currentUser,
+      // profile: {
+      //   name: null
+      // },
+      // email: null,
+      // photoURL: null,
+      // emailVerified: null,
+      // uid: null
     };
   },
-  firestore() {
-    var user = fb.auth().currentUser;
+  // firestore() {
+  //   var user = fb.auth().currentUser;
+  //  if (user!=null)
+  //   {
+  //     return {
+  //         profile: db.collection("profiles").doc(user.uid)
+  //   }    
+  //   };
+  // },
+  methods: {
+    logout() {
+      fb.auth()
+        .signOut()
+        .then(user => {
+          this.$cookies.remove("user");
+          this.user = null
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
 
-    return {
-      profile: db.collection("profiles").doc(user.uid)
-    };
   },
   mounted() {
     var header = $(".start-style");
@@ -239,24 +256,38 @@ export default {
       }
     });
   },
-  computed: {}
+  computed: {
+    display_name(){
+      if(this.$cookies.isKey('user') == true) {
+        return this.$cookies.get('user').displayName
+      }
+    },
+    cartnb(){
+      if(this.$store.state.cart.length >= 0) {
+        return this.$store.state.cart.length
+      }
+    },
+    islogin(){
+      if (this.user != null) {
+        return true
+      } else {
+        return false
+      }
+    }
+    
+  },
   // watch: {
-  //   user: function(val) {
-  //     this.user = val;
-  //     console.log(this.user);
-  //     $(".cuser").show();
-  //     $(".login").hide();
-  //     this.displayName = user.displayName;
-  //     this.email = user.email;
-  //     this.photoURL = user.photoURL;
-  //     this.emailVerified = user.emailVerified;
-
-  //     // The user's ID, unique to the Firebase project. Do NOT use
-  //     // this value to authenticate with your backend server, if
-  //     // you have one. Use User.getToken() instead.
-  //     this.uid = user.uid;
+  //   islogin(newstate){
+  //     if(newstate){
+  //       var backdrop = document.getElementsByClassName('.modal-backdrop')
+  //       backdrop.remove();
+  //     }
   //   }
-  // }
+      // The user's ID, unique to the Firebase project. Do NOT use
+      // this value to authenticate with your backend server, if
+      // you have one. Use User.getToken() instead.
+
+//  }
 };
 </script>
 
@@ -620,4 +651,10 @@ body.dark .logo img {
   width: 100%;
   position: static;
 } */
+
+</style>
+<style>
+.modal-backdrop {
+    display: none!important;
+}
 </style>
