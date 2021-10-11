@@ -1,21 +1,14 @@
 <template>
   <div class="user">
     <div class="page-wrapper default-theme sidebar-bg bg1 toggled">
-      <a
-        href="#"
-        class="btn btn-lg btn-dark h3 mb-2"
-        id="show-sidebar"
-        @click="closeMenu"
-      >
-        <b-icon icon="menu-down" variant="warning"></b-icon>
-      </a>
+      
       <nav id="sidebar" class="sidebar-wrapper">
         <div class="sidebar-content">
           <!-- sidebar-brand  -->
           <div class="sidebar-item sidebar-brand">
             <a href="#">Espace client</a>
-            <div class="close-sidebar" @click="closeMenu">
-              <b-icon icon="x-square"></b-icon>
+            <div class="close-sidebar" @click="closeMenu" >
+              <v-icon small style="color:white">mdi-window-close</v-icon>
 
             </div>
           </div>
@@ -34,7 +27,7 @@
               </span>
               <span class="user-role">{{ email }}</span>
               <span class="user-status">
-              <b-icon icon="circle-fill" variant="success"></b-icon>
+              <v-icon color="green" >mdi-circle</v-icon>
 
                 <span>  Online</span>
               </span>
@@ -51,7 +44,7 @@
                 />
                 <div class="input-group-append">
                   <span class="input-group-text">
-                  <b-icon icon="search"></b-icon>
+                  <v-icon color="green" small >mdi-magnify</v-icon>
 
                   </span>
                 </div>
@@ -69,7 +62,7 @@
               
               <li>
                 <router-link to="/user/orders">
-                  <b-icon icon="shop-window"></b-icon>
+                  <v-icon color="green" small >mdi-shopping</v-icon>
 
                   <span class="mx-2">Orders</span>
                 </router-link>
@@ -77,13 +70,26 @@
 
               <li>
                 <router-link to="/user/profile">
-                  <b-icon icon="person-bounding-box"> </b-icon>
+                  <v-icon color="green" small >mdi-face-man-shimmer</v-icon>
                   <span class="mx-2"> Profile</span>
+                </router-link>
+              </li>
+
+              <li>
+                <router-link to="/user/purchases">
+                  <v-icon color="green" small  >mdi-cart-check</v-icon>
+                  <span class="mx-2"> My Purchases</span>
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/">
+                  <v-icon color="green" small  >mdi-cart</v-icon>
+                  <span class="mx-2"> Go to shop</span>
                 </router-link>
               </li>
               <li>
                 <a href="#" @click="logout">
-                  <b-icon icon="power"></b-icon>
+                  <v-icon color="green" small  >mdi-power-plug-off</v-icon>
                   <span class="mx-2">Logout</span>
                 </a>
               </li>

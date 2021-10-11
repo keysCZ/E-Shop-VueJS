@@ -40,9 +40,9 @@
                 <h4 class="my-5">
                   Total Price : {{ this.$store.getters.totalPrice }}€
                 </h4>
-                <div class="pay" v-if="'profile.name' !== null">
+                <div class="pay" v-if="this.$cookies.isKey('user') == true">
                   <p>
-                    Souhaitez-vous finaliser votre achat, {{ profile.name }} ?
+                    Souhaitez-vous finaliser votre achat {{ display_name }} ?
                   </p>
                   <div ref="paypal"></div>
                 </div>
@@ -74,21 +74,19 @@ export default {
   },
   data() {
     return {
-      profile: {
-        name: null
-      },
+      user : fb.auth().currentUser,
       productsName: [],
       paypalDescription: "",
       paypalCurrency: "EUR",
       paypalValue: this.$store.getters.totalPrice
     };
   },
-  firestore() {
-    var user = fb.auth().currentUser;
-
-    return {
-      profile: db.collection("profiles").doc(user.uid)
-    };
+  computed: {
+    display_name(){
+      if(this.$cookies.isKey('user') == true) {
+        return this.$cookies.get('user').displayName
+      }
+    }
   },
   mounted: function() {
     this.$store.state.cart.forEach(item => {
@@ -127,6 +125,7 @@ export default {
             console.log(order);
             let cart = (this.$store.state.cart = []);
             this.$store.commit("saveData", cart);
+            this.$cookies.set("order", order, Infinity);
             this.$router.replace("/successpayment");
           },
           onError: err => {

@@ -32,6 +32,8 @@ var _vueCarousel = _interopRequireDefault(require("vue-carousel"));
 
 var _vue2Filters = _interopRequireDefault(require("vue2-filters"));
 
+var _vueCookies = _interopRequireDefault(require("vue-cookies"));
+
 var _router = _interopRequireDefault(require("./router"));
 
 var _store = _interopRequireDefault(require("./store.js"));
@@ -61,6 +63,8 @@ var Toast = _sweetalert["default"].mixin({
 });
 
 window.Toast = Toast;
+
+_vue["default"].use(_vueCookies["default"]);
 
 _vue["default"].use(_vue2Filters["default"]);
 

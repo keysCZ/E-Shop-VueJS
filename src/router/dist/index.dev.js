@@ -212,6 +212,14 @@ var routes = [{
         return _interopRequireWildcard(require('@/views/User/Profile'));
       });
     }
+  }, {
+    path: 'purchases',
+    name: 'UserPurchases',
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('@/views/User/Purchases'));
+      });
+    }
   }]
 }];
 var router = new _vueRouter["default"]({

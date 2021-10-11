@@ -1,5 +1,5 @@
 <template>
-  <div class="profile">
+  <div class="user_profile">
     <div class="container h-100">
       <div class="intro h-100 mb-5">
         <div class="row h-100 justify-content-center align-items-center">

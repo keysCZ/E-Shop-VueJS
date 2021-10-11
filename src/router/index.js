@@ -134,12 +134,18 @@ Vue.use(VueRouter)
      { 
       path: 'orders',
       name: 'UserOrders',
-      component: () => import(/* webpackChunkName: "user_order" */'@/views/User/Orders'),
+      component: () => import(/* webpackChunkName: "user_orders" */'@/views/User/Orders'),
       },
      { 
       path: 'profile',
       name: 'UserProfile',
       component: () => import(/* webpackChunkName: "user_profile" */'@/views/User/Profile'),
+      },
+      
+     { 
+      path: 'purchases',
+      name: 'UserPurchases',
+      component: () => import(/* webpackChunkName: "user_profile" */'@/views/User/Purchases'),
       }
     ]
   }
