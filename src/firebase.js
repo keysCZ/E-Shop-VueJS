@@ -14,10 +14,13 @@ var firebaseConfig = {
   measurementId: "G-WDSH26FBLE"
 };
 // Initialize Firebase
+import * as admin from "firebase-admin";
+
+const ad = admin.initializeApp();
 const fb = firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
  
-export {firebase, fb,db,provider}
+export {firebase,ad,fb,db,provider}

@@ -1,8 +1,8 @@
 const functions = require("firebase-functions");
 const stripe = require('stripe')('sk_test_51INdvGD9cbEc0vgtwRcXN9y3yf83983RW8p4BygyQpzD7tiisd1y8vUcmFG2MSYZLoYdHSbQJWEwLVXirS79z2KO00nIAAA7Da');
 const cors = require('cors')({origin: true});
-const admin = require('firebase-admin');
 // const jQuery = require('jquery');
+const admin = require('firebase-admin');
 
 admin.initializeApp();
 exports.CheckoutSession = functions.https.onRequest((request, response) => {

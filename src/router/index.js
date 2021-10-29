@@ -42,7 +42,7 @@ Vue.use(VueRouter)
         },
      { 
       path: 'orders',
-      name: 'orders',
+      name: 'AdminOrders',
       component: () => import(/* webpackChunkName: "orderslist" */'@/views/Admin/Orders'),
       },
      { 
@@ -131,11 +131,6 @@ Vue.use(VueRouter)
     component: () => import(/* webpackChunkName: "user" */ '@/views/User.vue'),
     meta: { requiresAuth: true },
     children : [
-     { 
-      path: 'orders',
-      name: 'UserOrders',
-      component: () => import(/* webpackChunkName: "user_orders" */'@/views/User/Orders'),
-      },
      { 
       path: 'profile',
       name: 'UserProfile',

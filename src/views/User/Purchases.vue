@@ -16,7 +16,7 @@
         <!-- @@Orders -->
         <!-- @OrderTable -->
         <div>
-          <button  class="btn btn-secondary btn-lg btn-outline" @click="addOrder">Je veux voir mes achats</button>
+          <button  class="btn btn-secondary btn-lg btn-outline" @click="user_orders">Je veux voir mes achats</button>
         </div>
         <div class="container table-responsive table_order">
           <h2>Mes commandes</h2>
@@ -30,7 +30,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(order, index) in orders" :key="index">
+              <tr v-for="(order, index) in user_purchases" :key="index">
                 <td>{{ index }}</td>
                 <td>{{ order.product_name }}</td>
                 <td>{{ order.order_created_at }}</td>
@@ -58,7 +58,7 @@ export default {
           product_name : null,
           order_created_at : null,
           order_amount : null,
-          shipping_to : null,
+          order_shipping_to : null,
           payment_status : null,
           order_status : null
         }
@@ -71,13 +71,6 @@ export default {
     },
     methods : {
       addOrder(){
-        // var user = fb.auth().currentUser;
-        
-        // if (user.uid == this.orders) {
-          
-        // }
-
-
         console.log(this.$cookies.get("order"));
         this.order.order_id = this.$cookies.get("order").id;
         this.order.user_id = this.$cookies.get("user").uid;
@@ -87,20 +80,34 @@ export default {
         this.order.payment_status = this.$cookies.get("order").status;
         this.order.order_shipping_to = this.$cookies.get("order").purchase_units[0].shipping;
         
-        
+         
         for (let i = 0; i < this.orders.length; i++) {
           const e = this.orders[0];
           if (this.order.order_id != e.order_id) 
-          {
-            //this.orders.push(this.order);
+          {b 
             this.$firestore.orders.add(this.order);
-          } else{
-            // this.orders[i].splice();
           }
         }
          
         console.log(this.orders);
         console.log(this.order);
+      },
+      user_orders() {
+        this.addOrder();
+        console.log(this.user_purchases);
+      }
+    },
+    computed : {
+      user_purchases(){
+        
+        var user = fb.auth().currentUser;
+        // for (let i = 0; i < this.orders.length; i++) {
+        //    const k = this.orders[i];
+        //   if (user.uid == k.user_id) {
+        //     return k ;
+        //  }
+        // }
+        return this.orders.filter(order => order.user_id == user.uid);
       }
     }
 }

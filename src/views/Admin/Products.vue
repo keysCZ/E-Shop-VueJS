@@ -211,7 +211,7 @@
             <td>{{ product.name }}</td>
             <td>{{ product.price }}</td>
 
-            <button
+            <td> <button
               class="btn btn-primary mx-3 butn"
               @click="editProduct(product)"
             >
@@ -219,7 +219,7 @@
             </button>
             <button class="btn btn-danger" @click="deleteProduct(product)">
               <v-icon color="red">mdi-delete-sweep-outline</v-icon>
-            </button>
+            </button></td>
           </tr>
         </tbody>
       </table>

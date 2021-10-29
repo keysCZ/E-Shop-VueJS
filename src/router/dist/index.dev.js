@@ -68,7 +68,7 @@ var routes = [{
     }
   }, {
     path: 'orders',
-    name: 'orders',
+    name: 'AdminOrders',
     component: function component() {
       return Promise.resolve().then(function () {
         return _interopRequireWildcard(require('@/views/Admin/Orders'));
@@ -197,14 +197,6 @@ var routes = [{
     requiresAuth: true
   },
   children: [{
-    path: 'orders',
-    name: 'UserOrders',
-    component: function component() {
-      return Promise.resolve().then(function () {
-        return _interopRequireWildcard(require('@/views/User/Orders'));
-      });
-    }
-  }, {
     path: 'profile',
     name: 'UserProfile',
     component: function component() {

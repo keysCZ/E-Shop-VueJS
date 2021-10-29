@@ -58,16 +58,6 @@
               <li class="header-menu">
                 <span>Menu</span>
               </li>
-
-              
-              <li>
-                <router-link to="/user/orders">
-                  <v-icon color="green" small >mdi-shopping</v-icon>
-
-                  <span class="mx-2">Orders</span>
-                </router-link>
-              </li>
-
               <li>
                 <router-link to="/user/profile">
                   <v-icon color="green" small >mdi-face-man-shimmer</v-icon>

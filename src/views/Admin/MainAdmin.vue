@@ -82,7 +82,7 @@
               </li>
               <li>
                 <router-link to="/adminczperfumes/dashboard/orders">
-                  <b-icon icon="shop-window"></b-icon>
+                <v-icon color="green" small  >mdi-cart-check</v-icon>
 
                   <span class="mx-2">Commandes</span>
                 </router-link>
@@ -90,13 +90,13 @@
 
               <li>
                 <router-link to="/adminczperfumes/dashboard/profile">
-                  <b-icon icon="person-bounding-box"> </b-icon>
+                 <v-icon color="green" small >mdi-face-man-shimmer</v-icon>
                   <span class="mx-2"> Profil</span>
                 </router-link>
               </li>
               <li>
                 <a href="#" @click="logout">
-                  <b-icon icon="power"></b-icon>
+                   <v-icon color="green" small  >mdi-power-plug-off</v-icon>
                   <span class="mx-2">Déconnexion</span>
                 </a>
               </li>
