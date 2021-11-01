@@ -103,7 +103,7 @@
                       <router-link to="/user/profile">Mon profil</router-link>
                     </a>
                     <a class="dropdown-item" href="#"
-                      ><router-link to="/user/orders"
+                      ><router-link to="/user/purchases"
                         >Mes achats</router-link
                       ></a
                     >
@@ -345,7 +345,7 @@ body {
   transition: all 0.3s ease-out;
 }
 .navigation-wrap {
-  position: fixed;
+  position: sticky;
   width: 100%;
   top: 0;
   left: 0;

@@ -1,7 +1,6 @@
 <template>
   <div class="category-card">
-    <div class="container">
-      <div class="card card-category">
+      <!-- <div class="card card-category">
         <figure class="card__thumb">
           <div class="img">
             <img
@@ -12,29 +11,27 @@
           </div>
           <figcaption class="card__caption">
             <h2 class="card__title">{{ category.cname }}</h2>
-            <p class="card__snippet"></p>
+            <p class="card__snippet">{{ category.cdescription }}</p>
             <div href="" class="card__button">
               <router-link :to="category.clink">Voir +</router-link>
             </div>
           </figcaption>
         </figure>
-      </div>
-    </div>
-
-    <!-- <div class=" "
-    >
-            <div class="card" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2))" v-bind:style="{backgroundImage : 'url(' + category.cbackground +')'}" >
+      </div> -->
+            <div class="card"  v-bind:style="{backgroundImage : `url(${category.cbackground})`}" >
               <div class="card-category">{{ category.cname }}</div>
               
              <div class="card-description">
-                <h2> {{ category.cdescription }} </h2>
+                <h2>{{category.cdescription }} </h2>
               </div>
               <div class="card-link" >
                 <router-link :to="category.clink">  </router-link> 
               </div>
             </div>
-          </div> -->
-  </div>
+
+    </div>
+
+    
 </template>
 
 <script>
@@ -90,30 +87,39 @@ body {
   background-color: #e6e6e6;
 }
 
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-  margin: 20px 0 80px;
-}
+// .container {
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: center;
+//   width: 100%;
+//   margin: 20px 0 80px;
+// }
 .img {
   width: 400px;
   height: 500px;
 }
 img {
   display: block;
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 100%;
   transform: translateX(-25%);
 }
 
 .card {
-  width: 400px;
-  margin: 10px;
-  background-color: white;
+  width: 500px;
+  height: 500px;
+  margin:30px;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)); background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  background-size: cover !important;
+  color: white;
+  position: relative;
+  border-radius: 5px;
+  margin-bottom: 20px;
 
   &:hover {
     .card__caption {
@@ -253,21 +259,18 @@ img {
     text-decoration: none;
   }
 }
-
-/* .card {
-  height: 250px;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-  background-size: cover !important;
-  color: white;
-  position: relative;
-  border-radius: 5px;
-  margin-bottom: 20px;
+.category-card{
+  width: 500px;
+    height: 500px;
 }
+
 .card-category {
-  position: absolute;
+  position: relative;
   top: 10px;
   left: 10px;
   font-size: 20px;
+ 
+    
 }
 .card-description {
   position: absolute;
@@ -278,7 +281,7 @@ img {
   font-size: 22px;
 }
 .card-description p {
-  font-size: 15px;
+  font-size: 12px;
 }
 .card-link {
   position: absolute;
@@ -293,5 +296,5 @@ img {
     border-radius: 5px;
 
   opacity: 0.4;
-} */
+} 
 </style>

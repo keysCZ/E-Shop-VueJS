@@ -27,14 +27,27 @@
                 <th scope="col">Nom</th>
                 <th scope="col">Date</th>
                 <th scope="col">Montant</th>
+                <th>Info</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(order, index) in user_purchases" :key="index">
+              <tr v-for="(order, index) in user_purchases" :key="index" v-on:click="getPrd()"  class="line">
                 <td>{{ index }}</td>
                 <td>{{ order.product_name }}</td>
                 <td>{{ order.order_created_at }}</td>
                 <td>{{ order.order_amount }}</td>
+                <td><button
+            v-on:click="getPrd(order.id)"
+            class="
+              info
+              btn btn-outline-light btn-sm
+              mt-auto
+            "
+          >
+            <router-link :to="{ name: 'PurchaseDetails', params: { id: order.id } }">
+              Details
+            </router-link>
+          </button></td>
               </tr>
             </tbody>
           </table>
@@ -70,6 +83,15 @@ export default {
       }
     },
     methods : {
+      getPrd(id) {
+      // for (const item in this.products) {
+      //   console.log(`${property}: ${object[property]}`);
+      //   items.push(this.products[item]);
+      // }
+      // console.log(this.item);
+      var purchase = this.orders.filter(order => order.id == id);
+      console.log(purchase);
+    },
       addOrder(){
         console.log(this.$cookies.get("order"));
         this.order.order_id = this.$cookies.get("order").id;
@@ -84,7 +106,7 @@ export default {
         for (let i = 0; i < this.orders.length; i++) {
           const e = this.orders[0];
           if (this.order.order_id != e.order_id) 
-          {b 
+          {
             this.$firestore.orders.add(this.order);
           }
         }

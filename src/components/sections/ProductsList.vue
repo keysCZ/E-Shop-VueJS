@@ -3,13 +3,16 @@
     <div class="container">
       <div class="row">
           <div class="col-12">
-            <h2 class="m-5">Tous nos parfums</h2>
+            <h2 class="m-5">Tous nos produits</h2>
           </div>  
           <!-- <card-product></card-product> -->
-          <div  class="col-lg-3 col-sm-4 col-md-4" v-for="(category, index) in categories"
+          <div class="categories">
+            <div  class="col-lg-6 col-sm-12 col-md-6 " v-for="(category, index) in categories"
                   :key="index">
             <category :category="category"> </category>
           </div> 
+          </div>
+          
       </div>
     </div>
   </div>
@@ -41,7 +44,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-    // .products{
-    //     padding-bottom: 3rem;
-    // }
+    .categories{
+      display: flex;
+      flex-wrap: wrap;
+    }
 </style>

@@ -212,6 +212,17 @@ var routes = [{
         return _interopRequireWildcard(require('@/views/User/Purchases'));
       });
     }
+  }, {
+    path: '/purchases/details/:id',
+    name: 'PurchaseDetails',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('../components/sections/PurchaseDetails.vue'));
+      });
+    }
   }]
 }];
 var router = new _vueRouter["default"]({

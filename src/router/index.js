@@ -141,7 +141,15 @@ Vue.use(VueRouter)
       path: 'purchases',
       name: 'UserPurchases',
       component: () => import(/* webpackChunkName: "user_profile" */'@/views/User/Purchases'),
-      }
+      },
+      {
+    path: '/purchases/details/:id',
+    name: 'PurchaseDetails',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "purchhase_details" */ '../components/sections/PurchaseDetails.vue')
+  },
     ]
   }
 ]
